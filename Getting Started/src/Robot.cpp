@@ -16,6 +16,13 @@ class Robot: public IterativeRobot {
 	DriverStation *DS = DriverStation::GetInstance();
 	Encoder *en1 = new Encoder(0,1,true,Encoder::k2X); //Motors 1 and 2
 	Encoder *en2 = new Encoder(2,3,false,Encoder::k2X); //Motors 3 and 4
+	CameraServer *c1 = CameraServer::GetInstance();
+	Talon *tal1 = new Talon(0);
+	Talon *tal2 = new Talon(1);
+	Talon *tal3 = new Talon(2);
+	Talon *tal4 = new Talon(3);
+
+
 
 public:
 	Robot() :
@@ -26,6 +33,7 @@ public:
 		xbox = XboxController::getInstance();
 		c->SetClosedLoopControl(true); //Turns compressor on
 		// No Dash board in Constructor
+		c1->StartAutomaticCapture();
 
 	}
 
@@ -73,8 +81,8 @@ private:
 
 		SmartDashboard::PutNumber("Stik it UP", xbox->getLeftStick()->GetX()); //X-Value of Joystick
 
-
-
+		SmartDashboard::PutBoolean("X", xbox->isXHeld());
+		SmartDashboard::PutBoolean("Y", xbox->isYHeld());
 
 		if (xbox->isAPressed()) {  // if A is pressed, toggle the gear
 			if (highGearActivated) {
@@ -92,6 +100,8 @@ private:
 	void TestPeriodic() {
 		lw->Run();
 	}
+
+
 };
 
 START_ROBOT_CLASS(Robot);

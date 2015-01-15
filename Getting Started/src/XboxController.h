@@ -11,7 +11,7 @@
 
 /* This is the Header File for Xbox Controller*/
 
-#define DEBOUNCER 30
+#define DEBOUNCER 15
 
 #include "WPILib.h"
 
