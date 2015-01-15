@@ -63,9 +63,14 @@ private:
 	}
 
 	void TeleopPeriodic() {
+
+		//Starts Basic Drive
 		myRobot.ArcadeDrive(xbox->getLeftStick());
+
+		//High gear / needs fancying / changes to set value when it restarts
 		SmartDashboard::PutBoolean("High Gear", highGearActivated);
 
+		//Basic Dial
 		SmartDashboard::PutNumber("Counter", xbox->getAxisLeftX());
 
 		//Greater
@@ -79,6 +84,7 @@ private:
 		SmartDashboard::PutNumber("Right Motor Count", en1->Get());
 		SmartDashboard::PutNumber("Left Motor Count", en2->Get());
 
+		//Controller X Drift
 		SmartDashboard::PutNumber("Stik it UP", xbox->getLeftStick()->GetX()); //X-Value of Joystick
 
 		SmartDashboard::PutBoolean("X", xbox->isXHeld());
