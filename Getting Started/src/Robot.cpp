@@ -21,6 +21,7 @@ class Robot: public IterativeRobot {
 	Talon *tal2 = new Talon(1);
 	Talon *tal3 = new Talon(2);
 	Talon *tal4 = new Talon(3);
+	Preferences *pref = Preferences::GetInstance();
 
 
 
@@ -83,6 +84,12 @@ private:
 
 		SmartDashboard::PutBoolean("X", xbox->isXHeld());
 		SmartDashboard::PutBoolean("Y", xbox->isYHeld());
+
+		//Access Keys
+		double x = pref->GetDouble("Shooting_Speed", 10.0);
+
+
+		SmartDashboard::PutNumber("User", x);
 
 		if (xbox->isAPressed()) {  // if A is pressed, toggle the gear
 			if (highGearActivated) {
