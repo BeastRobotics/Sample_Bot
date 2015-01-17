@@ -1,5 +1,26 @@
-#include "WPILib.h"
-#include "XboxController.h"
+#include <CameraServer.h>
+#include <Compressor.h>
+#include <DoubleSolenoid.h>
+#include <DriverStation.h>
+#include <HAL/Task.hpp>
+#include <IterativeRobot.h>
+#include <Joystick.h>
+#include <LiveWindow/LiveWindow.h>
+#include <Preferences.h>
+#include <RobotBase.h>
+#include <RobotDrive.h>
+#include <stddef.h>
+#include <SmartDashboard/SmartDashboard.h>
+#include <Task.h>
+#include <Timer.h>
+#include <XboxController.h>
+#include <cstdint>
+
+#define TOLERANCE 25
+#define LEVEL_1 300
+#define MOTOR_SPEED 0.25
+
+
 
 class Robot: public IterativeRobot {
 
@@ -10,11 +31,12 @@ class Robot: public IterativeRobot {
 	DoubleSolenoid *ex1 = new DoubleSolenoid(0, 1); //First solenoid pair
 	DoubleSolenoid *ex2 = new DoubleSolenoid(2, 3); //Second solenoid pair
 	DriverStation *DS = DriverStation::GetInstance(); //Declares the driver station
-	//Encoder *en1 = new Encoder(0, 1, true, Encoder::k2X); //Motors 1 and 2
+	Encoder *en1 = new Encoder(0, 1, true, Encoder::k2X); //Motors 1 and 2
 	//Encoder *en2 = new Encoder(2, 3, false, Encoder::k2X); //Motors 3 and 4
 	CameraServer *c1 = CameraServer::GetInstance(); //Declares camera
 	Preferences *pref = Preferences::GetInstance(); //Declares preferences on SmartDashboard
 	Task *aTask = NULL;
+	Talon *lifter = new Talon(6);
 	int autoLoopCounter;
 	bool highGearActivated = false; //False for low gear, true for high gear
 	int counter = 0;
@@ -30,6 +52,7 @@ public:
 		xbox = XboxController::getInstance(); //Initializes xbox Controller
 		//c->SetClosedLoopControl(true); //Turns compressor on
 		c1->StartAutomaticCapture();
+		lifter->EnableDeadbandElimination(true);
 
 	}
 
@@ -45,7 +68,7 @@ private:
 
 	void AutonomousPeriodic() {
 		if (autoLoopCounter < 100) //Check if we've completed 100 loops (approximately 2 seconds)
-				{
+		{
 			myRobot.Drive(-0.5, 0.0); 	// drive forwards half speed
 			autoLoopCounter++;
 		} else {
@@ -64,6 +87,7 @@ private:
 	}
 
 	void TeleopInit() {
+
 		SmartDashboard::PutString("State", "Teleop");
 		SmartDashboard::PutBoolean("Increment Counter", false);
 		//en1->Reset(); //Clears the Encoder
@@ -102,11 +126,12 @@ private:
 	}
 
 	void TeleopPeriodic() {
-
+		//MoveToLevel1();
 		myRobot.ArcadeDrive(xbox->getLeftStick()); //Drives the robot
 
 		SmartDashboard::PutBoolean("High Gear", highGearActivated);
 		SmartDashboard::PutNumber("Counter", xbox->getAxisLeftX());
+		SmartDashboard::PutNumber("Lifter Encoder", en1->Get()); //X-Value of Joystick
 
 		//Greater
 		SmartDashboard::PutString("Greet", "Hello World!");
@@ -150,6 +175,20 @@ private:
 	void TestPeriodic() {
 		lw->Run();
 	}
+
+	void MoveToLevel1() {
+	SmartDashboard::PutNumber("Lifter Encoder", en1->Get()); //X-Value of Joystick
+			if (en1->Get() < LEVEL_1 && en1->Get() > LEVEL_1 + TOLERANCE) {
+				lifter->Set(MOTOR_SPEED);
+				Wait(0.005);
+				MoveToLevel1();
+			} else if (en1->Get() > LEVEL_1 && en1->Get() < LEVEL_1 - TOLERANCE) {
+				lifter->Set(-MOTOR_SPEED);
+				MoveToLevel1();
+			} else {
+				lifter->Set(0);
+			}
+		}
 
 };
 
