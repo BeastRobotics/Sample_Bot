@@ -1,12 +1,12 @@
 #include "WPILib.h"
 
-class TaskController.h
-	{
-
+class TaskController
+{
+public:
 	const char* name;
 
 	bool init(const char* name); //Makes the Thread but does not initilase
-				//true on success false on faliure or already existing string
+	//true on success false on faliure or already existing string
 
 	bool Start(); //Starts A Thread
 
