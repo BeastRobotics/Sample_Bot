@@ -22,7 +22,7 @@ class Robot: public IterativeRobot {
 
 public:
 	Robot() :
-		// No Dash board in Constructo
+		// No Dash board in Constructor
 
 		myRobot(2, 1), // these must be initialized in the same order  2,1 since the turing was inverted
 		lw(NULL), autoLoopCounter(0) {

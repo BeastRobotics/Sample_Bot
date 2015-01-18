@@ -7,6 +7,7 @@ class TaskController
 	bool run = false;
 	Task *aTask = NULL;
 	bool debug = false;
+	FUNCPTR myTask = NULL;
 
 public:
 	bool init(const char* newname)
@@ -20,13 +21,15 @@ public:
 	bool Start()
 	{
 		//TODO implement
-		if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
+		aTask->Start((uint32_t)this);
+		//TODO if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
 		return false;
 	}
 
 	static bool StopAll()
 	{
-		run = false;
+		//TODO make this work in C somehow don't know pointers well
+		//return TaskController::Stop();
 		return false;
 	}
 
@@ -38,7 +41,7 @@ public:
 			return true;
 			if(debug)
 			{
-				SmartDashboard::PutBoolean("Running:"+name, false);
+				//TODO SmartDashboard::PutBoolean("Running:"+name, false);
 			}
 		}
 		return false;
@@ -68,5 +71,5 @@ public:
 		run = true;
 		return false;
 	}
-}
+};
 
