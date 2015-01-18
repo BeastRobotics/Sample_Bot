@@ -22,10 +22,10 @@ class Robot: public IterativeRobot {
 
 public:
 	Robot() :
-			// No Dash board in Constructo
+		// No Dash board in Constructo
 
-			myRobot(2, 1), // these must be initialized in the same order  2,1 since the turing was inverted
-			lw(NULL), autoLoopCounter(0) {
+		myRobot(2, 1), // these must be initialized in the same order  2,1 since the turing was inverted
+		lw(NULL), autoLoopCounter(0) {
 		myRobot.SetExpiration(0.1);
 		xbox = XboxController::getInstance(); //Initializes xbox Controller
 		//c->SetClosedLoopControl(true); //Turns compressor on
@@ -45,7 +45,7 @@ private:
 
 	void AutonomousPeriodic() {
 		if (autoLoopCounter < 100) //Check if we've completed 100 loops (approximately 2 seconds)
-				{
+		{
 			myRobot.Drive(-0.5, 0.0); 	// drive forwards half speed
 			autoLoopCounter++;
 		} else {
@@ -80,11 +80,11 @@ private:
 	{
 		run = false;
 		if (aTask != NULL) {
-					bool stopped = aTask->Stop();
-					SmartDashboard::PutBoolean("Task Value", stopped);
-					SmartDashboard::PutBoolean("Stopped", false);
-					//SmartDashboard::PutNumber("Print Hundred",-999);
-				}
+			bool stopped = aTask->Stop();
+			SmartDashboard::PutBoolean("Task Value", stopped);
+			SmartDashboard::PutBoolean("Stopped", false);
+			//SmartDashboard::PutNumber("Print Hundred",-999);
+		}
 	}
 
 	void DisabledPeriodic()

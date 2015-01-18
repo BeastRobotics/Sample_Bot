@@ -4,41 +4,68 @@ class TaskController
 {
 
 	const char* name;
+	bool run = false;
+	Task *aTask = NULL;
+	bool debug = false;
 
 public:
-	bool init(const char* name)
+	bool init(const char* newname)
 	{
 		//TODO implement
+		//set it to turn debug on based on a preference
+		name = newname;
 		return false;
 	}
 
 	bool Start()
 	{
 		//TODO implement
+		if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
 		return false;
 	}
 
 	static bool StopAll()
 	{
-		//TODO implement
+		run = false;
 		return false;
 	}
 
 	bool Stop()
 	{
-		//TODO implement
+		run = false;
+		if(aTask->Stop())
+		{
+			return true;
+			if(debug)
+			{
+				SmartDashboard::PutBoolean("Running:"+name, false);
+			}
+		}
 		return false;
 	}
 
-	bool ConfirmDestruction()
+	bool ConfirmDestruction() //Checks if it is not stopped : Will stop it if not
 	{
-		//TODO implement
-		return false;
+		if(aTask!=NULL)
+		{
+			if(!aTask->Verify())
+			{
+				delete aTask;
+				aTask = NULL;
+				if(debug){
+					SmartDashboard::PutBoolean("Stopped", true);
+					SmartDashboard::PutString("State", "Disable Stopped");
+				}
+				return true;
+			}
+			else return true;
+		}
+		else return true;
 	}
 
 	bool Run(...)
 	{
-		//TODO implement
+		run = true;
 		return false;
 	}
 }
