@@ -29,8 +29,8 @@ private:
 	NewXboxController(int port=0);
 	Joystick lstick;
 	Joystick rstick;
-	static NewXboxController *newXbox;
 	
+
 	bool isButtonHeld(int &debounceCounter, bool rawValue);
 	bool xLast, xNow;
 	bool yLast, yNow;

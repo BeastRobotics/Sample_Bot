@@ -25,6 +25,8 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 #define JOG_DEBOUNCE 10
 
 #define DEBOUNCE_COUNT_LIMIT 15
+
+static NewXboxController *newXbox = NULL;
 	
 NewXboxController::NewXboxController(int port):
 		lstick(port), rstick(port) {
@@ -44,6 +46,8 @@ NewXboxController::NewXboxController(int port):
 	backLast=false;
 	backNow=false;
 	
+
+
 	//set counters to 0
 	xDebounceCounter=0;
 	yDebounceCounter=0;
@@ -112,7 +116,7 @@ bool NewXboxController::getStartHeld() {
 	return startLast&&startNow;
 }
 
-bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) 
+bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) {
 	if (rawValue) {
 		debounceCounter++;
 		if (debounceCounter > DEBOUNCE_COUNT_LIMIT) return true;
@@ -122,3 +126,4 @@ bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue)
 	}
 	return false;
 }
+
