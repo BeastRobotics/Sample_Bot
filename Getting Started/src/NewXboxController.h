@@ -7,7 +7,7 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 
 class NewXboxController {
 public:
-	static NewXboxController *getInstance;
+	static NewXboxController* getInstance();
 	~NewXboxController() {}
 	void update();/*MUST BE CALLED EVER ITERATION THROUGH LOOP*/
 	
@@ -29,14 +29,15 @@ private:
 	NewXboxController(int port=0);
 	Joystick lstick;
 	Joystick rstick;
+	static NewXboxController *newXbox;
 	
-	bool isButtonHeld(int &debounceCounter, bool rawValue, int debounceCount); //TODO unexpected arguments
+	bool isButtonHeld(int &debounceCounter, bool rawValue);
 	bool xLast, xNow;
 	bool yLast, yNow;
 	bool aLast, aNow;
 	bool bLast, bNow;
 	bool startLast, startNow;
 	bool backLast, backNow;
-	int xDebounceCounter, yDebounceCounter, aDebounceCounter, bDebounceCounter;
+	int xDebounceCounter, yDebounceCounter, aDebounceCounter, bDebounceCounter, startDebounceCounter, backDebounceCounter;
 };
 #endif	

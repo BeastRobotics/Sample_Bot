@@ -26,7 +26,7 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 
 #define DEBOUNCE_COUNT_LIMIT 15
 	
-NewXboxController::NewXboxController(int port=0): //TODO probelm with default parameter
+NewXboxController::NewXboxController(int port):
 		lstick(port), rstick(port) {
 	rstick.SetAxisChannel(Joystick::kXAxis, 4);
 	rstick.SetAxisChannel(Joystick::kYAxis, 5);
@@ -49,15 +49,15 @@ NewXboxController::NewXboxController(int port=0): //TODO probelm with default pa
 	yDebounceCounter=0;
 	aDebounceCounter=0;
 	bDebounceCounter=0;
-	startDebounceCounter=0; //TODO
-	backDebounceCounter=0; //TODO dfix
+	startDebounceCounter=0;
+	backDebounceCounter=0;
 }
 	
-NewXboxController *NewXboxController::getInstance() { //TODO nevermade an xbox feild
-	if (xbox == NULL)
-		xbox = new NewXboxController(0);//this is the first time it is called
+NewXboxController *NewXboxController::getInstance() {
+	if (newXbox == NULL)
+		newXbox = new NewXboxController(0);//this is the first time getInstance is called
 		
-	return xbox;
+	return newXbox;
 }
 	
 void NewXboxController::update() {
@@ -68,12 +68,12 @@ void NewXboxController::update() {
 	startLast=startNow;
 	backLast=backNow;
 	
-	xNow=isButtonHeld(xDebounceCounter, rstick.GetRawButton(BUTTON_X)); //TODO invalid Args
-	yNow=isButtonHeld(yDebounceCounter, rstick.GetRawButton(BUTTON_Y)); //TODO invalid Args
-	aNow=isButtonHeld(aDebounceCounter, rstick.GetRawButton(BUTTON_A)); //TODO invalid Args
-	bNow=isButtonHeld(bDebounceCounter, rstick.GetRawButton(BUTTON_B)); //TODO invalid Args
-	startNow=isButtonHeld(startDebounceCounter, rstick.GetRawButton(BUTTON_START)); //TODO symbol cannot be resolved
-	backNow=isButtonHeld(backDebounceCounter, rstick.GetRawButton(BUTTON_BACK)); //TODO symbol cannot be resolved
+	xNow=isButtonHeld(xDebounceCounter, rstick.GetRawButton(BUTTON_X));
+	yNow=isButtonHeld(yDebounceCounter, rstick.GetRawButton(BUTTON_Y));
+	aNow=isButtonHeld(aDebounceCounter, rstick.GetRawButton(BUTTON_A));
+	bNow=isButtonHeld(bDebounceCounter, rstick.GetRawButton(BUTTON_B));
+	startNow=isButtonHeld(startDebounceCounter, rstick.GetRawButton(BUTTON_START));
+	backNow=isButtonHeld(backDebounceCounter, rstick.GetRawButton(BUTTON_BACK));
 }
 
 bool NewXboxController::getXPressed() {
@@ -112,15 +112,13 @@ bool NewXboxController::getStartHeld() {
 	return startLast&&startNow;
 }
 
-bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) { //TODO 	- prototype for 'bool NewXboxController::isButtonHeld(int&, bool)' does not match any in class
-																				//'NewXboxController'
-																				//- Member declaration not found
+bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) 
 	if (rawValue) {
 		debounceCounter++;
 		if (debounceCounter > DEBOUNCE_COUNT_LIMIT) return true;
 	} 
 	else {//we are still debouncing...
-		counter = 0; //TODO DOES NOT EXIST
+		debounceCounter = 0;
 	}
 	return false;
 }
