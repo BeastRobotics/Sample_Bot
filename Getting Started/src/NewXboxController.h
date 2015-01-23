@@ -7,7 +7,7 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 
 class NewXboxController {
 public:
-	static NewXboxController *getInstance
+	static NewXboxController *getInstance;
 	~NewXboxController() {}
 	void update();/*MUST BE CALLED EVER ITERATION THROUGH LOOP*/
 	
