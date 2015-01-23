@@ -9,7 +9,7 @@
 #define SRC_LIFTERCONTROL_H_
 
 public:
-	~LifterControl() { }
+
 
 
 

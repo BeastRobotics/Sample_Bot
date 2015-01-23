@@ -15,6 +15,7 @@
 #include <Timer.h>
 #include <XboxController.h>
 #include <cstdint>
+#include <LifterControl.cpp>
 
 #define TOLERANCE 25
 #define LEVEL_1 300
@@ -31,12 +32,13 @@ class Robot: public IterativeRobot {
 	DoubleSolenoid *ex1 = new DoubleSolenoid(0, 1); //First solenoid pair
 	DoubleSolenoid *ex2 = new DoubleSolenoid(2, 3); //Second solenoid pair
 	DriverStation *DS = DriverStation::GetInstance(); //Declares the driver station
-	Encoder *en1 = new Encoder(0, 1, true, Encoder::k2X); //Motors 1 and 2
+	Encoder *en1 = new Encoder(1, 0, true, Encoder::k2X); //Motors 1 and 2
 	//Encoder *en2 = new Encoder(2, 3, false, Encoder::k2X); //Motors 3 and 4
 	CameraServer *c1 = CameraServer::GetInstance(); //Declares camera
 	Preferences *pref = Preferences::GetInstance(); //Declares preferences on SmartDashboard
 	Task *aTask = NULL;
-	Talon *lifter = new Talon(6);
+	Talon *lifterMotor = new Talon(6);
+	LifterControl *lifter = new LifterControl();
 	int autoLoopCounter;
 	bool highGearActivated = false; //False for low gear, true for high gear
 	int counter = 0;
@@ -46,14 +48,14 @@ public:
 	Robot() :
 			// No Dash board in Constructo
 
-			myRobot(2, 1), // these must be initialized in the same order  2,1 since the turing was inverted
+			myRobot(5,6), // these must be initialized in the same order  2,1 since the turing was inverted
 			lw(NULL), autoLoopCounter(0) {
 		myRobot.SetExpiration(0.1);
 		xbox = XboxController::getInstance(); //Initializes xbox Controller
 		//c->SetClosedLoopControl(true); //Turns compressor on
 		c1->StartAutomaticCapture();
-		lifter->EnableDeadbandElimination(true);
-
+		lifterMotor->EnableDeadbandElimination(true);
+		en1->Reset();
 	}
 
 private:
@@ -126,7 +128,10 @@ private:
 	}
 
 	void TeleopPeriodic() {
-		//MoveToLevel1();
+		if (xbox->isBPressed()) {
+			lifter->MoveToLevel1();
+
+		}
 		myRobot.ArcadeDrive(xbox->getLeftStick()); //Drives the robot
 
 		SmartDashboard::PutBoolean("High Gear", highGearActivated);
@@ -175,20 +180,6 @@ private:
 	void TestPeriodic() {
 		lw->Run();
 	}
-
-	void MoveToLevel1() {
-	SmartDashboard::PutNumber("Lifter Encoder", en1->Get()); //X-Value of Joystick
-			if (en1->Get() < LEVEL_1 && en1->Get() > LEVEL_1 + TOLERANCE) {
-				lifter->Set(MOTOR_SPEED);
-				Wait(0.005);
-				MoveToLevel1();
-			} else if (en1->Get() > LEVEL_1 && en1->Get() < LEVEL_1 - TOLERANCE) {
-				lifter->Set(-MOTOR_SPEED);
-				MoveToLevel1();
-			} else {
-				lifter->Set(0);
-			}
-		}
 
 };
 
