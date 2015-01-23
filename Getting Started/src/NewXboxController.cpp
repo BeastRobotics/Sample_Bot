@@ -50,7 +50,7 @@ NewXboxController::NewXboxController(int port=0): //TODO probelm with default pa
 	aDebounceCounter=0;
 	bDebounceCounter=0;
 	startDebounceCounter=0; //TODO
-	backDebounceCounter=0; //TODO
+	backDebounceCounter=0; //TODO dfix
 }
 	
 NewXboxController *NewXboxController::getInstance() { //TODO nevermade an xbox feild

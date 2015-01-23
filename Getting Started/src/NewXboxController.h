@@ -30,7 +30,7 @@ private:
 	Joystick lstick;
 	Joystick rstick;
 	
-	bool isButtonHeld(int &debounceCounter, bool rawValue, int debounceCount);
+	bool isButtonHeld(int &debounceCounter, bool rawValue, int debounceCount); //TODO unexpected arguments
 	bool xLast, xNow;
 	bool yLast, yNow;
 	bool aLast, aNow;
