@@ -9,7 +9,6 @@
 /* This is the CPP file for Xbox Controller */
 
 #include "WPILib.h"
-#include "Nivision.h"
 #include "XboxController.h"
 #include <cmath>
 /* These are the button mappings to the raw values on the xbox controller*/

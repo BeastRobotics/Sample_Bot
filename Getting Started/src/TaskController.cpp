@@ -1,39 +1,50 @@
 #include "WPILib.h"
+#include "TaskController.h"
 
-class TaskController
-{
 
-	const char* name;
-	bool run = false;
-	Task *aTask = NULL;
-	bool debug = false;
-	FUNCPTR myTask = NULL;
+	static bool stopAll = false;
 
-public:
-	bool init(const char* newname)
+
+	TaskController::TaskController(const char* newname)
 	{
-		//TODO implement
-		//set it to turn debug on based on a preference
+		this->run = false;
 		name = newname;
-		return false;
+		aTask = NULL;
+		debug = false;
+		myTask = NULL;
 	}
 
-	bool Start()
+	TaskController::~TaskController(){
+
+	}
+
+	bool TaskController::init()
 	{
 		//TODO implement
-		aTask->Start((uint32_t)this);
-		//TODO if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
-		return false;
+		myTask = (FUNCPTR)(&TaskController::taskRunner);
+		aTask = new Task(name, myTask);
+		return true;
 	}
 
-	static bool StopAll()
+	bool TaskController::Start(uint32_t param1)
+	{
+		aTask->Start(param1);
+		return true;
+	}
+
+	bool TaskController::StopAll()
 	{
 		//TODO make this work in C somehow don't know pointers well
-		//return TaskController::Stop();
-		return false;
+		stopAll = true;
+		return true;
 	}
 
-	bool Stop()
+	bool TaskController::StopRequested()
+	{
+		return (run == false) || (stopAll == true);
+	}
+
+	bool TaskController::Stop()
 	{
 		run = false;
 		if(aTask->Stop())
@@ -47,7 +58,7 @@ public:
 		return false;
 	}
 
-	bool ConfirmDestruction() //Checks if it is not stopped : Will stop it if not
+	bool TaskController::ConfirmDestruction() //Checks if it is not stopped : Will stop it if not
 	{
 		if(aTask!=NULL)
 		{
@@ -66,10 +77,9 @@ public:
 		else return true;
 	}
 
-	bool Run(...)
-	{
-		run = true;
-		return false;
+
+	int TaskController::taskRunner(uint32_t param){
+		return Run(param);
 	}
-};
+
 

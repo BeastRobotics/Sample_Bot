@@ -1,334 +1,993 @@
-18:22:32 **** Clean-only build of configuration Debug for project Getting Started ****
-rm -rf src/Robot.d FRCUserProgram src/XboxController.d src/Robot.o src/XboxController.o 
-18:23:43 **** Rebuild of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-18:24:01 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-18:24:37 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-18:25:07 **** Incremental Build of configuration Debug for project Getting Started ****
+11:08:54 **** Clean-only build of configuration Debug for project Getting Started ****
+rm -rf src/Robot.d src/TaskController.o FRCUserProgram src/TaskController.d src/XboxController.d src/TestTask.d src/Robot.o src/TestTask.o src/XboxController.o 
+11:09:35 **** Rebuild of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-19:04:20 **** Incremental Build of configuration Debug for project Getting Started ****
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:6:24: error: ISO C++ forbids in-class initialization of non-const static member 'TaskController::stopAll'
+  static bool stopAll = false;
+                        ^
+../src/TaskController.cpp: In member function 'bool TaskController::init(const char*)':
+../src/TaskController.cpp:19:20: error: cannot convert 'TaskController::taskRunner' from type 'int (* (TaskController::)(uint32_t))(...) {aka int (* (TaskController::)(unsigned int))(...)}' to type 'FUNCPTR {aka int (*)(...)}'
+   FUNCPTR myTask = taskRunner;
+                    ^
+../src/TaskController.cpp: In member function 'int (* TaskController::taskRunner(uint32_t))(...)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+11:13:27 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
 ../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
  #include "Nivision.h"
                       ^
 compilation terminated.
-19:06:22 **** Incremental Build of configuration Debug for project Getting Started ****
+11:13:50 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:34:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TaskController.h:31:35: error: invalid pure specifier (only '= 0' is allowed) before ';' token
+  virtual bool Run(uint32_t) = NULL; //Starts the thread
+                                   ^
+../src/TestTask.cpp: In member function 'virtual bool TaskController::Run(uint32_t)':
+../src/TestTask.cpp:9:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:9:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:15:30 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:40:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TaskController::Run(uint32_t)':
+../src/TestTask.cpp:9:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:9:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:18:26 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-19:06:41 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-19:07:48 **** Incremental Build of configuration Debug for project Getting Started ****
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/Robot.cpp:3:
+../src/TaskController.h:40:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:40:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TaskController::Run(uint32_t)':
+../src/TestTask.cpp:9:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:9:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:18:38 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-../src/TaskController.cpp:44:1: error: expected ';' after class definition
- }
- ^
-19:08:27 **** Incremental Build of configuration Debug for project Getting Started ****
+../src/TaskController.cpp:4:2: error: 'TaskController' does not name a type
+  TaskController::stopAll = false;
+  ^
+../src/TaskController.cpp:11:7: error: 'TaskController' has not been declared
+  bool TaskController::init(const char* newname)
+       ^
+../src/TaskController.cpp: In function 'bool init(const char*)':
+../src/TaskController.cpp:14:12: error: 'taskRunner' was not declared in this scope
+   myTask = taskRunner;
+            ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:20:7: error: 'TaskController' has not been declared
+  bool TaskController::Start(uint32_t param1)
+       ^
+../src/TaskController.cpp: In function 'bool StopAll()':
+../src/TaskController.cpp:29:3: error: 'stopAll' was not declared in this scope
+   stopAll = true;
+   ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:33:7: error: 'TaskController' has not been declared
+  bool TaskController::StopRequested()
+       ^
+../src/TaskController.cpp: In function 'bool StopRequested()':
+../src/TaskController.cpp:35:29: error: 'stopAll' was not declared in this scope
+   return (run == false) || (stopAll == true);
+                             ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:38:7: error: 'TaskController' has not been declared
+  bool TaskController::Stop()
+       ^
+../src/TaskController.cpp:52:7: error: 'TaskController' has not been declared
+  bool TaskController::ConfirmDestruction() //Checks if it is not stopped : Will stop it if not
+       ^
+../src/TaskController.cpp:72:10: error: 'TaskController' has not been declared
+  FUNCPTR TaskController::taskRunner(uint32_t param){
+          ^
+../src/TaskController.cpp: In function 'int (* taskRunner(uint32_t))(...)':
+../src/TaskController.cpp:73:19: error: 'run' cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp: In function 'bool StopRequested()':
+../src/TaskController.cpp:36:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+../src/TaskController.cpp: In function 'int (* taskRunner(uint32_t))(...)':
+../src/TaskController.cpp:74:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:26:14: warning: 'bool StopAll()' defined but not used [-Wunused-function]
+  static bool StopAll()
+              ^
+11:19:21 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
 ../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
  #include "Nivision.h"
                       ^
 compilation terminated.
-19:08:55 **** Incremental Build of configuration Debug for project Getting Started ****
+11:20:15 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
 ../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
  #include "Nivision.h"
                       ^
 compilation terminated.
-19:08:58 **** Incremental Build of configuration Debug for project Getting Started ****
+11:20:57 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-../src/TaskController.cpp:44:1: error: expected ';' after class definition
- }
- ^
-19:09:01 **** Incremental Build of configuration Debug for project Getting Started ****
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:42:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TaskController::Run(uint32_t)':
+../src/TestTask.cpp:9:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:9:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:21:13 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
 ../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
  #include "Nivision.h"
                       ^
 compilation terminated.
-23:00:24 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:00:27 **** Incremental Build of configuration Debug for project Getting Started ****
+11:22:14 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:26:42 **** Incremental Build of configuration Debug for project Getting Started ****
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/Robot.cpp:3:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TaskController::Run(uint32_t)':
+../src/TestTask.cpp:9:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:9:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:23:26 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-../src/TaskController.cpp:72:1: error: expected ';' after class definition
- }
- ^
-../src/TaskController.cpp: In member function 'bool TaskController::Start()':
-../src/TaskController.cpp:24:10: error: 'class Task' has no member named 'start'
-   aTask->start(myTask, this);
-          ^
-../src/TaskController.cpp:25:50: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-   if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
-                                                  ^
-../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
-../src/TaskController.cpp:31:10: error: 'this' is unavailable for static member functions
-   return this->Stop();
-          ^
-../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
-../src/TaskController.cpp:42:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-     SmartDashboard::PutBoolean("Running:"+name, false);
-                                           ^
-23:29:08 **** Incremental Build of configuration Debug for project Getting Started ****
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TaskController::Run(uint32_t)':
+../src/TestTask.cpp:9:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:9:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:23:54 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TaskController::Run(uint32_t)':
+../src/TestTask.cpp:9:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:9:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:24:32 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:29:34 **** Incremental Build of configuration Debug for project Getting Started ****
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/Robot.cpp:3:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/Robot.cpp: In constructor 'Robot::Robot()':
+../src/Robot.cpp:30:30: error: use of deleted function 'TestTask::TestTask()'
+   lw(NULL), autoLoopCounter(0) {
+                              ^
+In file included from ../src/Robot.cpp:3:0:
+../src/TestTask.h:15:7: note: 'TestTask::TestTask()' is implicitly deleted because the default definition would be ill-formed:
+ class TestTask: public TaskController //Designed As A template class to be inherited and overwritten
+       ^
+../src/TestTask.h:15:7: error: no matching function for call to 'TaskController::TaskController()'
+../src/TestTask.h:15:7: note: candidates are:
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/Robot.cpp:3:
+../src/TaskController.h:22:2: note: TaskController::TaskController(const char*)
+  TaskController(const char* name);
+  ^
+../src/TaskController.h:22:2: note:   candidate expects 1 argument, 0 provided
+../src/TaskController.h:10:7: note: constexpr TaskController::TaskController(const TaskController&)
+ class TaskController //Designed As A template class to be inherited and overwritten
+       ^
+../src/TaskController.h:10:7: note:   candidate expects 1 argument, 0 provided
+11:27:48 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TestTask::Run(uint32_t)':
+../src/TestTask.cpp:14:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:14:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:28:43 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
 ../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
  #include "Nivision.h"
                       ^
 compilation terminated.
-23:29:36 **** Incremental Build of configuration Debug for project Getting Started ****
+11:28:45 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:29:37 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:29:43 **** Incremental Build of configuration Debug for project Getting Started ****
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/Robot.cpp:3:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/Robot.cpp: In constructor 'Robot::Robot()':
+../src/Robot.cpp:30:30: error: no matching function for call to 'TestTask::TestTask()'
+   lw(NULL), autoLoopCounter(0) {
+                              ^
+../src/Robot.cpp:30:30: note: candidates are:
+In file included from ../src/Robot.cpp:3:0:
+../src/TestTask.h:19:2: note: TestTask::TestTask(const char*)
+  TestTask(const char* name);
+  ^
+../src/TestTask.h:19:2: note:   candidate expects 1 argument, 0 provided
+../src/TestTask.h:15:7: note: constexpr TestTask::TestTask(const TestTask&)
+ class TestTask: public TaskController //Designed As A template class to be inherited and overwritten
+       ^
+../src/TestTask.h:15:7: note:   candidate expects 1 argument, 0 provided
+11:29:37 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-../src/TaskController.cpp:73:1: error: expected ';' after class definition
- }
- ^
-../src/TaskController.cpp: In member function 'bool TaskController::Start()':
-../src/TaskController.cpp:26:58: error: ISO C++ forbids casting to an array type 'char []' [-fpermissive]
-   if(debug)SmartDashboard::PutBoolean("Running:"+(char[])name, true);
-                                                          ^
-../src/TaskController.cpp:26:58: error: invalid operands of types 'const char [9]' and 'char*' to binary 'operator+'
-../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
-../src/TaskController.cpp:32:10: error: 'this' is unavailable for static member functions
-   return this->Stop();
-          ^
-../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
-../src/TaskController.cpp:43:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-     SmartDashboard::PutBoolean("Running:"+name, false);
-                                           ^
-23:29:55 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:30:03 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:30:07 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-../src/TaskController.cpp:73:1: error: expected ';' after class definition
- }
- ^
-../src/TaskController.cpp: In member function 'bool TaskController::Start()':
-../src/TaskController.cpp:26:50: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-   if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
-                                                  ^
-../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
-../src/TaskController.cpp:32:10: error: 'this' is unavailable for static member functions
-   return this->Stop();
-          ^
-../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
-../src/TaskController.cpp:43:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-     SmartDashboard::PutBoolean("Running:"+name, false);
-                                           ^
-23:30:46 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-../src/TaskController.cpp:81:1: error: expected ';' after class definition
- }
- ^
-../src/TaskController.cpp: In member function 'bool TaskController::Start()':
-../src/TaskController.cpp:25:50: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-   if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
-                                                  ^
-../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
-../src/TaskController.cpp:7:13: error: invalid use of member 'TaskController::run' in static member function
-  bool run = false;
-             ^
-../src/TaskController.cpp:31:3: error: from this location
+../src/TaskController.cpp:4:14: error: 'TaskController' has not been declared
+  static bool TaskController::stopAll = false;
+              ^
+../src/TaskController.cpp:7:2: error: 'TaskController' does not name a type
+  TaskController::TaskController(const char* newname)
+  ^
+../src/TaskController.cpp:16:7: error: 'TaskController' has not been declared
+  bool TaskController::init()
+       ^
+../src/TaskController.cpp: In function 'bool init()':
+../src/TaskController.cpp:19:3: error: 'myTask' was not declared in this scope
+   myTask = taskRunner;
+   ^
+../src/TaskController.cpp:19:12: error: 'taskRunner' was not declared in this scope
+   myTask = taskRunner;
+            ^
+../src/TaskController.cpp:20:3: error: 'aTask' was not declared in this scope
+   aTask = new Task(name, myTask);
+   ^
+../src/TaskController.cpp:20:20: error: 'name' was not declared in this scope
+   aTask = new Task(name, myTask);
+                    ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:24:7: error: 'TaskController' has not been declared
+  bool TaskController::Start(uint32_t param1)
+       ^
+../src/TaskController.cpp: In function 'bool Start(uint32_t)':
+../src/TaskController.cpp:26:3: error: 'aTask' was not declared in this scope
+   aTask->Start(param1);
+   ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:30:14: error: 'TaskController' has not been declared
+  static bool TaskController::StopAll()
+              ^
+../src/TaskController.cpp:37:7: error: 'TaskController' has not been declared
+  bool TaskController::StopRequested()
+       ^
+../src/TaskController.cpp: In function 'bool StopRequested()':
+../src/TaskController.cpp:39:11: error: 'run' was not declared in this scope
+   return (run == false) || (stopAll == true);
+           ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:42:7: error: 'TaskController' has not been declared
+  bool TaskController::Stop()
+       ^
+../src/TaskController.cpp: In function 'bool Stop()':
+../src/TaskController.cpp:44:3: error: 'run' was not declared in this scope
    run = false;
    ^
-In file included from /home/education/wpilib/cpp/current/include/nivision.h:16:0,
-                 from /home/education/wpilib/cpp/current/include/CameraServer.h:10,
-                 from /home/education/wpilib/cpp/current/include/WPILib.h:25,
-                 from ../src/TaskController.cpp:1:
-../src/TaskController.cpp:8:16: error: invalid use of member 'TaskController::aTask' in static member function
-  Task *aTask = NULL;
-                ^
-../src/TaskController.cpp:32:8: error: from this location
-     if(aTask->Stop())
+../src/TaskController.cpp:45:6: error: 'aTask' was not declared in this scope
+   if(aTask->Stop())
+      ^
+../src/TaskController.cpp:48:7: error: 'debug' was not declared in this scope
+    if(debug)
+       ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:56:7: error: 'TaskController' has not been declared
+  bool TaskController::ConfirmDestruction() //Checks if it is not stopped : Will stop it if not
+       ^
+../src/TaskController.cpp: In function 'bool ConfirmDestruction()':
+../src/TaskController.cpp:58:6: error: 'aTask' was not declared in this scope
+   if(aTask!=NULL)
+      ^
+../src/TaskController.cpp:62:12: error: type '<type error>' argument given to 'delete', expected pointer
+     delete aTask;
+            ^
+../src/TaskController.cpp:64:8: error: 'debug' was not declared in this scope
+     if(debug){
         ^
-../src/TaskController.cpp:9:15: error: invalid use of member 'TaskController::debug' in static member function
-  bool debug = false;
-               ^
-../src/TaskController.cpp:35:9: error: from this location
-      if(debug)
-         ^
-../src/TaskController.cpp:6:14: error: invalid use of member 'TaskController::name' in static member function
-  const char* name;
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:76:10: error: 'TaskController' has not been declared
+  FUNCPTR TaskController::taskRunner(uint32_t param){
+          ^
+../src/TaskController.cpp: In function 'int (* taskRunner(uint32_t))(...)':
+../src/TaskController.cpp:77:19: error: 'run' was not declared in this scope
+   return run(param);
+                   ^
+../src/TaskController.cpp: In function 'bool StopRequested()':
+../src/TaskController.cpp:40:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+../src/TaskController.cpp: In function 'bool ConfirmDestruction()':
+../src/TaskController.cpp:73:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+../src/TaskController.cpp: In function 'int (* taskRunner(uint32_t))(...)':
+../src/TaskController.cpp:78:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:30:14: warning: 'bool StopAll()' defined but not used [-Wunused-function]
+  static bool TaskController::StopAll()
               ^
-../src/TaskController.cpp:37:45: error: from this location
-       SmartDashboard::PutBoolean("Running:"+name, false);
-                                             ^
-../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
-../src/TaskController.cpp:51:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-     SmartDashboard::PutBoolean("Running:"+name, false);
-                                           ^
-23:31:26 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:31:31 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:31:45 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:31:48 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:31:49 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-../src/TaskController.cpp:72:1: error: expected ';' after class definition
- }
- ^
-../src/TaskController.cpp: In member function 'bool TaskController::Start()':
-../src/TaskController.cpp:25:50: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-   if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
-                                                  ^
-../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
-../src/TaskController.cpp:31:31: error: cannot call member function 'bool TaskController::Stop()' without object
-   return TaskController::Stop();
-                               ^
-../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
-../src/TaskController.cpp:42:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
-     SmartDashboard::PutBoolean("Running:"+name, false);
-                                           ^
-23:33:28 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-../src/TaskController.cpp:74:1: error: expected ';' after class definition
- }
- ^
-23:33:37 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-23:33:42 **** Incremental Build of configuration Debug for project Getting Started ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-13:54:30 **** Rebuild of configuration Debug for project Getting Started ****
+11:30:11 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
-arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
-../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
- #include "Nivision.h"
-                      ^
-compilation terminated.
-13:54:52 **** Incremental Build of configuration Debug for project Getting Started ****
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/Robot.cpp:3:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/Robot.cpp: In constructor 'Robot::Robot()':
+../src/Robot.cpp:30:30: error: no matching function for call to 'TestTask::TestTask()'
+   lw(NULL), autoLoopCounter(0) {
+                              ^
+../src/Robot.cpp:30:30: note: candidates are:
+In file included from ../src/Robot.cpp:3:0:
+../src/TestTask.h:19:2: note: TestTask::TestTask(const char*)
+  TestTask(const char* name);
+  ^
+../src/TestTask.h:19:2: note:   candidate expects 1 argument, 0 provided
+../src/TestTask.h:15:7: note: constexpr TestTask::TestTask(const TestTask&)
+ class TestTask: public TaskController //Designed As A template class to be inherited and overwritten
+       ^
+../src/TestTask.h:15:7: note:   candidate expects 1 argument, 0 provided
+11:36:08 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
 ../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
  #include "Nivision.h"
                       ^
 compilation terminated.
-13:54:55 **** Incremental Build of configuration Debug for project Getting Started ****
+11:36:59 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TestTask::Run(uint32_t)':
+../src/TestTask.cpp:19:12: error: no matching function for call to 'wait::wait(double)'
+   wait(0.05);
+            ^
+../src/TestTask.cpp:19:12: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:37:58 **** Incremental Build of configuration Debug for project Getting Started ****
 Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
 ../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
  #include "Nivision.h"
                       ^
 compilation terminated.
+11:38:13 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TestTask.cpp: In member function 'virtual bool TestTask::Run(uint32_t)':
+../src/TestTask.cpp:19:18: error: cannot call constructor 'wait::wait' directly [-fpermissive]
+   wait::wait(0.05);
+                  ^
+../src/TestTask.cpp:19:18: note: for a function-style cast, remove the redundant '::wait'
+../src/TestTask.cpp:19:18: error: no matching function for call to 'wait::wait(double)'
+../src/TestTask.cpp:19:18: note: candidates are:
+In file included from /usr/arm-frc-linux-gnueabi/usr/include/stdlib.h:42:0,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/cstdlib:72,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ext/string_conversions.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/basic_string.h:2834,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/string:52,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/locale_classes.h:40,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/bits/ios_base.h:41,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ios:42,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/ostream:38,
+                 from /usr/arm-frc-linux-gnueabi/include/c++/4.9.1/iostream:39,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:11,
+                 from ../src/TestTask.cpp:1:
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: wait::wait()
+ union wait
+       ^
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   candidate expects 0 arguments, 1 provided
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(const wait&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'const wait&'
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note: constexpr wait::wait(wait&&)
+/usr/arm-frc-linux-gnueabi/usr/include/bits/waitstatus.h:66:7: note:   no known conversion for argument 1 from 'double' to 'wait&&'
+11:38:27 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+In file included from ../src/TaskController.cpp:2:0:
+../src/TaskController.h:46:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TaskController.cpp:5:30: error: 'static' may not be used when defining (as opposed to declaring) a static data member [-fpermissive]
+  static bool TaskController::stopAll = false;
+                              ^
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:12: error: 'taskRunner' was not declared in this scope
+   myTask = taskRunner;
+            ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:31:38: error: cannot declare member function 'static bool TaskController::StopAll()' to have static linkage [-fpermissive]
+  static bool TaskController::StopAll()
+                                      ^
+../src/TaskController.cpp:77:51: error: no 'int (* TaskController::taskRunner(uint32_t))(...)' member function declared in class 'TaskController'
+  FUNCPTR TaskController::taskRunner(uint32_t param){
+                                                   ^
+11:39:43 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+In file included from ../src/TaskController.cpp:2:0:
+../src/TaskController.h:48:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TaskController.cpp:5:30: error: 'static' may not be used when defining (as opposed to declaring) a static data member [-fpermissive]
+  static bool TaskController::stopAll = false;
+                              ^
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:10: error: cannot convert 'TaskController::taskRunner' from type 'int (* (TaskController::)(uint32_t))(...) {aka int (* (TaskController::)(unsigned int))(...)}' to type 'FUNCPTR {aka int (*)(...)}'
+   myTask = taskRunner;
+          ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:31:38: error: cannot declare member function 'static bool TaskController::StopAll()' to have static linkage [-fpermissive]
+  static bool TaskController::StopAll()
+                                      ^
+../src/TaskController.cpp: In member function 'int (* TaskController::taskRunner(uint32_t))(...)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:40:26 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:48:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/Robot.cpp:3:
+../src/TaskController.h:48:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+In file included from ../src/TaskController.cpp:2:0:
+../src/TaskController.h:48:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TaskController.cpp:5:30: error: 'static' may not be used when defining (as opposed to declaring) a static data member [-fpermissive]
+  static bool TaskController::stopAll = false;
+                              ^
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:21: error: invalid use of member function (did you forget the '()' ?)
+   myTask = (FUNCPTR)taskRunner;
+                     ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:31:38: error: cannot declare member function 'static bool TaskController::StopAll()' to have static linkage [-fpermissive]
+  static bool TaskController::StopAll()
+                                      ^
+../src/TaskController.cpp: In member function 'int (* TaskController::taskRunner(uint32_t))(...)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:42:21 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/Robot.cpp:3:
+../src/TaskController.h:48:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+In file included from ../src/TestTask.h:13:0,
+                 from ../src/TestTask.cpp:2:
+../src/TaskController.h:48:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+In file included from ../src/TaskController.cpp:2:0:
+../src/TaskController.h:48:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TaskController.cpp:5:30: error: 'static' may not be used when defining (as opposed to declaring) a static data member [-fpermissive]
+  static bool TaskController::stopAll = false;
+                              ^
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:38: error: no matching function for call to 'TaskController::taskRunner()'
+   myTask = (FUNCPTR)this->taskRunner();
+                                      ^
+../src/TaskController.cpp:20:38: note: candidate is:
+In file included from ../src/TaskController.cpp:2:0:
+../src/TaskController.h:44:6: note: int TaskController::taskRunner(uint32_t)
+  int taskRunner(uint32_t param);
+      ^
+../src/TaskController.h:44:6: note:   candidate expects 1 argument, 0 provided
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:31:38: error: cannot declare member function 'static bool TaskController::StopAll()' to have static linkage [-fpermissive]
+  static bool TaskController::StopAll()
+                                      ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:42:56 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+11:43:14 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+In file included from ../src/TaskController.cpp:2:0:
+../src/TaskController.h:48:8: warning: extra tokens at end of #endif directive
+ #endif TASKCONTROLLER_H
+        ^
+../src/TaskController.cpp:5:30: error: 'static' may not be used when defining (as opposed to declaring) a static data member [-fpermissive]
+  static bool TaskController::stopAll = false;
+                              ^
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:10: error: cannot convert 'TaskController::taskRunner' from type 'int (TaskController::)(uint32_t) {aka int (TaskController::)(unsigned int)}' to type 'FUNCPTR {aka int (*)(...)}'
+   myTask = this->taskRunner;
+          ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:31:38: error: cannot declare member function 'static bool TaskController::StopAll()' to have static linkage [-fpermissive]
+  static bool TaskController::StopAll()
+                                      ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:44:54 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:5:30: error: 'static' may not be used when defining (as opposed to declaring) a static data member [-fpermissive]
+  static bool TaskController::stopAll = false;
+                              ^
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:10: error: cannot convert 'TaskController::taskRunner' from type 'int (TaskController::)(uint32_t) {aka int (TaskController::)(unsigned int)}' to type 'FUNCPTR {aka int (*)(...)}'
+   myTask = this->taskRunner;
+          ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:31:38: error: cannot declare member function 'static bool TaskController::StopAll()' to have static linkage [-fpermissive]
+  static bool TaskController::StopAll()
+                                      ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:45:12 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:5:18: error: 'stopAll' in 'class TaskController' does not name a type
+  TaskController::stopAll = false;
+                  ^
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:10: error: cannot convert 'TaskController::taskRunner' from type 'int (TaskController::)(uint32_t) {aka int (TaskController::)(unsigned int)}' to type 'FUNCPTR {aka int (*)(...)}'
+   myTask = this->taskRunner;
+          ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:31:38: error: cannot declare member function 'static bool TaskController::StopAll()' to have static linkage [-fpermissive]
+  static bool TaskController::StopAll()
+                                      ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:46:58 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:10: error: cannot convert 'TaskController::taskRunner' from type 'int (TaskController::)(uint32_t) {aka int (TaskController::)(unsigned int)}' to type 'FUNCPTR {aka int (*)(...)}'
+   myTask = this->taskRunner;
+          ^
+../src/TaskController.cpp: At global scope:
+../src/TaskController.cpp:31:38: error: cannot declare member function 'static bool TaskController::StopAll()' to have static linkage [-fpermissive]
+  static bool TaskController::StopAll()
+                                      ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:48:11 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:10: error: cannot convert 'TaskController::taskRunner' from type 'int (TaskController::)(uint32_t) {aka int (TaskController::)(unsigned int)}' to type 'FUNCPTR {aka int (*)(...)}'
+   myTask = this->taskRunner;
+          ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:50:01 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:13: error: ISO C++ forbids taking the address of an unqualified or parenthesized non-static member function to form a pointer to member function.  Say '&TaskController::taskRunner' [-fpermissive]
+   myTask = &taskRunner;
+             ^
+../src/TaskController.cpp:20:10: error: cannot convert 'int (TaskController::*)(uint32_t) {aka int (TaskController::*)(unsigned int)}' to 'FUNCPTR {aka int (*)(...)}' in assignment
+   myTask = &taskRunner;
+          ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:54:05 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:10: error: cannot convert 'TaskController::taskRunner' from type 'int (TaskController::)(uint32_t) {aka int (TaskController::)(unsigned int)}' to type 'FUNCPTR {aka int (*)(...)}'
+   myTask = taskRunner;
+          ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:56:55 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:57:48 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:29: error: ISO C++ forbids taking the address of an unqualified or parenthesized non-static member function to form a pointer to member function.  Say '&TaskController::taskRunner' [-fpermissive]
+   myTask = (FUNCPTR)(&this->taskRunner);
+                             ^
+../src/TaskController.cpp:20:39: warning: converting from 'int (TaskController::*)(uint32_t) {aka int (TaskController::*)(unsigned int)}' to 'FUNCPTR {aka int (*)(...)}' [-Wpmf-conversions]
+   myTask = (FUNCPTR)(&this->taskRunner);
+                                       ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:59:32 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:49: warning: converting from 'int (TaskController::*)(uint32_t) {aka int (TaskController::*)(unsigned int)}' to 'FUNCPTR {aka int (*)(...)}' [-Wpmf-conversions]
+   myTask = (FUNCPTR)(&TaskController::taskRunner);
+                                                 ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+11:59:39 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:49: warning: converting from 'int (TaskController::*)(uint32_t) {aka int (TaskController::*)(unsigned int)}' to 'FUNCPTR {aka int (*)(...)}' [-Wpmf-conversions]
+   myTask = (FUNCPTR)(&TaskController::taskRunner);
+                                                 ^
+../src/TaskController.cpp: In member function 'int TaskController::taskRunner(uint32_t)':
+../src/TaskController.cpp:78:19: error: expression cannot be used as a function
+   return run(param);
+                   ^
+../src/TaskController.cpp:79:2: warning: control reaches end of non-void function [-Wreturn-type]
+  }
+  ^
+12:01:07 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:20:49: warning: converting from 'int (TaskController::*)(uint32_t) {aka int (TaskController::*)(unsigned int)}' to 'FUNCPTR {aka int (*)(...)}' [-Wpmf-conversions]
+   myTask = (FUNCPTR)(&TaskController::taskRunner);
+                                                 ^
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/TestTask.o src/TaskController.o src/Robot.o -lwpi 
+src/TestTask.o: In function `TestTask::~TestTask()':
+/home/education/Programming/Robotics/Getting Started/Debug/../src/TestTask.cpp:10: undefined reference to `TaskController::~TaskController()'
+collect2: error: ld returned 1 exit status
+12:05:07 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/TestTask.o src/TaskController.o src/Robot.o -lwpi 
+src/TestTask.o: In function `TestTask::~TestTask()':
+/home/education/Programming/Robotics/Getting Started/Debug/../src/TestTask.cpp:10: undefined reference to `TaskController::~TaskController()'
+collect2: error: ld returned 1 exit status
+12:07:19 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/TestTask.o src/TaskController.o src/Robot.o -lwpi 
+src/TestTask.o: In function `TestTask::~TestTask()':
+/home/education/Programming/Robotics/Getting Started/Debug/../src/TestTask.h:21: undefined reference to `TaskController::~TaskController()'
+collect2: error: ld returned 1 exit status
+12:12:27 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TestTask.o ../src/TestTask.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp: In member function 'bool TaskController::init()':
+../src/TaskController.cpp:24:49: warning: converting from 'int (TaskController::*)(uint32_t) {aka int (TaskController::*)(unsigned int)}' to 'FUNCPTR {aka int (*)(...)}' [-Wpmf-conversions]
+   myTask = (FUNCPTR)(&TaskController::taskRunner);
+                                                 ^
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/TestTask.o src/TaskController.o src/Robot.o -lwpi 

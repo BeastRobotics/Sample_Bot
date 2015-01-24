@@ -57,6 +57,7 @@ public:
 	bool JogEnabled();
 	bool isEndGame();
 private:
+	static int xyz;
 	XboxController(int stick);
 	Joystick lstick;
 	Joystick rstick;

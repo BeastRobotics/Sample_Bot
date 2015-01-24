@@ -1,5 +1,6 @@
 #include "WPILib.h"
 #include "XboxController.h"
+#include "TestTask.h"
 
 class Robot: public IterativeRobot {
 
@@ -19,13 +20,14 @@ class Robot: public IterativeRobot {
 	bool highGearActivated = false; //False for low gear, true for high gear
 	int counter = 0;
 	bool run = false;
+	TestTask testTask;
 
 public:
 	Robot() :
 		// No Dash board in Constructor
 
 		myRobot(2, 1), // these must be initialized in the same order  2,1 since the turing was inverted
-		lw(NULL), autoLoopCounter(0) {
+		lw(NULL), autoLoopCounter(0), testTask("Daniel") {
 		myRobot.SetExpiration(0.1);
 		xbox = XboxController::getInstance(); //Initializes xbox Controller
 		//c->SetClosedLoopControl(true); //Turns compressor on
