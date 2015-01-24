@@ -45,8 +45,10 @@ NewXboxController::NewXboxController(int port):
 	startNow=false;
 	backLast=false;
 	backNow=false;
-	
-
+	leftBumberLast=false;
+	leftBumperNow=false;
+	rightBumperLast=false;
+	rightBumperNow=false;
 
 	//set counters to 0
 	xDebounceCounter=0;
@@ -55,6 +57,8 @@ NewXboxController::NewXboxController(int port):
 	bDebounceCounter=0;
 	startDebounceCounter=0;
 	backDebounceCounter=0;
+	leftBumperDebounceCounter=0;
+	rightBumperDebounceCounter=0;
 }
 	
 NewXboxController *NewXboxController::getInstance() {
@@ -71,6 +75,8 @@ void NewXboxController::update() {
 	bLast=bNow;
 	startLast=startNow;
 	backLast=backNow;
+	leftBumperLast=leftBumperNow;
+	rightBumperLast=rightBumperNow;
 	
 	xNow=isButtonHeld(xDebounceCounter, rstick.GetRawButton(BUTTON_X));
 	yNow=isButtonHeld(yDebounceCounter, rstick.GetRawButton(BUTTON_Y));
@@ -78,6 +84,8 @@ void NewXboxController::update() {
 	bNow=isButtonHeld(bDebounceCounter, rstick.GetRawButton(BUTTON_B));
 	startNow=isButtonHeld(startDebounceCounter, rstick.GetRawButton(BUTTON_START));
 	backNow=isButtonHeld(backDebounceCounter, rstick.GetRawButton(BUTTON_BACK));
+	leftBumperNow=isButtonHeld(leftBumperDebounceCounter, rstick.GetRawButton(BUTTON_LB));
+	rightBumperNow=isButtonHeld(rightBumperDebounceCounter, rstick.GetRawButton(BUTTON_RB));
 }
 
 bool NewXboxController::getXPressed() {
@@ -94,6 +102,14 @@ bool NewXboxController::getAPressed() {
 
 bool NewXboxController::getBPressed() {
 	return (!bLast)&&(bNow);
+}
+
+bool NewXboxController::getLeftBumperPressed() {
+	return (!leftBumberLast)&&(leftBumperNow);
+}
+
+bool NewXboxController::getRightBumperPressed() {
+	return (!rightBumperLast)&&(rightBumperNow);
 }
 
 bool NewXboxController::getXHeld() {
@@ -114,6 +130,14 @@ bool NewXboxController::getBHeld() {
 
 bool NewXboxController::getStartHeld() {
 	return startLast&&startNow;
+}
+
+bool NewXboxController::getLeftBumperHeld() {
+	return leftBumperLast&&leftBumperNow;
+}
+
+bool NewXboxController::getRightBumperHeld() {
+	return rightBumperLast&&rightBumperNow;
 }
 
 bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) {

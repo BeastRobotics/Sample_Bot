@@ -24,6 +24,10 @@ public:
 	bool getBackPressed();
 	bool getBackHeld();
 	
+	bool getLeftBumperPressed();
+	bool getLeftBumperHeld();
+	bool getRightBumperPressed;
+	bool getRightBumperHeld();
 	
 private:
 	NewXboxController(int port=0);
@@ -38,6 +42,10 @@ private:
 	bool bLast, bNow;
 	bool startLast, startNow;
 	bool backLast, backNow;
+	bool leftBumperNow, leftBumperLast;
+	bool rightBumberNow, rightBumperLast;
+	
 	int xDebounceCounter, yDebounceCounter, aDebounceCounter, bDebounceCounter, startDebounceCounter, backDebounceCounter;
+	int leftBumperDebounceCounter, rightBumperDebounceCounter;
 };
 #endif	
