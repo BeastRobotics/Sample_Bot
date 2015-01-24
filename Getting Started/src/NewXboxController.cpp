@@ -17,8 +17,8 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 #define BUTTON_START 8
 #define BUTTON_L3 9 // Press down the left joystick for L3.
 #define BUTTON_R3 10 // Press down the right joystick for R3.
-#define AXIS_RIGHT_X 1
-#define AXIS_RIGHT_Y 2
+#define AXIS_RIGHT_X 1//-----------------------------------------Probably broken!!!!!!!!!!!!!!!!!!!!!!!!!!!! switch left with right!!!!!!!!!!!!!!!!!!!!!!!!
+#define AXIS_RIGHT_Y 2//-----------------------------------------Probably broken!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #define AXIS_LEFT_X 4
 #define AXIS_LEFT_Y 5
 #define AXIS_TRIGGER 3
@@ -114,6 +114,24 @@ void NewXboxController::accountForLostTime() {//TODO make this method update all
 
 }
 
+
+float NewXboxController::getAxisRightX() {
+	return (-1.0) * rstick.GetRawAxis(AXIS_RIGHT_X);
+}
+
+float NewXboxController::getAxisRightY() {
+	return (-1.0) * rstick.GetRawAxis(AXIS_RIGHT_Y);
+}
+
+float NewXboxController::getAxisLeftX() {
+	return (-1.0) * lstick.GetRawAxis(AXIS_LEFT_X);
+}
+
+float NewXboxController::getAxisLeftY() {
+	return (-1.0) * lstick.GetRawAxis(AXIS_LEFT_Y);
+}
+
+
 bool NewXboxController::getXPressed() {
 	return (!xLast)&&(xNow);
 }
@@ -205,4 +223,5 @@ bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) {
 	}
 	return false;
 }
+
 

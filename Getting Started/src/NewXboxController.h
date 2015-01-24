@@ -41,6 +41,11 @@ public:
 	bool getRightTriggerPressed();
 	bool getRightTriggerHeld();
 
+	float getAxisLeftX();
+	float getAxisLeftY();
+	float getAxisRightX();
+	float getAxisRightY();
+
 private:
 	NewXboxController(int port=0);
 	Joystick lstick;
