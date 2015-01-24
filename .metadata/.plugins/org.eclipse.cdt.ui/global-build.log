@@ -1,0 +1,334 @@
+18:22:32 **** Clean-only build of configuration Debug for project Getting Started ****
+rm -rf src/Robot.d FRCUserProgram src/XboxController.d src/Robot.o src/XboxController.o 
+18:23:43 **** Rebuild of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+18:24:01 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+18:24:37 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+18:25:07 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+19:04:20 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+19:06:22 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+19:06:41 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+19:07:48 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:44:1: error: expected ';' after class definition
+ }
+ ^
+19:08:27 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+19:08:55 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+19:08:58 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:44:1: error: expected ';' after class definition
+ }
+ ^
+19:09:01 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:00:24 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:00:27 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:26:42 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:72:1: error: expected ';' after class definition
+ }
+ ^
+../src/TaskController.cpp: In member function 'bool TaskController::Start()':
+../src/TaskController.cpp:24:10: error: 'class Task' has no member named 'start'
+   aTask->start(myTask, this);
+          ^
+../src/TaskController.cpp:25:50: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+   if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
+                                                  ^
+../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
+../src/TaskController.cpp:31:10: error: 'this' is unavailable for static member functions
+   return this->Stop();
+          ^
+../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
+../src/TaskController.cpp:42:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+     SmartDashboard::PutBoolean("Running:"+name, false);
+                                           ^
+23:29:08 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:29:34 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:29:36 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:29:37 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:29:43 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:73:1: error: expected ';' after class definition
+ }
+ ^
+../src/TaskController.cpp: In member function 'bool TaskController::Start()':
+../src/TaskController.cpp:26:58: error: ISO C++ forbids casting to an array type 'char []' [-fpermissive]
+   if(debug)SmartDashboard::PutBoolean("Running:"+(char[])name, true);
+                                                          ^
+../src/TaskController.cpp:26:58: error: invalid operands of types 'const char [9]' and 'char*' to binary 'operator+'
+../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
+../src/TaskController.cpp:32:10: error: 'this' is unavailable for static member functions
+   return this->Stop();
+          ^
+../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
+../src/TaskController.cpp:43:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+     SmartDashboard::PutBoolean("Running:"+name, false);
+                                           ^
+23:29:55 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:30:03 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:30:07 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:73:1: error: expected ';' after class definition
+ }
+ ^
+../src/TaskController.cpp: In member function 'bool TaskController::Start()':
+../src/TaskController.cpp:26:50: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+   if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
+                                                  ^
+../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
+../src/TaskController.cpp:32:10: error: 'this' is unavailable for static member functions
+   return this->Stop();
+          ^
+../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
+../src/TaskController.cpp:43:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+     SmartDashboard::PutBoolean("Running:"+name, false);
+                                           ^
+23:30:46 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:81:1: error: expected ';' after class definition
+ }
+ ^
+../src/TaskController.cpp: In member function 'bool TaskController::Start()':
+../src/TaskController.cpp:25:50: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+   if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
+                                                  ^
+../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
+../src/TaskController.cpp:7:13: error: invalid use of member 'TaskController::run' in static member function
+  bool run = false;
+             ^
+../src/TaskController.cpp:31:3: error: from this location
+   run = false;
+   ^
+In file included from /home/education/wpilib/cpp/current/include/nivision.h:16:0,
+                 from /home/education/wpilib/cpp/current/include/CameraServer.h:10,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:25,
+                 from ../src/TaskController.cpp:1:
+../src/TaskController.cpp:8:16: error: invalid use of member 'TaskController::aTask' in static member function
+  Task *aTask = NULL;
+                ^
+../src/TaskController.cpp:32:8: error: from this location
+     if(aTask->Stop())
+        ^
+../src/TaskController.cpp:9:15: error: invalid use of member 'TaskController::debug' in static member function
+  bool debug = false;
+               ^
+../src/TaskController.cpp:35:9: error: from this location
+      if(debug)
+         ^
+../src/TaskController.cpp:6:14: error: invalid use of member 'TaskController::name' in static member function
+  const char* name;
+              ^
+../src/TaskController.cpp:37:45: error: from this location
+       SmartDashboard::PutBoolean("Running:"+name, false);
+                                             ^
+../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
+../src/TaskController.cpp:51:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+     SmartDashboard::PutBoolean("Running:"+name, false);
+                                           ^
+23:31:26 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:31:31 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:31:45 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:31:48 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:31:49 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:72:1: error: expected ';' after class definition
+ }
+ ^
+../src/TaskController.cpp: In member function 'bool TaskController::Start()':
+../src/TaskController.cpp:25:50: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+   if(debug)SmartDashboard::PutBoolean("Running:"+name, true);
+                                                  ^
+../src/TaskController.cpp: In static member function 'static bool TaskController::StopAll()':
+../src/TaskController.cpp:31:31: error: cannot call member function 'bool TaskController::Stop()' without object
+   return TaskController::Stop();
+                               ^
+../src/TaskController.cpp: In member function 'bool TaskController::Stop()':
+../src/TaskController.cpp:42:43: error: invalid operands of types 'const char [9]' and 'const char*' to binary 'operator+'
+     SmartDashboard::PutBoolean("Running:"+name, false);
+                                           ^
+23:33:28 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+../src/TaskController.cpp:74:1: error: expected ';' after class definition
+ }
+ ^
+23:33:37 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+23:33:42 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/TaskController.o ../src/TaskController.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+13:54:30 **** Rebuild of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+13:54:52 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+13:54:55 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include "-I/home/education/Programming/Robotics/Getting Started/src" -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.

@@ -1,4 +1,11 @@
+
+
+
 #include "WPILib.h"
+
+
+#ifndef TASKCONTROLLER_H
+#define TASKCONTROLLER_H
 
 class TaskController //Designed As A template class to be inherited and overwritten
 {
@@ -18,4 +25,6 @@ public:
 	bool ConfirmDestruction(); //Confirms weither or not the class has been destroyed
 
 	bool Run(...); //Starts the thread
-}
+};
+
+#endif TASKCONTROLLER_H
