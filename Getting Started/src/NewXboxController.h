@@ -4,8 +4,9 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 #ifndef NEWXBOXCONTROLLER_h
 #define NEWXBOXCONTROLLER_h
 #include "WPILib.h"
+#include "RestrictedXboxController.h"
 
-class NewXboxController {
+class NewXboxController:public RestrictedXboxController {
 public:
 	static NewXboxController* getInstance();
 	~NewXboxController() {}
