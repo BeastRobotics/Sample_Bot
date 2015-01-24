@@ -16,7 +16,7 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 #define BUTTON_BACK 7
 #define BUTTON_START 8
 #define BUTTON_L3 9 // Press down the left joystick for L3.
-#define BUTTON_R3 10 // Press down the right joystick for R3. David is stupid.
+#define BUTTON_R3 10 // Press down the right joystick for R3.
 #define AXIS_RIGHT_X 1
 #define AXIS_RIGHT_Y 2
 #define AXIS_LEFT_X 4
@@ -45,10 +45,18 @@ NewXboxController::NewXboxController(int port):
 	startNow=false;
 	backLast=false;
 	backNow=false;
-	leftBumberLast=false;
+	leftBumperLast=false;
 	leftBumperNow=false;
 	rightBumperLast=false;
 	rightBumperNow=false;
+	l3Last=false;
+	l3Now=false;
+	r3Last=false;
+	r3Now=false;
+	leftTriggerLast=false;
+	leftTriggerNow=false;
+	rightTriggerLast=false;
+	rightTriggerNow=false;
 
 	//set counters to 0
 	xDebounceCounter=0;
@@ -59,6 +67,10 @@ NewXboxController::NewXboxController(int port):
 	backDebounceCounter=0;
 	leftBumperDebounceCounter=0;
 	rightBumperDebounceCounter=0;
+	l3DebounceCounter=0;
+	r3DebounceCounter=0;
+	leftTriggerDebounceCounter=0;
+	rightTriggerDebounceCounter=0;
 }
 	
 NewXboxController *NewXboxController::getInstance() {
@@ -77,7 +89,13 @@ void NewXboxController::update() {
 	backLast=backNow;
 	leftBumperLast=leftBumperNow;
 	rightBumperLast=rightBumperNow;
+	l3Last=l3Now;
+	r3Last=r3Now;
+	leftTriggerLast=leftTriggerNow;
+	rightTriggerLast=rightTriggerNow;
 	
+	accountForLostTime();//Not implemented yet
+
 	xNow=isButtonHeld(xDebounceCounter, rstick.GetRawButton(BUTTON_X));
 	yNow=isButtonHeld(yDebounceCounter, rstick.GetRawButton(BUTTON_Y));
 	aNow=isButtonHeld(aDebounceCounter, rstick.GetRawButton(BUTTON_A));
@@ -86,6 +104,14 @@ void NewXboxController::update() {
 	backNow=isButtonHeld(backDebounceCounter, rstick.GetRawButton(BUTTON_BACK));
 	leftBumperNow=isButtonHeld(leftBumperDebounceCounter, rstick.GetRawButton(BUTTON_LB));
 	rightBumperNow=isButtonHeld(rightBumperDebounceCounter, rstick.GetRawButton(BUTTON_RB));
+	l3Now=isButtonHeld(l3DebounceCounter, rstick.GetRawButton(BUTTON_L3));
+	r3Now=isButtonHeld(r3DebounceCounter, rstick.GetRawButton(BUTTON_R3));
+	leftTriggerNow=isButtonHeld(leftTriggerDebounceCounter, getAxisTrigger()>0.8);
+	rightTriggerNow=isButtonHeld(rightTriggerDebounceCounter, getAxisTrigger()<-0.8);
+}
+
+void NewXboxController::accountForLostTime() {//TODO make this method update all counters
+
 }
 
 bool NewXboxController::getXPressed() {
@@ -105,12 +131,29 @@ bool NewXboxController::getBPressed() {
 }
 
 bool NewXboxController::getLeftBumperPressed() {
-	return (!leftBumberLast)&&(leftBumperNow);
+	return (!leftBumperLast)&&(leftBumperNow);
 }
 
 bool NewXboxController::getRightBumperPressed() {
 	return (!rightBumperLast)&&(rightBumperNow);
 }
+
+bool NewXboxController::getL3Pressed() {
+	return (!l3Last)&&(l3Now);
+}
+
+bool NewXboxController::getR3Pressed() {
+	return (!r3Last)&&(r3Now);
+}
+
+bool NewXboxController::getLeftTriggerPressed() {
+	return (!l3Last)&&(l3Now);
+}
+
+bool NewXboxController::getRightTriggerPressed() {
+	return (!r3Last)&&(r3Now);
+}
+
 
 bool NewXboxController::getXHeld() {
 	return xLast&&xNow;
@@ -138,6 +181,18 @@ bool NewXboxController::getLeftBumperHeld() {
 
 bool NewXboxController::getRightBumperHeld() {
 	return rightBumperLast&&rightBumperNow;
+}
+
+bool NewXboxController::getR3Held() {
+	return r3Last&&r3Now;
+}
+
+bool NewXboxController::getL3Held() {
+	return l3Last&&l3Now;
+}
+
+float NewXboxController::getAxisTrigger() {
+	return rstick.GetRawAxis(AXIS_TRIGGER);
 }
 
 bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) {
