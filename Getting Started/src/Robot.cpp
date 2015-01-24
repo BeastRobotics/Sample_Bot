@@ -1,11 +1,10 @@
 #include "WPILib.h"
-#include "XboxController.h"
+#include "NewXboxController.h"
 
 class Robot: public IterativeRobot {
 
 	RobotDrive myRobot; // robot drive system
 	LiveWindow *lw;
-	XboxController *xbox; //Declares the xbox controller
 	Compressor *c = new Compressor(0); //Declasres the compressor
 	DoubleSolenoid *ex1 = new DoubleSolenoid(0, 1); //First solenoid pair
 	DoubleSolenoid *ex2 = new DoubleSolenoid(2, 3); //Second solenoid pair
@@ -20,6 +19,8 @@ class Robot: public IterativeRobot {
 	int counter = 0;
 	bool run = false;
 
+	NewXboxController* controller=NULL;
+
 public:
 	Robot() :
 			// No Dash board in Constructo
@@ -27,8 +28,6 @@ public:
 			myRobot(2, 1), // these must be initialized in the same order  2,1 since the turing was inverted
 			lw(NULL), autoLoopCounter(0) {
 		myRobot.SetExpiration(0.1);
-		xbox = XboxController::getInstance(); //Initializes xbox Controller
-		//c->SetClosedLoopControl(true); //Turns compressor on
 		c1->StartAutomaticCapture();
 
 	}
@@ -64,16 +63,7 @@ private:
 	}
 
 	void TeleopInit() {
-		SmartDashboard::PutString("State", "Teleop");
-		SmartDashboard::PutBoolean("Increment Counter", false);
-		//en1->Reset(); //Clears the Encoder
-		//en2->Reset(); //Clears the Encoder
-		endTask();
-		run = true;
-		SmartDashboard::PutNumber("Print Hundred",0);
-		FUNCPTR myTask = (FUNCPTR)Robot::CountToHundred;
-		aTask = new Task("Counter", myTask);
-		aTask->Start((uint32_t)this);
+		controller=NewXboxController::getInstance();
 	}
 
 	void endTask()
@@ -103,44 +93,15 @@ private:
 
 	void TeleopPeriodic() {
 
+		controller->update();
 
-		myRobot.ArcadeDrive(xbox->getLeftStick()); //Drives the robot
+		SmartDashboard::PutBoolean("New Xbox: X", controller->getXHeld());
+		SmartDashboard::PutBoolean("New Xbox: Y", controller->getYHeld());
+		SmartDashboard::PutBoolean("New Xbox: A", controller->getAHeld());
+		SmartDashboard::PutBoolean("New Xbox: B", controller->getBHeld());
 
-		SmartDashboard::PutBoolean("High Gear", highGearActivated);
-		SmartDashboard::PutNumber("Counter", xbox->getAxisLeftX());
-
-		//Greater
-		SmartDashboard::PutString("Greet", "Hello World!");
-
-		//Graph Value
-		//SmartDashboard::PutNumber("Right Motor", en1->Get());
-		//SmartDashboard::PutNumber("Left Motor", en2->Get());
-
-		//Numerical Value
-		//SmartDashboard::PutNumber("Right Motor Count", en1->Get());
-		//SmartDashboard::PutNumber("Left Motor Count", en2->Get());
-
-		//Controller X Drift
-		SmartDashboard::PutNumber("Stik it UP", xbox->getLeftStick()->GetX()); //X-Value of Joystick
-
-		SmartDashboard::PutBoolean("X", xbox->isXHeld());
-		SmartDashboard::PutBoolean("Y", xbox->isYHeld());
-
-		//Access Keys
-		double x = pref->GetDouble("Shooting_Speed", 10.0); //Grabs the Shooting speed key from prefereces
-
-		SmartDashboard::PutNumber("User", x);
-
-		if (xbox->isAPressed()) {  // if A is pressed, toggle the gear
-			if (highGearActivated) {
-				ex1->Set(ex1->kReverse);
-				ex2->Set(ex2->kReverse);
-			} else {
-				ex1->Set(ex1->kForward);
-				ex2->Set(ex2->kForward);
-			}
-			highGearActivated = !highGearActivated;
-		}
+		SmartDashboard::PutBoolean("New Xbox: L3", controller->getL3Held());
+		SmartDashboard::PutBoolean("New Xbox: R3", controller->getR3Held());
 	}
 
 	void DisabledInit()
