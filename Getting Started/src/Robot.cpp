@@ -48,7 +48,7 @@ public:
 	Robot() :
 			// No Dash board in Constructo
 
-			myRobot(5,6), // these must be initialized in the same order  2,1 since the turing was inverted
+			myRobot(0,1), // these must be initialized in the same order  2,1 since the turing was inverted
 			lw(NULL), autoLoopCounter(0) {
 		myRobot.SetExpiration(0.1);
 		xbox = XboxController::getInstance(); //Initializes xbox Controller

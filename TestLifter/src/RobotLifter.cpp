@@ -1,3 +1,4 @@
+#include <GrabberControl.cpp>
 #include "WPILib.h"
 #include "XboxController.h"
 #include "LifterControl.cpp"
@@ -12,22 +13,39 @@ class Robot: public IterativeRobot {
 	LiveWindow *lw;
 	LifterControl *lifter;
 	int autoLoopCounter;
-	Talon *lifterMotor;
-
+	bool isLifterManual;
+	bool isArmManual;
+	GrabberControl *grabber;
+	Compressor *c;
+	//CameraServer *c1;
+	double home;
+	double level1;
+	double level2;
+	double level3;
 public:
 	Robot() :
 			myRobot(0, 1), // these must be initialized in the same order
 			lw(NULL), autoLoopCounter(0) {
 		myRobot.SetExpiration(0.1);
 		xbox = XboxController::getInstance();
-		lifter = new LifterControl();
-		lifterMotor = new Talon(5);
-		lifterMotor->EnableDeadbandElimination(true);
+		lifter = new LifterControl(xbox->getRightStick());
+		isLifterManual = false;
+		isArmManual = false;
+		grabber = new GrabberControl(xbox->getRightStick());
+		c = new Compressor(0);
+		//c1 = CameraServer::GetInstance();
+		//c1->StartAutomaticCapture();
+		home = 0;
+		level1 = 0;
+		level2 = 0;
+		level3 = 0;
 	}
 
 private:
 	void RobotInit() {
 		lw = LiveWindow::GetInstance();
+		SmartDashboard::PutString("Current Mode", "Robot Init ");
+
 	}
 
 	void AutonomousInit() {
@@ -37,7 +55,7 @@ private:
 	void AutonomousPeriodic() {
 		if (autoLoopCounter < 100) //Check if we've completed 100 loops (approximately 2 seconds)
 				{
-			myRobot.Drive(-0.5, 0.0); 	// drive forwards half speed
+			//myRobot.Drive(-0.5, 0.0); 	// drive forwards half speed
 			autoLoopCounter++;
 		} else {
 			myRobot.Drive(0.0, 0.0); 	// stop robot
@@ -45,52 +63,143 @@ private:
 	}
 
 	void TeleopInit() {
-
+		SmartDashboard::PutString("Current Mode", "Init Start");
+		/*lifter->SetEncoderValue();
+		SmartDashboard::PutNumber("Set Home Value", 0.0);
+		SmartDashboard::PutNumber("Set Level 1 Value", 0.0);
+		SmartDashboard::PutNumber("Set Level 2 Value", 0.0);
+		SmartDashboard::PutNumber("Set Level 3 Value", 0.0);
+		SmartDashboard::PutNumber("Current Home Value", 0.0);
+		SmartDashboard::PutNumber("Current Level 1 Value", 0.0);
+		SmartDashboard::PutNumber("Current Level 2 Value", 0.0);
+		SmartDashboard::PutNumber("Current Level 3 Value", 0.0);
+		SmartDashboard::PutBoolean("Use Values", false);
+		SmartDashboard::PutNumber("Lifter Encoder", 0.0);
+		SmartDashboard::PutBoolean("Manual Lifter Mode", false);
+		SmartDashboard::PutBoolean("Manual Arm Mode", false);
+		SmartDashboard::PutBoolean("Wheels", false);
+		SmartDashboard::PutNumber("Left Motor", 0.0);
+		SmartDashboard::PutNumber("Right Motor", 0.0);
+		SmartDashboard::PutNumber("Speed Factor", 1.0);
+		SmartDashboard::PutNumber("Lifter Speed Factor", 1.0);
+		SmartDashboard::PutBoolean("Hold Position", false);
+		//SmartDashboard::PutString("Current Mode", "Init");
+		lifter->SetEncoderValue();
+		c->SetClosedLoopControl(true);
+		lifter->Stop();
+		SmartDashboard::PutString("Current Mode", "Init Complete");
+		*/
 	}
 
 	void TeleopPeriodic() {
-		myRobot.ArcadeDrive(xbox->getLeftStick()); // drive with arcade style (use right stick)
+		SmartDashboard::PutString("Current Mode", "Teleop");
+		myRobot.ArcadeDrive(xbox->getLeftStick());
+		//drive with arcade style (use right stick)
 
-		SmartDashboard::PutNumber("Home Value", 0.0);
-		SmartDashboard::PutNumber("Level 1 Value", 0.0);
-		SmartDashboard::PutNumber("Level 2 Value", 0.0);
-		SmartDashboard::PutNumber("Level 3 Value", 0.0);
-		SmartDashboard::PutBoolean("Use Values", false);
+		SmartDashboard::PutString("Current Mode", "Teleop");
 
-		double home = SmartDashboard::GetNumber("HomeValue");
-		double level1 = SmartDashboard::GetNumber("Level 1 Value");
-		double level2 = SmartDashboard::GetNumber("Level 2 Value");
-		double level3 = SmartDashboard::GetNumber("Level 3 Value");
+		home = SmartDashboard::GetNumber("Set Home Value");
+		level1 = SmartDashboard::GetNumber("Set Level 1 Value");
+		level2 = SmartDashboard::GetNumber("Set Level 2 Value");
+		level3 = SmartDashboard::GetNumber("Set Level 3 Value");
+
+		SmartDashboard::PutNumber("Current Home Value",
+				(double) lifter->homeValue);
+		SmartDashboard::PutNumber("Currnet Level 1 Value",
+				(double) lifter->level1Value);
+		SmartDashboard::PutNumber("Current Level 2 Value",
+				(double) lifter->level2Value);
+		SmartDashboard::PutNumber("Current Level 3 Value",
+				(double) lifter->level3Value);
+
+		SmartDashboard::PutNumber("Lifter Encoder", lifter->GetEnconder());
+
+		SmartDashboard::PutBoolean("Upper Limit", lifter->GetUpperLimit());
+		SmartDashboard::PutBoolean("Lower Limit", lifter->GetLowerLimit());
 
 		if (SmartDashboard::GetBoolean("Use Values")) {
 			lifter->SetHome((int) home);
 			lifter->SetLevel1((int) level1);
 			lifter->SetLevel2((int) level2);
 			lifter->SetLevel3((int) level3);
+			SmartDashboard::PutBoolean("Use Values", false);
 		}
 
-	/*
-		if (xbox->isBHeld()) {
-			lifterMotor->Set(-0.25);
-		} else if (xbox->isXHeld()) {
-			lifterMotor->Set(0.25);
+		isLifterManual = SmartDashboard::GetBoolean("Manual Lifter Mode");
+		isArmManual = SmartDashboard::GetBoolean("Manual Arm Mode");
+
+		SmartDashboard::PutNumber("Left Motor", grabber->leftSpeed);
+		SmartDashboard::PutNumber("Right Motor", grabber->rightSpeed);
+		grabber->SetSpeeds(SmartDashboard::GetNumber("Speed Factor"));
+		lifter->SetSpeepFactor(
+				SmartDashboard::GetNumber("Lifter Speed Factor"));
+
+		if (xbox->isLeftTriggerHeld()) {
+			SmartDashboard::PutString("Current Mode", "Lifter Mode");
+		} else if (xbox->isRightTriggerHeld()) {
+			SmartDashboard::PutString("Current Mode", "Grabber Mode");
 		} else {
-			lifterMotor->Set(0);
+			SmartDashboard::PutString("Current Mode", "No Mode");
 		}
-	*/
 
-		if (xbox->isBHeld()) {
-			lifter->MoveToLevel1();
-		} else if (xbox->isYHeld()) {
-			lifter->MoveToLevel2();
-		} else if (xbox->isXHeld()) {
-			lifter->MoveToLevel3();
-		} else if (xbox->isAHeld()) {
-			lifter->MoveToHome();
+		if (isLifterManual && !isArmManual) {
+			lifter->ManualMode();
 		} else {
-			lifter->Stop();
+			if (xbox->isLeftTriggerHeld()) {
+				if (xbox->isBHeld()) {
+					lifter->MoveToLevel1();
+				} else if (xbox->isYHeld()) {
+					lifter->MoveToLevel2();
+				} else if (xbox->isXHeld()) {
+					lifter->MoveToLevel3();
+				} else if (xbox->isAHeld()) {
+					lifter->MoveToHome();
+				} else {
+					lifter->Stop();
+				}
+			}
 		}
 
+		if (SmartDashboard::GetBoolean("Hold Postion")) {
+			lifter->HoldPosition();
+		}
+
+		if (isArmManual && !isLifterManual) {
+			//grabber->DriveWithStick();
+		} else {
+			/**
+			 * A Dive in
+			 * B Drive out
+			 * X spin clockwise
+			 * Y spin counter clockwise
+			 */
+			if (xbox->isRightTriggerHeld()) {
+				if (xbox->isAHeld()) {
+					SmartDashboard::PutBoolean("Wheels", true);
+					grabber->DriveIn();
+				} else if (xbox->isBHeld()) {
+					SmartDashboard::PutBoolean("Wheels", true);
+					grabber->DriveOut();
+				} else if (xbox->isXHeld()) {
+					SmartDashboard::PutBoolean("Wheels", true);
+					grabber->SpinClockWise();
+				} else if (xbox->isYHeld()) {
+					SmartDashboard::PutBoolean("Wheels", true);
+					grabber->SpinCounterClockWise();
+				} else {
+					grabber->Stop();
+				}
+			}
+		}
+
+		if (xbox->isRBumperHeld()) {
+			grabber->SetGrabberArm(true);
+		} else {
+			grabber->SetGrabberArm(false);
+		}
+
+		grabber->SetMotors();
+		lifter->lifterupdate();
 	}
 
 	void TestPeriodic() {
