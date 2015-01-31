@@ -15,7 +15,6 @@ private:
 	DigitalInput *lowerLimit;
 	XboxController *xbox;
 	PIDLifterControl *liftControl;
-	bool brakeing = false;
 
 public:
 	Robot():
@@ -56,26 +55,7 @@ public:
 
 	void TeleopPeriodic()
 	{
-		float speed = 0.0;
-		if(xbox->isXHeld() && !upperLimit){
-			 if(brakeing){
-				 brakeing = false;
-				 liftControl->release();
-			 }
-			 speed = -1.0;
-		}
-		else if(xbox->isYHeld() && !lowerLimit){
-			if(brakeing){
-				 brakeing = false;
-				liftControl->release();
-				}
-			speed = 1.0;
-		}
-		else {
-			brakeing = true;
-			liftControl->brake();
-		}
-		lifter->Set(speed);
+
 	}
 
 	void TestPeriodic()

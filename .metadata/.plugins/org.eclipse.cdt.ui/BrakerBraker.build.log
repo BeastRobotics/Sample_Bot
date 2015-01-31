@@ -1,1 +1,7 @@
-Info: Nothing to build for BrakerBraker
+12:56:23 **** Incremental Build of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/Robot.o src/PIDLifterControl.o -lwpi 
+
+12:56:25 Build Finished (took 1s.630ms)
+
