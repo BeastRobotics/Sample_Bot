@@ -1,0 +1,35 @@
+/*
+ * PIDLifterControl.h
+ *
+ *  Created on: Jan 31, 2015
+ *      Author: education
+ */
+
+#include "WPILib.h"
+
+#ifndef SRC_PIDLIFTERCONTROL_H_
+#define SRC_PIDLIFTERCONTROL_H_
+
+class PIDLifterControl {
+public:
+	PIDLifterControl(PIDSource *nSource, PIDOutput *nOutput);
+	virtual ~PIDLifterControl();
+
+	bool start(float np, float ni, float nd);
+
+	bool disable();
+
+	void setPoint(float x);
+
+
+private:
+	PIDController *controller;
+	PIDSource *source;
+	PIDOutput *output;
+	float p;
+	float i;
+	float d;
+
+};
+
+#endif /* SRC_PIDLIFTERCONTROL_H_ */

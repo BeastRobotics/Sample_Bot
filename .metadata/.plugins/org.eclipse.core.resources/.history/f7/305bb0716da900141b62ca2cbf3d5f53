@@ -1,0 +1,31 @@
+/*
+ * PIDLifterControl.cpp
+ *
+ *  Created on: Jan 31, 2015
+ *      Author: education
+ */
+
+#include <PIDLifterControl.h>
+#include "WPILib.h"
+
+
+PIDLifterControl::PIDLifterControl(PIDSource *nSource, PIDOutput *nOutput){
+	// TODO Auto-generated constructor stub
+	this->output = nOutput;
+	this->source = nSource;
+	p = 0.0;
+	i = 0.0;
+	d = 0.0;
+	controller = new PIDController(p,i,d,source,output);
+
+}
+
+bool PIDLifterControl::start(float np, float ni, float nd){
+	//TODO
+	return false;
+}
+
+PIDLifterControl::~PIDLifterControl() {
+	// TODO Auto-generated destructor stub
+}
+

@@ -1,0 +1,18 @@
+/*
+ * PIDLifterControl.cpp
+ *
+ *  Created on: Jan 31, 2015
+ *      Author: education
+ */
+
+#include <PIDLifterControl.h>
+
+PIDLifterControl::PIDLifterControl() {
+	// TODO Auto-generated constructor stub
+
+}
+
+PIDLifterControl::~PIDLifterControl() {
+	// TODO Auto-generated destructor stub
+}
+

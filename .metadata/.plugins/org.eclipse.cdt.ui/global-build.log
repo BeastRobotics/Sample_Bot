@@ -1,0 +1,312 @@
+10:49:56 **** Rebuild of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/LifterControl.o ../src/LifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/RobotLifter.o ../src/RobotLifter.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/GrabberControl.o ../src/GrabberControl.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+10:50:14 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+10:50:23 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+../src/XboxController.cpp:12:22: fatal error: Nivision.h: No such file or directory
+ #include "Nivision.h"
+                      ^
+compilation terminated.
+10:50:26 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:00:14 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:05:13 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp: In constructor 'PIDLifterControl::PIDLifterControl(PIDSource*, PIDOutput*)':
+../src/PIDLifterControl.cpp:12:30: error: invalid new-expression of abstract class type 'Controller'
+  controller = new Controller();
+                              ^
+In file included from /home/education/wpilib/cpp/current/include/PIDController.h:9:0,
+                 from /home/education/wpilib/cpp/current/include/Commands/PIDSubsystem.h:11,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:31,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/Controller.h:19:7: note:   because the following virtual functions are pure within 'Controller':
+ class Controller
+       ^
+/home/education/wpilib/cpp/current/include/Controller.h:27:15: note: 	virtual void Controller::Enable()
+  virtual void Enable() = 0;
+               ^
+/home/education/wpilib/cpp/current/include/Controller.h:32:15: note: 	virtual void Controller::Disable()
+  virtual void Disable() = 0;
+               ^
+11:09:16 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp: In constructor 'PIDLifterControl::PIDLifterControl(PIDSource*, PIDOutput*)':
+../src/PIDLifterControl.cpp:17:33: error: no matching function for call to 'PIDController::PIDController()'
+  controller = new PIDController();
+                                 ^
+../src/PIDLifterControl.cpp:17:33: note: candidates are:
+In file included from /home/education/wpilib/cpp/current/include/HAL/Digital.hpp:7:0,
+                 from /home/education/wpilib/cpp/current/include/HAL/HAL.hpp:18,
+                 from /home/education/wpilib/cpp/current/include/SPI.h:8,
+                 from /home/education/wpilib/cpp/current/include/ADXL345_SPI.h:10,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:14,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/PIDController.h:108:27: note: PIDController::PIDController(const PIDController&)
+  DISALLOW_COPY_AND_ASSIGN(PIDController);
+                           ^
+/home/education/wpilib/cpp/current/include/HAL/cpp/Synchronized.hpp:13:3: note: in definition of macro 'DISALLOW_COPY_AND_ASSIGN'
+   TypeName(const TypeName&);               \
+   ^
+/home/education/wpilib/cpp/current/include/PIDController.h:108:27: note:   candidate expects 1 argument, 0 provided
+  DISALLOW_COPY_AND_ASSIGN(PIDController);
+                           ^
+/home/education/wpilib/cpp/current/include/HAL/cpp/Synchronized.hpp:13:3: note: in definition of macro 'DISALLOW_COPY_AND_ASSIGN'
+   TypeName(const TypeName&);               \
+   ^
+In file included from /home/education/wpilib/cpp/current/include/Commands/PIDSubsystem.h:11:0,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:31,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/PIDController.h:29:2: note: PIDController::PIDController(float, float, float, float, PIDSource*, PIDOutput*, float)
+  PIDController(float p, float i, float d, float f, PIDSource *source, PIDOutput *output,
+  ^
+/home/education/wpilib/cpp/current/include/PIDController.h:29:2: note:   candidate expects 7 arguments, 0 provided
+/home/education/wpilib/cpp/current/include/PIDController.h:27:2: note: PIDController::PIDController(float, float, float, PIDSource*, PIDOutput*, float)
+  PIDController(float p, float i, float d, PIDSource *source, PIDOutput *output, float period =
+  ^
+/home/education/wpilib/cpp/current/include/PIDController.h:27:2: note:   candidate expects 6 arguments, 0 provided
+11:10:06 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp: In constructor 'PIDLifterControl::PIDLifterControl(PIDSource*, PIDOutput*)':
+../src/PIDLifterControl.cpp:19:33: error: no matching function for call to 'PIDController::PIDController()'
+  controller = new PIDController();
+                                 ^
+../src/PIDLifterControl.cpp:19:33: note: candidates are:
+In file included from /home/education/wpilib/cpp/current/include/HAL/Digital.hpp:7:0,
+                 from /home/education/wpilib/cpp/current/include/HAL/HAL.hpp:18,
+                 from /home/education/wpilib/cpp/current/include/SPI.h:8,
+                 from /home/education/wpilib/cpp/current/include/ADXL345_SPI.h:10,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:14,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/PIDController.h:108:27: note: PIDController::PIDController(const PIDController&)
+  DISALLOW_COPY_AND_ASSIGN(PIDController);
+                           ^
+/home/education/wpilib/cpp/current/include/HAL/cpp/Synchronized.hpp:13:3: note: in definition of macro 'DISALLOW_COPY_AND_ASSIGN'
+   TypeName(const TypeName&);               \
+   ^
+/home/education/wpilib/cpp/current/include/PIDController.h:108:27: note:   candidate expects 1 argument, 0 provided
+  DISALLOW_COPY_AND_ASSIGN(PIDController);
+                           ^
+/home/education/wpilib/cpp/current/include/HAL/cpp/Synchronized.hpp:13:3: note: in definition of macro 'DISALLOW_COPY_AND_ASSIGN'
+   TypeName(const TypeName&);               \
+   ^
+In file included from /home/education/wpilib/cpp/current/include/Commands/PIDSubsystem.h:11:0,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:31,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/PIDController.h:29:2: note: PIDController::PIDController(float, float, float, float, PIDSource*, PIDOutput*, float)
+  PIDController(float p, float i, float d, float f, PIDSource *source, PIDOutput *output,
+  ^
+/home/education/wpilib/cpp/current/include/PIDController.h:29:2: note:   candidate expects 7 arguments, 0 provided
+/home/education/wpilib/cpp/current/include/PIDController.h:27:2: note: PIDController::PIDController(float, float, float, PIDSource*, PIDOutput*, float)
+  PIDController(float p, float i, float d, PIDSource *source, PIDOutput *output, float period =
+  ^
+/home/education/wpilib/cpp/current/include/PIDController.h:27:2: note:   candidate expects 6 arguments, 0 provided
+11:10:37 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp: In constructor 'PIDLifterControl::PIDLifterControl(PIDSource*, PIDOutput*)':
+../src/PIDLifterControl.cpp:19:52: error: no matching function for call to 'PIDController::PIDController(float&, float&, float&, PIDOutput*&, PIDSource*&)'
+  controller = new PIDController(p,i,d,output,source);
+                                                    ^
+../src/PIDLifterControl.cpp:19:52: note: candidates are:
+In file included from /home/education/wpilib/cpp/current/include/HAL/Digital.hpp:7:0,
+                 from /home/education/wpilib/cpp/current/include/HAL/HAL.hpp:18,
+                 from /home/education/wpilib/cpp/current/include/SPI.h:8,
+                 from /home/education/wpilib/cpp/current/include/ADXL345_SPI.h:10,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:14,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/PIDController.h:108:27: note: PIDController::PIDController(const PIDController&)
+  DISALLOW_COPY_AND_ASSIGN(PIDController);
+                           ^
+/home/education/wpilib/cpp/current/include/HAL/cpp/Synchronized.hpp:13:3: note: in definition of macro 'DISALLOW_COPY_AND_ASSIGN'
+   TypeName(const TypeName&);               \
+   ^
+/home/education/wpilib/cpp/current/include/PIDController.h:108:27: note:   candidate expects 1 argument, 5 provided
+  DISALLOW_COPY_AND_ASSIGN(PIDController);
+                           ^
+/home/education/wpilib/cpp/current/include/HAL/cpp/Synchronized.hpp:13:3: note: in definition of macro 'DISALLOW_COPY_AND_ASSIGN'
+   TypeName(const TypeName&);               \
+   ^
+In file included from /home/education/wpilib/cpp/current/include/Commands/PIDSubsystem.h:11:0,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:31,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/PIDController.h:29:2: note: PIDController::PIDController(float, float, float, float, PIDSource*, PIDOutput*, float)
+  PIDController(float p, float i, float d, float f, PIDSource *source, PIDOutput *output,
+  ^
+/home/education/wpilib/cpp/current/include/PIDController.h:29:2: note:   candidate expects 7 arguments, 5 provided
+/home/education/wpilib/cpp/current/include/PIDController.h:27:2: note: PIDController::PIDController(float, float, float, PIDSource*, PIDOutput*, float)
+  PIDController(float p, float i, float d, PIDSource *source, PIDOutput *output, float period =
+  ^
+/home/education/wpilib/cpp/current/include/PIDController.h:27:2: note:   no known conversion for argument 4 from 'PIDOutput*' to 'PIDSource*'
+11:10:54 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp: In constructor 'PIDLifterControl::PIDLifterControl(PIDSource*, PIDOutput*)':
+../src/PIDLifterControl.cpp:19:52: error: no matching function for call to 'PIDController::PIDController(float&, float&, float&, PIDOutput*&, PIDSource*&)'
+  controller = new PIDController(p,i,d,output,source);
+                                                    ^
+../src/PIDLifterControl.cpp:19:52: note: candidates are:
+In file included from /home/education/wpilib/cpp/current/include/HAL/Digital.hpp:7:0,
+                 from /home/education/wpilib/cpp/current/include/HAL/HAL.hpp:18,
+                 from /home/education/wpilib/cpp/current/include/SPI.h:8,
+                 from /home/education/wpilib/cpp/current/include/ADXL345_SPI.h:10,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:14,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/PIDController.h:108:27: note: PIDController::PIDController(const PIDController&)
+  DISALLOW_COPY_AND_ASSIGN(PIDController);
+                           ^
+/home/education/wpilib/cpp/current/include/HAL/cpp/Synchronized.hpp:13:3: note: in definition of macro 'DISALLOW_COPY_AND_ASSIGN'
+   TypeName(const TypeName&);               \
+   ^
+/home/education/wpilib/cpp/current/include/PIDController.h:108:27: note:   candidate expects 1 argument, 5 provided
+  DISALLOW_COPY_AND_ASSIGN(PIDController);
+                           ^
+/home/education/wpilib/cpp/current/include/HAL/cpp/Synchronized.hpp:13:3: note: in definition of macro 'DISALLOW_COPY_AND_ASSIGN'
+   TypeName(const TypeName&);               \
+   ^
+In file included from /home/education/wpilib/cpp/current/include/Commands/PIDSubsystem.h:11:0,
+                 from /home/education/wpilib/cpp/current/include/WPILib.h:31,
+                 from /home/education/Programming/Robotics/TestLifter/src/PIDLifterControl.h:8,
+                 from ../src/PIDLifterControl.cpp:8:
+/home/education/wpilib/cpp/current/include/PIDController.h:29:2: note: PIDController::PIDController(float, float, float, float, PIDSource*, PIDOutput*, float)
+  PIDController(float p, float i, float d, float f, PIDSource *source, PIDOutput *output,
+  ^
+/home/education/wpilib/cpp/current/include/PIDController.h:29:2: note:   candidate expects 7 arguments, 5 provided
+/home/education/wpilib/cpp/current/include/PIDController.h:27:2: note: PIDController::PIDController(float, float, float, PIDSource*, PIDOutput*, float)
+  PIDController(float p, float i, float d, PIDSource *source, PIDOutput *output, float period =
+  ^
+/home/education/wpilib/cpp/current/include/PIDController.h:27:2: note:   no known conversion for argument 4 from 'PIDOutput*' to 'PIDSource*'
+11:11:51 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:18:31 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp:23:58: error: no 'bool PIDLifterControl::Start(float, float, float)' member function declared in class 'PIDLifterControl'
+ bool PIDLifterControl::Start(float np, float ni, float nd){
+                                                          ^
+11:18:49 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:20:25 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:22:35 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:22:54 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:32:11 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:34:59 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+11:35:30 **** Rebuild of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/Robot.o -lwpi 
+11:43:13 **** Rebuild of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/XboxController.o ../src/XboxController.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/Robot.o src/PIDLifterControl.o -lwpi 
+11:43:16 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp: In member function 'bool PIDLifterControl::brake()':
+../src/PIDLifterControl.cpp:42:10: error: 'class Encoder' has no member named 'reset'
+  source->reset();
+          ^
+../src/PIDLifterControl.cpp:43:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+11:44:28 **** Incremental Build of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/Robot.o src/PIDLifterControl.o -lwpi 
+11:45:31 **** Incremental Build of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp: In member function 'bool PIDLifterControl::release()':
+../src/PIDLifterControl.cpp:43:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/Robot.o src/PIDLifterControl.o -lwpi 
+11:47:46 **** Incremental Build of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/Robot.o src/PIDLifterControl.o -lwpi 
+11:49:39 **** Incremental Build of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/Robot.o src/PIDLifterControl.o -lwpi 
+11:53:02 **** Incremental Build of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/Robot.o src/PIDLifterControl.o -lwpi 
+12:01:34 **** Incremental Build of configuration Debug for project BrakerBraker ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/BrakerBraker/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/Robot.o ../src/Robot.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/Robot.o src/PIDLifterControl.o -lwpi 
+12:01:36 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+../src/PIDLifterControl.cpp: In member function 'bool PIDLifterControl::brake()':
+../src/PIDLifterControl.cpp:42:10: error: 'class Encoder' has no member named 'reset'
+  source->reset();
+          ^
+../src/PIDLifterControl.cpp:43:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+Info: Nothing to build for BrakerBraker
+12:01:59 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y -I/home/education/wpilib/cpp/current/include -I/home/education/Programming/Robotics/TestLifter/src -O0 -g3 -Wall -c -fmessage-length=0 -o src/PIDLifterControl.o ../src/PIDLifterControl.cpp 
+arm-frc-linux-gnueabi-g++ -L/home/education/wpilib/cpp/current/lib -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram src/XboxController.o src/RobotLifter.o src/PIDLifterControl.o src/LifterControl.o src/GrabberControl.o -lwpi 
+Info: Nothing to build for BrakerBraker
+Info: Nothing to build for TestLifter
+Info: Nothing to build for BrakerBraker
+Info: Nothing to build for TestLifter

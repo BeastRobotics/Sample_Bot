@@ -1,0 +1,17 @@
+/*
+ * PIDLifterControl.h
+ *
+ *  Created on: Jan 31, 2015
+ *      Author: education
+ */
+
+#ifndef SRC_PIDLIFTERCONTROL_H_
+#define SRC_PIDLIFTERCONTROL_H_
+
+class PIDLifterControl {
+public:
+	PIDLifterControl();
+	virtual ~PIDLifterControl();
+};
+
+#endif /* SRC_PIDLIFTERCONTROL_H_ */
