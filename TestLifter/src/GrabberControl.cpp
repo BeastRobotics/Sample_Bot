@@ -21,8 +21,8 @@ public:
 	double speedFactor;
 
 	GrabberControl(Joystick *xStick) {
-		//armLeft = new Talon(ARM_LEFT);
-		//armRight = new Talon(ARM_RIGHT);
+		armLeft = new Talon(ARM_LEFT);
+		armRight = new Talon(ARM_RIGHT);
 		stick = xStick;
 		sol1 = new DoubleSolenoid(0, 1);
 		leftSpeed = 0;

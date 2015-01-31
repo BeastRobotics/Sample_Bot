@@ -5,6 +5,7 @@
 #include <IterativeRobot.h>
 #include <RobotBase.h>
 #include <RobotDrive.h>
+#include <iostream>
 
 class Robot: public IterativeRobot {
 
@@ -17,24 +18,24 @@ class Robot: public IterativeRobot {
 	bool isArmManual;
 	GrabberControl *grabber;
 	Compressor *c;
-	//CameraServer *c1;
+	CameraServer *c1;
 	double home;
 	double level1;
 	double level2;
 	double level3;
 public:
 	Robot() :
-			myRobot(0, 1), // these must be initialized in the same order
+			myRobot(0,1), // these must be initialized in the same order
 			lw(NULL), autoLoopCounter(0) {
 		myRobot.SetExpiration(0.1);
 		xbox = XboxController::getInstance();
-		lifter = new LifterControl(xbox->getRightStick());
+		lifter = new LifterControl();
 		isLifterManual = false;
 		isArmManual = false;
 		grabber = new GrabberControl(xbox->getRightStick());
 		c = new Compressor(0);
-		//c1 = CameraServer::GetInstance();
-		//c1->StartAutomaticCapture();
+		c1 = CameraServer::GetInstance();
+		c1->StartAutomaticCapture();
 		home = 0;
 		level1 = 0;
 		level2 = 0;
@@ -44,7 +45,7 @@ public:
 private:
 	void RobotInit() {
 		lw = LiveWindow::GetInstance();
-		SmartDashboard::PutString("Current Mode", "Robot Init ");
+		//SmartDashboard::PutString("Current Mode", "Robot Init ");
 
 	}
 
@@ -64,7 +65,6 @@ private:
 
 	void TeleopInit() {
 		SmartDashboard::PutString("Current Mode", "Init Start");
-		/*lifter->SetEncoderValue();
 		SmartDashboard::PutNumber("Set Home Value", 0.0);
 		SmartDashboard::PutNumber("Set Level 1 Value", 0.0);
 		SmartDashboard::PutNumber("Set Level 2 Value", 0.0);
@@ -83,12 +83,14 @@ private:
 		SmartDashboard::PutNumber("Speed Factor", 1.0);
 		SmartDashboard::PutNumber("Lifter Speed Factor", 1.0);
 		SmartDashboard::PutBoolean("Hold Position", false);
-		//SmartDashboard::PutString("Current Mode", "Init");
-		lifter->SetEncoderValue();
+		SmartDashboard::PutString("Current Mode", "Init");
+		SmartDashboard::PutNumber("Y Axis Right Stick", 0.0);
+		SmartDashboard::PutNumber("Lifter Motor Value", 0.0);
+		//lifter->SetEncoderValue();
 		c->SetClosedLoopControl(true);
 		lifter->Stop();
 		SmartDashboard::PutString("Current Mode", "Init Complete");
-		*/
+		std::cout << "init";
 	}
 
 	void TeleopPeriodic() {
@@ -116,6 +118,10 @@ private:
 
 		SmartDashboard::PutBoolean("Upper Limit", lifter->GetUpperLimit());
 		SmartDashboard::PutBoolean("Lower Limit", lifter->GetLowerLimit());
+
+
+		SmartDashboard::PutNumber("Y Axis Right Stick", xbox->getAxisRightY());
+		SmartDashboard::PutNumber("Lifter Motor Value", lifter->lifterSpeed);
 
 		if (SmartDashboard::GetBoolean("Use Values")) {
 			lifter->SetHome((int) home);
@@ -159,10 +165,11 @@ private:
 				}
 			}
 		}
-
+		/*
 		if (SmartDashboard::GetBoolean("Hold Postion")) {
 			lifter->HoldPosition();
 		}
+		*/
 
 		if (isArmManual && !isLifterManual) {
 			//grabber->DriveWithStick();

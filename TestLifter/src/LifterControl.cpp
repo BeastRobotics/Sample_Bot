@@ -25,8 +25,8 @@ class LifterControl {
 	Talon *lifter;
 	DigitalInput *upperLimit;
 	DigitalInput *lowerLimit;
-	Joystick *stick;
-	double lifterSpeed;
+	XboxController *xbox;
+
 	double speedFactor;
 
 
@@ -36,8 +36,9 @@ public:
 	int level2Value;
 	int level3Value;
 	int homeValue;
+	double lifterSpeed;
 
-	LifterControl(Joystick *xStick) {
+	LifterControl( ) {
 		en1 = new Encoder(0, 1);
 		en1->Reset();
 		lifter = new Talon(4);
@@ -47,13 +48,14 @@ public:
 		homeValue = HOME;
 		upperLimit = new DigitalInput(3);
 		lowerLimit = new DigitalInput(4);
-		stick = xStick;
 		lifterSpeed = 0;
 		speedFactor = 1.0;
+		xbox = XboxController::getInstance();
 	}
 
 	void lifterupdate () {
 		lifter->Set(speedFactor * lifterSpeed);
+		//lifter->Set(0.0);
 	}
 
 	void SetSpeepFactor(double factor) {
@@ -65,10 +67,15 @@ public:
 	}
 
 	void ManualMode() {
-		if (upperLimit->Get() && stick->GetY() > 0) {
-			lifterSpeed = stick->GetY();
-		} else if (lowerLimit->Get() && stick->GetY() < 0) {
-			lifterSpeed = stick->GetY();
+
+		bool isUpperLimit = GetUpperLimit();
+		bool isLowerLimit = GetLowerLimit();
+		double yAxis = xbox->getAxisRightY();
+
+		if (isUpperLimit && yAxis > 0) {
+			lifterSpeed = -yAxis;
+		} else if (isLowerLimit && yAxis < 0) {
+			lifterSpeed = -yAxis;
 		} else {
 			lifterSpeed = 0;
 		}
