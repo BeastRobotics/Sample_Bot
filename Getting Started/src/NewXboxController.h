@@ -52,7 +52,11 @@ private:
 	Joystick lstick;
 	Joystick rstick;
 
+	Timer *timer;
+	double lostTimeBank, lastTime;
+	void updateAllCounters();
 	void accountForLostTime();
+
 	bool isButtonHeld(int &debounceCounter, bool rawValue);
 	float getAxisTrigger();
 	bool xLast, xNow;

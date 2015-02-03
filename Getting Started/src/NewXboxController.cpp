@@ -24,6 +24,8 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 #define AXIS_TRIGGER 3
 #define JOG_DEBOUNCE 10
 
+#define REAL_TIME_BETWEEN_UPDATES 0.005
+
 #define DEBOUNCE_COUNT_LIMIT 15
 
 static NewXboxController *newXbox = NULL;
@@ -32,6 +34,12 @@ NewXboxController::NewXboxController(int port):
 		lstick(port), rstick(port) {
 	rstick.SetAxisChannel(Joystick::kXAxis, 4);
 	rstick.SetAxisChannel(Joystick::kYAxis, 5);
+
+	timer=new Timer();
+	timer->Start();
+	lostTimeBank=0.0;
+	lastTime=timer->Get();
+
 	//set all buttons to false
 	xLast=false;
 	xNow=false;
@@ -111,7 +119,30 @@ void NewXboxController::update() {
 }
 
 void NewXboxController::accountForLostTime() {//TODO make this method update all counters
+	double currentTime=timer->Get();
+	lostTimeBank+=currentTime-lastTime-REAL_TIME_BETWEEN_UPDATES;
 
+	while (lostTimeBank>=REAL_TIME_BETWEEN_UPDATES) {
+		updateAllCounters();
+		lostTimeBank-=REAL_TIME_BETWEEN_UPDATES;
+	}
+
+	lastTime=currentTime;
+}
+
+void NewXboxController::updateAllCounters() {
+	xDebounceCounter++;
+	yDebounceCounter++;
+	aDebounceCounter++;
+	bDebounceCounter++;
+	startDebounceCounter++;
+	backDebounceCounter++;
+	leftBumperDebounceCounter++;
+	rightBumperDebounceCounter++;
+	l3DebounceCounter++;
+	r3DebounceCounter++;
+	leftTriggerDebounceCounter++;
+	rightTriggerDebounceCounter++;
 }
 
 
