@@ -1,8 +1,8 @@
 #include "WPILib.h"
 #include "XboxController.h"
 
-#define ARM_LEFT 5
-#define ARM_RIGHT 6
+#define ARM_LEFT 4
+#define ARM_RIGHT 5
 #define ARM_MOTOR_SPEED 0.1
 #define ARM_MOTOR_SPEED_BACK -0.10
 

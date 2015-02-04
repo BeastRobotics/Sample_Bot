@@ -5,7 +5,6 @@
  *      Author: Beasty
  */
 
-
 // Make look like arm class
 #include "WPILib.h"
 #include "XboxController.h"
@@ -26,9 +25,9 @@ class LifterControl {
 	DigitalInput *upperLimit;
 	DigitalInput *lowerLimit;
 	XboxController *xbox;
+	Timer *time;
 
 	double speedFactor;
-
 
 public:
 
@@ -37,11 +36,12 @@ public:
 	int level3Value;
 	int homeValue;
 	double lifterSpeed;
+	double accelerationSpeed;
 
-	LifterControl( ) {
+	LifterControl() {
 		en1 = new Encoder(0, 1);
 		en1->Reset();
-		lifter = new Talon(4);
+		lifter = new Talon(6);
 		level1Value = LEVEL_1;
 		level2Value = LEVEL_2;
 		level3Value = LEVEL_3;
@@ -51,9 +51,11 @@ public:
 		lifterSpeed = 0;
 		speedFactor = 1.0;
 		xbox = XboxController::getInstance();
+		time = new Timer();
+		accelerationSpeed = 0.002;
 	}
 
-	void lifterupdate () {
+	void lifterupdate() {
 		lifter->Set(speedFactor * lifterSpeed);
 		//lifter->Set(0.0);
 	}
@@ -91,7 +93,37 @@ public:
 	}
 
 	void Stop() {
-		lifterSpeed = 0;
+		if (lifterSpeed > 0) {
+			lifterSpeed -= accelerationSpeed;
+		} else if (lifterSpeed < 0) {
+			lifterSpeed += accelerationSpeed;
+		} else {
+			lifterSpeed = 0;
+		}
+	}
+
+	void MoveUp() {
+		if (upperLimit->Get() == 1) {
+			if (lifterSpeed > MOTOR_SPEED) {
+				lifterSpeed -= accelerationSpeed;
+			} else {
+				lifterSpeed = MOTOR_SPEED;
+			}
+		} else {
+			lifterSpeed = 0;
+		}
+	}
+
+	void MoveDown() {
+		if (lowerLimit->Get() == 1) {
+			if (lifterSpeed < MOTOR_SPEED_DOWN) {
+				lifterSpeed += accelerationSpeed;
+			} else {
+				lifterSpeed = MOTOR_SPEED_DOWN;
+			}
+		} else {
+			lifterSpeed = 0;
+		}
 	}
 
 	void MoveToHome() {
@@ -152,7 +184,7 @@ public:
 	}
 
 	bool GetLowerLimit() {
-			return lowerLimit->Get();
+		return lowerLimit->Get();
 	}
 
 private:

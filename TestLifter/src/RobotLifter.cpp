@@ -25,7 +25,7 @@ class Robot: public IterativeRobot {
 	double level3;
 public:
 	Robot() :
-			myRobot(0,1), // these must be initialized in the same order
+			myRobot(0, 1), // these must be initialized in the same order
 			lw(NULL), autoLoopCounter(0) {
 		myRobot.SetExpiration(0.1);
 		xbox = XboxController::getInstance();
@@ -65,22 +65,20 @@ private:
 
 	void TeleopInit() {
 		SmartDashboard::PutString("Current Mode", "Init Start");
-		SmartDashboard::PutNumber("Set Home Value", 0.0);
-		SmartDashboard::PutNumber("Set Level 1 Value", 0.0);
-		SmartDashboard::PutNumber("Set Level 2 Value", 0.0);
-		SmartDashboard::PutNumber("Set Level 3 Value", 0.0);
+		SmartDashboard::PutNumber("Set Home Value", 1.0);
+		SmartDashboard::PutNumber("Set Level 1 Value", 500.0);
+		SmartDashboard::PutNumber("Set Level 2 Value", 1000.0);
+		SmartDashboard::PutNumber("Set Level 3 Value", 1500.0);
 		SmartDashboard::PutNumber("Current Home Value", 0.0);
 		SmartDashboard::PutNumber("Current Level 1 Value", 0.0);
 		SmartDashboard::PutNumber("Current Level 2 Value", 0.0);
 		SmartDashboard::PutNumber("Current Level 3 Value", 0.0);
-		SmartDashboard::PutBoolean("Use Values", false);
 		SmartDashboard::PutNumber("Lifter Encoder", 0.0);
 		SmartDashboard::PutBoolean("Manual Lifter Mode", false);
 		SmartDashboard::PutBoolean("Manual Arm Mode", false);
-		SmartDashboard::PutBoolean("Wheels", false);
 		SmartDashboard::PutNumber("Left Motor", 0.0);
 		SmartDashboard::PutNumber("Right Motor", 0.0);
-		SmartDashboard::PutNumber("Speed Factor", 1.0);
+		SmartDashboard::PutNumber("Grabber Speed Factor", 1.0);
 		SmartDashboard::PutNumber("Lifter Speed Factor", 1.0);
 		SmartDashboard::PutBoolean("Hold Position", false);
 		SmartDashboard::PutString("Current Mode", "Init");
@@ -105,6 +103,11 @@ private:
 		level2 = SmartDashboard::GetNumber("Set Level 2 Value");
 		level3 = SmartDashboard::GetNumber("Set Level 3 Value");
 
+		lifter->SetHome((int) home);
+		lifter->SetLevel1((int) level1);
+		lifter->SetLevel2((int) level2);
+		lifter->SetLevel3((int) level3);
+
 		SmartDashboard::PutNumber("Current Home Value",
 				(double) lifter->homeValue);
 		SmartDashboard::PutNumber("Currnet Level 1 Value",
@@ -119,24 +122,15 @@ private:
 		SmartDashboard::PutBoolean("Upper Limit", lifter->GetUpperLimit());
 		SmartDashboard::PutBoolean("Lower Limit", lifter->GetLowerLimit());
 
-
 		SmartDashboard::PutNumber("Y Axis Right Stick", xbox->getAxisRightY());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifter->lifterSpeed);
-
-		if (SmartDashboard::GetBoolean("Use Values")) {
-			lifter->SetHome((int) home);
-			lifter->SetLevel1((int) level1);
-			lifter->SetLevel2((int) level2);
-			lifter->SetLevel3((int) level3);
-			SmartDashboard::PutBoolean("Use Values", false);
-		}
 
 		isLifterManual = SmartDashboard::GetBoolean("Manual Lifter Mode");
 		isArmManual = SmartDashboard::GetBoolean("Manual Arm Mode");
 
 		SmartDashboard::PutNumber("Left Motor", grabber->leftSpeed);
 		SmartDashboard::PutNumber("Right Motor", grabber->rightSpeed);
-		grabber->SetSpeeds(SmartDashboard::GetNumber("Speed Factor"));
+		grabber->SetSpeeds(SmartDashboard::GetNumber("Grabber Speed Factor"));
 		lifter->SetSpeepFactor(
 				SmartDashboard::GetNumber("Lifter Speed Factor"));
 
@@ -150,6 +144,15 @@ private:
 
 		if (isLifterManual && !isArmManual) {
 			lifter->ManualMode();
+			/*
+			if (xbox->isBHeld()) {
+				lifter->MoveUp();
+			} else if (xbox->isXHeld()) {
+				lifter->MoveDown();
+			} else {
+				lifter->Stop();
+			} */
+
 		} else {
 			if (xbox->isLeftTriggerHeld()) {
 				if (xbox->isBHeld()) {
@@ -166,10 +169,10 @@ private:
 			}
 		}
 		/*
-		if (SmartDashboard::GetBoolean("Hold Postion")) {
-			lifter->HoldPosition();
-		}
-		*/
+		 if (SmartDashboard::GetBoolean("Hold Postion")) {
+		 lifter->HoldPosition();
+		 }
+		 */
 
 		if (isArmManual && !isLifterManual) {
 			//grabber->DriveWithStick();
@@ -182,7 +185,6 @@ private:
 			 */
 			if (xbox->isRightTriggerHeld()) {
 				if (xbox->isAHeld()) {
-					SmartDashboard::PutBoolean("Wheels", true);
 					grabber->DriveIn();
 				} else if (xbox->isBHeld()) {
 					SmartDashboard::PutBoolean("Wheels", true);
