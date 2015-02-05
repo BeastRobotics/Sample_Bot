@@ -18,6 +18,7 @@
 #define MOTOR_SPEED -0.50
 #define MOTOR_SPEED_DOWN 0.50
 #define HOLD_SPEED 0.05
+#define ACCELERATION 0.05
 
 class LifterControl {
 
@@ -73,12 +74,22 @@ public:
 		double yAxis = xbox->getAxisRightY();
 
 		if (isUpperLimit && yAxis > 0) {
-			lifterSpeed = -yAxis;
+			if (lifterSpeed > -yAxis)
+			{
+				lifterSpeed -= getAcceleration();
+			}
 		} else if (isLowerLimit && yAxis < 0) {
-			lifterSpeed = -yAxis;
+			if (lifterSpeed < yAxis)
+			{
+				lifterSpeed += getAcceleration();
+			}
 		} else {
 			lifterSpeed = 0;
 		}
+	}
+
+	double getAcceleration(){
+		return ACCELERATION;
 	}
 
 	void SetEncoderValue() {
@@ -91,7 +102,18 @@ public:
 	}
 
 	void Stop() {
-		lifterSpeed = 0;
+		if (lifterSpeed < 0)
+		{
+			lifterSpeed += getAcceleration();
+		}
+		else if (lifterSpeed > 0)
+		{
+			lifterSpeed -= getAcceleration();
+		}
+	}
+
+	void SetgetAcceleration()(int n){
+		getAcceleration() = n;
 	}
 
 	void MoveToHome() {
@@ -159,7 +181,10 @@ private:
 
 	void MoveToHomePrivate() {
 		if (en1->Get() > HOME + TOLERANCE) {
-			lifterSpeed = MOTOR_SPEED_DOWN;
+			if (lifterSpeed < MOTOR_DOWN_SPEED)
+			{
+				lifterSpeed += getAcceleration();
+			}
 		} else {
 			en1->Reset();
 			lifterSpeed = 0;
@@ -168,9 +193,15 @@ private:
 
 	void MoveToLevel1Private() {
 		if (en1->Get() < LEVEL_1 - TOLERANCE) {
-			lifterSpeed = MOTOR_SPEED;
+			if (lifterSpeed > MOTOR_DOWN)
+			{
+				lifterSpeed -= getAcceleration();
+			}
 		} else if (en1->Get() > LEVEL_1 + TOLERANCE) {
-			lifterSpeed = -MOTOR_SPEED;
+			if (lifterSpeed < MOTOR_DOWN_SPEED)
+			{
+				lifterSpeed += getAcceleration();
+			}
 		} else {
 			lifterSpeed = 0;
 		}
@@ -178,9 +209,15 @@ private:
 
 	void MoveToLevel2Private() {
 		if (en1->Get() < LEVEL_2 - TOLERANCE) {
-			lifterSpeed = MOTOR_SPEED;
+			if (lifterSpeed > MOTOR_DOWN)
+			{
+				lifterSpeed -= getAcceleration();
+			}
 		} else if (en1->Get() > LEVEL_2 + TOLERANCE) {
-			lifterSpeed = -MOTOR_SPEED;
+			if (lifterSpeed < MOTOR_DOWN_SPEED)
+			{
+				lifterSpeed += getAcceleration();
+			}
 		} else {
 			lifterSpeed = 0;
 		}
@@ -188,9 +225,15 @@ private:
 
 	void MoveToLevel3Private() {
 		if (en1->Get() < LEVEL_3 - TOLERANCE) {
-			lifterSpeed = MOTOR_SPEED;
+			if (lifterSpeed > MOTOR_DOWN)
+			{
+				lifterSpeed -= getAcceleration();
+			}
 		} else if (en1->Get() > LEVEL_3 + TOLERANCE) {
-			lifterSpeed = -MOTOR_SPEED;
+			if (lifterSpeed < MOTOR_DOWN_SPEED)
+			{
+				lifterSpeed += getAcceleration();
+			}
 		} else {
 			lifterSpeed = 0;
 		}
