@@ -17,11 +17,12 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 #define BUTTON_START 8
 #define BUTTON_L3 9 // Press down the left joystick for L3.
 #define BUTTON_R3 10 // Press down the right joystick for R3.
-#define AXIS_RIGHT_X 1//-----------------------------------------Probably broken!!!!!!!!!!!!!!!!!!!!!!!!!!!! switch left with right!!!!!!!!!!!!!!!!!!!!!!!!
-#define AXIS_RIGHT_Y 2//-----------------------------------------Probably broken!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#define AXIS_LEFT_X 4
-#define AXIS_LEFT_Y 5
-#define AXIS_TRIGGER 3
+
+#define AXIS_RIGHT_X 4//-----------------------------------------Probably broken!!!!!!!!!!!!!!!!!!!!!!!!!!!! switch left with right!!!!!!!!!!!!!!!!!!!!!!!!
+#define AXIS_RIGHT_Y 5//-----------------------------------------Probably broken!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#define AXIS_LEFT_X 0
+#define AXIS_LEFT_Y 1
+#define AXIS_TRIGGER 2// 2==left, 3==right TODO-------------------------------------------
 #define JOG_DEBOUNCE 10
 
 #define REAL_TIME_BETWEEN_UPDATES 0.005
@@ -114,8 +115,8 @@ void NewXboxController::update() {
 	rightBumperNow=isButtonHeld(rightBumperDebounceCounter, rstick.GetRawButton(BUTTON_RB));
 	l3Now=isButtonHeld(l3DebounceCounter, rstick.GetRawButton(BUTTON_L3));
 	r3Now=isButtonHeld(r3DebounceCounter, rstick.GetRawButton(BUTTON_R3));
-	leftTriggerNow=isButtonHeld(leftTriggerDebounceCounter, getAxisTrigger()>0.8);
-	rightTriggerNow=isButtonHeld(rightTriggerDebounceCounter, getAxisTrigger()<-0.8);
+	leftTriggerNow=isButtonHeld(leftTriggerDebounceCounter, getAxisTrigger()<-0.2);
+	rightTriggerNow=isButtonHeld(rightTriggerDebounceCounter, getAxisTrigger()>0.8);
 }
 
 void NewXboxController::accountForLostTime() {//TODO make this method update all counters
@@ -204,11 +205,11 @@ bool NewXboxController::getR3Pressed() {
 }
 
 bool NewXboxController::getLeftTriggerPressed() {
-	return (!l3Last)&&(l3Now);
+	return (!leftTriggerLast)&&(leftTriggerNow);
 }
 
 bool NewXboxController::getRightTriggerPressed() {
-	return (!r3Last)&&(r3Now);
+	return (!rightTriggerLast)&&(rightTriggerNow);
 }
 
 

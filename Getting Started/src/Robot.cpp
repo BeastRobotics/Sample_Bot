@@ -102,6 +102,19 @@ private:
 
 		SmartDashboard::PutBoolean("New Xbox: L3", controller->getL3Held());
 		SmartDashboard::PutBoolean("New Xbox: R3", controller->getR3Held());
+
+		SmartDashboard::PutBoolean("New Xbox: Start", controller->getStartHeld());
+		SmartDashboard::PutBoolean("New Xbox: Back", controller->getBackHeld());
+
+		SmartDashboard::PutBoolean("New Xbox: LTrigger", controller->getLeftTriggerHeld());
+		SmartDashboard::PutBoolean("New Xbox: RTrigger", controller->getRightTriggerHeld());
+		SmartDashboard::PutBoolean("New Xbox: LBumper", controller->getLeftBumperHeld());
+		SmartDashboard::PutBoolean("New Xbox: RBumper", controller->getRightBumperHeld());
+
+		SmartDashboard::PutNumber("New Xbox: LeftX", controller->getAxisLeftX());
+		SmartDashboard::PutNumber("New Xbox: LeftY", controller->getAxisLeftY());
+		SmartDashboard::PutNumber("New Xbox: RightX", controller->getAxisRightX());
+		SmartDashboard::PutNumber("New Xbox: RightY", controller->getAxisRightY());
 	}
 
 	void DisabledInit()
