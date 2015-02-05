@@ -179,6 +179,14 @@ bool NewXboxController::getBPressed() {
 	return (!bLast)&&(bNow);
 }
 
+bool NewXboxController::getStartPressed() {
+	return (!startLast)&&(startNow);
+}
+
+bool NewXboxController::getBackPressed() {
+	return (!backLast)&(backNow);
+}
+
 bool NewXboxController::getLeftBumperPressed() {
 	return (!leftBumperLast)&&(leftBumperNow);
 }
@@ -224,6 +232,10 @@ bool NewXboxController::getStartHeld() {
 	return startLast&&startNow;
 }
 
+bool NewXboxController::getBackHeld() {
+	return backLast&&backNow;
+}
+
 bool NewXboxController::getLeftBumperHeld() {
 	return leftBumperLast&&leftBumperNow;
 }
@@ -232,12 +244,20 @@ bool NewXboxController::getRightBumperHeld() {
 	return rightBumperLast&&rightBumperNow;
 }
 
+bool NewXboxController::getL3Held() {
+	return l3Last&&l3Now;
+}
+
 bool NewXboxController::getR3Held() {
 	return r3Last&&r3Now;
 }
 
-bool NewXboxController::getL3Held() {
-	return l3Last&&l3Now;
+bool NewXboxController::getLeftTriggerHeld() {
+	return leftTriggerLast&&leftTriggerNow;
+}
+
+bool NewXboxController::getRightTriggerHeld() {
+	return rightTriggerLast&&rightTriggerNow;
 }
 
 float NewXboxController::getAxisTrigger() {
