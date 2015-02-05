@@ -84,6 +84,8 @@ private:
 		SmartDashboard::PutString("Current Mode", "Init");
 		SmartDashboard::PutNumber("Y Axis Right Stick", 0.0);
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0);
+		SmartDashboard::PutNumber("Accel Up", 0.0);
+		SmartDashboard::PutNumber("Accel Down", 0.0);
 		//lifter->SetEncoderValue();
 		c->SetClosedLoopControl(true);
 		lifter->Stop();
@@ -142,16 +144,19 @@ private:
 			SmartDashboard::PutString("Current Mode", "No Mode");
 		}
 
+		lifter->SetAccelUp(SmartDashboard::GetNumber("Accel Up"));
+		lifter->SetAccelDown(SmartDashboard::GetNumber("Accel Down"));
+
 		if (isLifterManual && !isArmManual) {
-			lifter->ManualMode();
-			/*
+			//lifter->ManualMode();
+
 			if (xbox->isBHeld()) {
 				lifter->MoveUp();
 			} else if (xbox->isXHeld()) {
 				lifter->MoveDown();
 			} else {
 				lifter->Stop();
-			} */
+			}
 
 		} else {
 			if (xbox->isLeftTriggerHeld()) {
@@ -173,7 +178,7 @@ private:
 		 lifter->HoldPosition();
 		 }
 		 */
-
+		/*
 		if (isArmManual && !isLifterManual) {
 			//grabber->DriveWithStick();
 		} else {
@@ -182,7 +187,7 @@ private:
 			 * B Drive out
 			 * X spin clockwise
 			 * Y spin counter clockwise
-			 */
+
 			if (xbox->isRightTriggerHeld()) {
 				if (xbox->isAHeld()) {
 					grabber->DriveIn();
@@ -199,7 +204,7 @@ private:
 					grabber->Stop();
 				}
 			}
-		}
+		} */
 
 		if (xbox->isRBumperHeld()) {
 			grabber->SetGrabberArm(true);

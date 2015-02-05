@@ -14,8 +14,8 @@
 #define LEVEL_1 500
 #define LEVEL_2 1000
 #define LEVEL_3 1500
-#define MOTOR_SPEED -0.50
-#define MOTOR_SPEED_DOWN 0.50
+#define MOTOR_SPEED -1.0
+#define MOTOR_SPEED_DOWN 1.0
 #define HOLD_SPEED 0.05
 
 class LifterControl {
@@ -36,7 +36,8 @@ public:
 	int level3Value;
 	int homeValue;
 	double lifterSpeed;
-	double accelerationSpeed;
+	double accelerationSpeedUp;
+	double accelerationSpeedDown;
 
 	LifterControl() {
 		en1 = new Encoder(0, 1);
@@ -52,12 +53,22 @@ public:
 		speedFactor = 1.0;
 		xbox = XboxController::getInstance();
 		time = new Timer();
-		accelerationSpeed = 0.002;
+		accelerationSpeedUp = 0.05;
+		accelerationSpeedDown = 0.05;
 	}
 
 	void lifterupdate() {
-		lifter->Set(speedFactor * lifterSpeed);
-		//lifter->Set(0.0);
+		bool movingUp = lifterSpeed < 0;
+		bool movingDown = lifterSpeed > 0;
+		bool canGoUp = (upperLimit->Get() && movingUp);
+		bool canGoDown = (lowerLimit->Get() && movingDown);
+		if (canGoUp) {
+			lifter->Set(speedFactor * lifterSpeed);
+		} else if (canGoDown) {
+			lifter->Set(speedFactor * lifterSpeed);
+		} else {
+			lifter->Set(0.0);
+		}
 	}
 
 	void SetSpeepFactor(double factor) {
@@ -94,18 +105,29 @@ public:
 
 	void Stop() {
 		if (lifterSpeed > 0) {
-			lifterSpeed -= accelerationSpeed;
+			lifterSpeed -= accelerationSpeedUp;
 		} else if (lifterSpeed < 0) {
-			lifterSpeed += accelerationSpeed;
+			lifterSpeed += accelerationSpeedDown;
 		} else {
 			lifterSpeed = 0;
 		}
 	}
 
+	void SetAccelUp(double up) {
+		accelerationSpeedUp = up;
+	}
+
+	void SetAccelDown(double down) {
+		accelerationSpeedDown = down;
+	}
+	//TODO
 	void MoveUp() {
-		if (upperLimit->Get() == 1) {
+		if (lifterSpeed > 0) {
+			lifterSpeed = 0;
+		}
+		if (upperLimit->Get()) {
 			if (lifterSpeed > MOTOR_SPEED) {
-				lifterSpeed -= accelerationSpeed;
+				lifterSpeed -= accelerationSpeedUp;
 			} else {
 				lifterSpeed = MOTOR_SPEED;
 			}
@@ -115,9 +137,12 @@ public:
 	}
 
 	void MoveDown() {
-		if (lowerLimit->Get() == 1) {
+		if (lifterSpeed < 0) {
+			lifterSpeed = 0;
+		}
+		if (lowerLimit->Get()) {
 			if (lifterSpeed < MOTOR_SPEED_DOWN) {
-				lifterSpeed += accelerationSpeed;
+				lifterSpeed += accelerationSpeedDown;
 			} else {
 				lifterSpeed = MOTOR_SPEED_DOWN;
 			}
