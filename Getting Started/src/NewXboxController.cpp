@@ -22,7 +22,8 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 #define AXIS_RIGHT_Y 5//-----------------------------------------Probably broken!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #define AXIS_LEFT_X 0
 #define AXIS_LEFT_Y 1
-#define AXIS_TRIGGER 2// 2==left, 3==right TODO-------------------------------------------
+#define AXIS_TRIGGER_LEFT 2// 2==left, 3==right TODO-------------------------------------------
+#define AXIS_TRIGGER_RIGHT 3
 #define JOG_DEBOUNCE 10
 
 #define REAL_TIME_BETWEEN_UPDATES 0.005
@@ -261,9 +262,15 @@ bool NewXboxController::getRightTriggerHeld() {
 	return rightTriggerLast&&rightTriggerNow;
 }
 
-float NewXboxController::getAxisTrigger() {
-	return rstick.GetRawAxis(AXIS_TRIGGER);
+
+float NewXboxController::getAxisTriggerRight() {
+	return rstick.GetRawAxis(AXIS_TRIGGER_RIGHT);
 }
+
+float NewXboxController::getAxisTriggerLeft() {
+	return rstick.GetRawAxis(AXIS_TRIGGER_LEFT);
+}
+
 
 bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) {
 	if (rawValue) {

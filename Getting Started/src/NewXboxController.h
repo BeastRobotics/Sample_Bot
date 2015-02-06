@@ -58,7 +58,8 @@ private:
 	void accountForLostTime();
 
 	bool isButtonHeld(int &debounceCounter, bool rawValue);
-	float getAxisTrigger();
+	float getAxisTriggerLeft();
+	float getAxisTriggerRight();
 	bool xLast, xNow;
 	bool yLast, yNow;
 	bool aLast, aNow;
