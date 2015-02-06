@@ -116,8 +116,8 @@ void NewXboxController::update() {
 	rightBumperNow=isButtonHeld(rightBumperDebounceCounter, rstick.GetRawButton(BUTTON_RB));
 	l3Now=isButtonHeld(l3DebounceCounter, rstick.GetRawButton(BUTTON_L3));
 	r3Now=isButtonHeld(r3DebounceCounter, rstick.GetRawButton(BUTTON_R3));
-	leftTriggerNow=isButtonHeld(leftTriggerDebounceCounter, getAxisTrigger()<-0.2);
-	rightTriggerNow=isButtonHeld(rightTriggerDebounceCounter, getAxisTrigger()>0.8);
+	leftTriggerNow=isButtonHeld(leftTriggerDebounceCounter, getAxisTriggerLeft()<-0.8);
+	rightTriggerNow=isButtonHeld(rightTriggerDebounceCounter, getAxisTriggerRight()>0.8);
 }
 
 void NewXboxController::accountForLostTime() {//TODO make this method update all counters
