@@ -74,7 +74,7 @@ private:
 		SmartDashboard::PutNumber("Current Level 2 Value", 0.0);
 		SmartDashboard::PutNumber("Current Level 3 Value", 0.0);
 		SmartDashboard::PutNumber("Lifter Encoder", 0.0);
-		SmartDashboard::PutBoolean("Manual Lifter Mode", false);
+		SmartDashboard::PutBoolean("Manual Lifter Mode", true);
 		SmartDashboard::PutBoolean("Manual Arm Mode", false);
 		SmartDashboard::PutNumber("Left Motor", 0.0);
 		SmartDashboard::PutNumber("Right Motor", 0.0);
@@ -84,8 +84,8 @@ private:
 		SmartDashboard::PutString("Current Mode", "Init");
 		SmartDashboard::PutNumber("Y Axis Right Stick", 0.0);
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0);
-		SmartDashboard::PutNumber("Accel Up", 0.0);
-		SmartDashboard::PutNumber("Accel Down", 0.0);
+		SmartDashboard::PutNumber("Accel Up", 0.1);
+		SmartDashboard::PutNumber("Accel Down", 0.1);
 		//lifter->SetEncoderValue();
 		c->SetClosedLoopControl(true);
 		lifter->Stop();

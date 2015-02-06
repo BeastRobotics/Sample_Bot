@@ -8,6 +8,7 @@
 // Make look like arm class
 #include "WPILib.h"
 #include "XboxController.h"
+#include "Math.h"
 
 #define TOLERANCE 25
 #define HOME 1
@@ -62,9 +63,10 @@ public:
 		bool movingDown = lifterSpeed > 0;
 		bool canGoUp = (upperLimit->Get() && movingUp);
 		bool canGoDown = (lowerLimit->Get() && movingDown);
-		if (canGoUp) {
+		if (canGoUp && lifterSpeed < -0.1) {
 			lifter->Set(speedFactor * lifterSpeed);
-		} else if (canGoDown) {
+		} else if (canGoDown && lifterSpeed > 0.1
+				 ) {
 			lifter->Set(speedFactor * lifterSpeed);
 		} else {
 			lifter->Set(0.0);
@@ -74,6 +76,7 @@ public:
 	void SetSpeepFactor(double factor) {
 		speedFactor = factor;
 	}
+
 
 	void HoldPosition() {
 		speedFactor = HOLD_SPEED;
@@ -92,6 +95,8 @@ public:
 		} else {
 			lifterSpeed = 0;
 		}
+
+
 	}
 
 	void SetEncoderValue() {
@@ -104,12 +109,14 @@ public:
 	}
 
 	void Stop() {
+		float speed=accelerationSpeedUp>accelerationSpeedDown?accelerationSpeedUp:accelerationSpeedDown;
+
+		if ((lifterSpeed<speed&&lifterSpeed>0)||(lifterSpeed>speed&&lifterSpeed<0)) lifterSpeed=0;
+
 		if (lifterSpeed > 0) {
 			lifterSpeed -= accelerationSpeedUp;
 		} else if (lifterSpeed < 0) {
 			lifterSpeed += accelerationSpeedDown;
-		} else {
-			lifterSpeed = 0;
 		}
 	}
 

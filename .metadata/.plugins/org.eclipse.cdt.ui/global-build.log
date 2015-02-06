@@ -1,0 +1,117 @@
+17:00:06 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\GrabberControl.o" "..\\src\\GrabberControl.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+17:00:21 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Getting Started\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Getting Started\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Getting Started\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\LifterControl.o" "src\\NewXboxController.o" "src\\RestrictedXboxController.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Getting Started
+17:11:38 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Getting Started
+17:12:18 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Getting Started
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Getting Started
+17:18:05 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Getting Started
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Getting Started
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Getting Started
+17:20:25 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Getting Started
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Getting Started
+17:34:34 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In member function 'void LifterControl::Stop()':
+..\src\LifterControl.cpp:111:15: error: 'Math' was not declared in this scope
+   float speed=Math.max(accelerationSpeedUp, accelerationSpeedDown);
+               ^
+..\src\LifterControl.cpp:112:6: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
+   if (lifterSpeed<accelerationSpeedUp&&lifterSpeed)
+      ^
+..\src\LifterControl.cpp:111:9: warning: unused variable 'speed' [-Wunused-variable]
+   float speed=Math.max(accelerationSpeedUp, accelerationSpeedDown);
+         ^
+Info: Nothing to build for Getting Started
+17:35:58 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In member function 'void LifterControl::Stop()':
+..\src\LifterControl.cpp:114:6: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
+   if (lifterSpeed<accelerationSpeedUp&&lifterSpeed)
+      ^
+..\src\LifterControl.cpp:112:9: warning: unused variable 'speed' [-Wunused-variable]
+   float speed=accelerationSpeedUp>accelerationSpeedDown?accelerationSpeedUp:accelerationSpeedDown;
+         ^
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+In file included from ..\src\RobotLifter.cpp:4:0:
+..\src\LifterControl.cpp: In member function 'void LifterControl::Stop()':
+..\src\LifterControl.cpp:114:6: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
+   if (lifterSpeed<accelerationSpeedUp&&lifterSpeed)
+      ^
+..\src\LifterControl.cpp:112:9: warning: unused variable 'speed' [-Wunused-variable]
+   float speed=accelerationSpeedUp>accelerationSpeedDown?accelerationSpeedUp:accelerationSpeedDown;
+         ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Getting Started
+17:37:39 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Getting Started
+Info: Nothing to build for TestLifter
