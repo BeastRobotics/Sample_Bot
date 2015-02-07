@@ -1,6 +1,6 @@
 /* A new version of XboxController that workes on an update system, to be called by a separate thread.
-This will attempt to avoid errors in calling certain methods multiple times and getting varying answers.
-*/
+ This will attempt to avoid errors in calling certain methods multiple times and getting varying answers.
+ */
 
 #include "WPILib.h"
 #include "Nivision.h"
@@ -31,66 +31,67 @@ This will attempt to avoid errors in calling certain methods multiple times and 
 #define DEBOUNCE_COUNT_LIMIT 15
 
 static NewXboxController *newXbox = NULL;
-	
-NewXboxController::NewXboxController(int port):
-		lstick(port), rstick(port) {
+
+NewXboxController::NewXboxController(int port) :
+	XboxController(port), lstick(port), rstick(port) {
 	rstick.SetAxisChannel(Joystick::kXAxis, 4);
 	rstick.SetAxisChannel(Joystick::kYAxis, 5);
 
-	timer=new Timer();
+	timer = new Timer();
 	timer->Start();
-	lostTimeBank=0.0;
-	lastTime=timer->Get();
+	lostTimeBank = 0.0;
+	lastTime = timer->Get();
 
 	//set all buttons to false
-	xLast=false;
-	xNow=false;
-	yLast=false;
-	yNow=false;
-	aLast=false;
-	aNow=false;
-	bLast=false;
-	bNow=false;
-	startLast=false;
-	startNow=false;
-	backLast=false;
-	backNow=false;
-	leftBumperLast=false;
-	leftBumperNow=false;
-	rightBumperLast=false;
-	rightBumperNow=false;
-	l3Last=false;
-	l3Now=false;
-	r3Last=false;
-	r3Now=false;
-	leftTriggerLast=false;
-	leftTriggerNow=false;
-	rightTriggerLast=false;
-	rightTriggerNow=false;
+	xLast = false;
+	xNow = false;
+	yLast = false;
+	yNow = false;
+	aLast = false;
+	aNow = false;
+	bLast = false;
+	bNow = false;
+	startLast = false;
+	startNow = false;
+	backLast = false;
+	backNow = false;
+	leftBumperLast = false;
+	leftBumperNow = false;
+	rightBumperLast = false;
+	rightBumperNow = false;
+	l3Last = false;
+	l3Now = false;
+	r3Last = false;
+	r3Now = false;
+	leftTriggerLast = false;
+	leftTriggerNow = false;
+	rightTriggerLast = false;
+	rightTriggerNow = false;
 
 	//set counters to 0
-	xDebounceCounter=0;
-	yDebounceCounter=0;
-	aDebounceCounter=0;
-	bDebounceCounter=0;
-	startDebounceCounter=0;
-	backDebounceCounter=0;
-	leftBumperDebounceCounter=0;
-	rightBumperDebounceCounter=0;
-	l3DebounceCounter=0;
-	r3DebounceCounter=0;
-	leftTriggerDebounceCounter=0;
-	rightTriggerDebounceCounter=0;
+	xDebounceCounter = 0;
+	yDebounceCounter = 0;
+	aDebounceCounter = 0;
+	bDebounceCounter = 0;
+	startDebounceCounter = 0;
+	backDebounceCounter = 0;
+	leftBumperDebounceCounter = 0;
+	rightBumperDebounceCounter = 0;
+	l3DebounceCounter = 0;
+	r3DebounceCounter = 0;
+	leftTriggerDebounceCounter = 0;
+	rightTriggerDebounceCounter = 0;
 }
-	
+
 NewXboxController *NewXboxController::getInstance() {
 	if (newXbox == NULL)
-		newXbox = new NewXboxController(0);//this is the first time getInstance is called
-		
+		newXbox = new NewXboxController(0); //this is the first time getInstance is called
+
 	return newXbox;
 }
-	
+
 void NewXboxController::update() {
+<<<<<<< HEAD
 	xLast=xNow;
 	yLast=yNow;
 	aLast=aNow;
@@ -125,11 +126,53 @@ void NewXboxController::accountForLostTime() {//TODO make this method update all
 	lostTimeBank+=currentTime-lastTime-REAL_TIME_BETWEEN_UPDATES;
 
 	while (lostTimeBank>=REAL_TIME_BETWEEN_UPDATES) {
+=======
+	xLast = xNow;
+	yLast = yNow;
+	aLast = aNow;
+	bLast = bNow;
+	startLast = startNow;
+	backLast = backNow;
+	leftBumperLast = leftBumperNow;
+	rightBumperLast = rightBumperNow;
+	l3Last = l3Now;
+	r3Last = r3Now;
+	leftTriggerLast = leftTriggerNow;
+	rightTriggerLast = rightTriggerNow;
+
+	accountForLostTime(); //Not implemented yet
+
+	xNow = isButtonHeld(xDebounceCounter, rstick.GetRawButton(BUTTON_X));
+	yNow = isButtonHeld(yDebounceCounter, rstick.GetRawButton(BUTTON_Y));
+	aNow = isButtonHeld(aDebounceCounter, rstick.GetRawButton(BUTTON_A));
+	bNow = isButtonHeld(bDebounceCounter, rstick.GetRawButton(BUTTON_B));
+	startNow = isButtonHeld(startDebounceCounter,
+			rstick.GetRawButton(BUTTON_START));
+	backNow = isButtonHeld(backDebounceCounter,
+			rstick.GetRawButton(BUTTON_BACK));
+	leftBumperNow = isButtonHeld(leftBumperDebounceCounter,
+			rstick.GetRawButton(BUTTON_LB));
+	rightBumperNow = isButtonHeld(rightBumperDebounceCounter,
+			rstick.GetRawButton(BUTTON_RB));
+	l3Now = isButtonHeld(l3DebounceCounter, rstick.GetRawButton(BUTTON_L3));
+	r3Now = isButtonHeld(r3DebounceCounter, rstick.GetRawButton(BUTTON_R3));
+	leftTriggerNow = isButtonHeld(leftTriggerDebounceCounter,
+			getAxisTriggerLeft() < -0.8);
+	rightTriggerNow = isButtonHeld(rightTriggerDebounceCounter,
+			getAxisTriggerRight() > 0.8);
+}
+
+void NewXboxController::accountForLostTime() { //TODO make this method update all counters
+	double currentTime = timer->Get();
+	lostTimeBank += currentTime - lastTime - REAL_TIME_BETWEEN_UPDATES;
+
+	while (lostTimeBank >= REAL_TIME_BETWEEN_UPDATES) {
+>>>>>>> made NewXboxController extend and implement all the methods of the old XboxController. This allows for reuse without changing methods, although the update method still has to be called
 		updateAllCounters();
-		lostTimeBank-=REAL_TIME_BETWEEN_UPDATES;
+		lostTimeBank -= REAL_TIME_BETWEEN_UPDATES;
 	}
 
-	lastTime=currentTime;
+	lastTime = currentTime;
 }
 
 void NewXboxController::updateAllCounters() {
@@ -147,7 +190,6 @@ void NewXboxController::updateAllCounters() {
 	rightTriggerDebounceCounter++;
 }
 
-
 float NewXboxController::getAxisRightX() {
 	return (-1.0) * rstick.GetRawAxis(AXIS_RIGHT_X);
 }
@@ -164,104 +206,101 @@ float NewXboxController::getAxisLeftY() {
 	return (-1.0) * lstick.GetRawAxis(AXIS_LEFT_Y);
 }
 
-
 bool NewXboxController::getXPressed() {
-	return (!xLast)&&(xNow);
+	return (!xLast) && (xNow);
 }
 
 bool NewXboxController::getYPressed() {
-	return (!yLast)&&(yNow);
+	return (!yLast) && (yNow);
 }
 
 bool NewXboxController::getAPressed() {
-	return (!aLast)&&(aNow);
+	return (!aLast) && (aNow);
 }
 
 bool NewXboxController::getBPressed() {
-	return (!bLast)&&(bNow);
+	return (!bLast) && (bNow);
 }
 
 bool NewXboxController::getStartPressed() {
-	return (!startLast)&&(startNow);
+	return (!startLast) && (startNow);
 }
 
 bool NewXboxController::getBackPressed() {
-	return (!backLast)&(backNow);
+	return (!backLast) & (backNow);
 }
 
 bool NewXboxController::getLeftBumperPressed() {
-	return (!leftBumperLast)&&(leftBumperNow);
+	return (!leftBumperLast) && (leftBumperNow);
 }
 
 bool NewXboxController::getRightBumperPressed() {
-	return (!rightBumperLast)&&(rightBumperNow);
+	return (!rightBumperLast) && (rightBumperNow);
 }
 
 bool NewXboxController::getL3Pressed() {
-	return (!l3Last)&&(l3Now);
+	return (!l3Last) && (l3Now);
 }
 
 bool NewXboxController::getR3Pressed() {
-	return (!r3Last)&&(r3Now);
+	return (!r3Last) && (r3Now);
 }
 
 bool NewXboxController::getLeftTriggerPressed() {
-	return (!leftTriggerLast)&&(leftTriggerNow);
+	return (!leftTriggerLast) && (leftTriggerNow);
 }
 
 bool NewXboxController::getRightTriggerPressed() {
-	return (!rightTriggerLast)&&(rightTriggerNow);
+	return (!rightTriggerLast) && (rightTriggerNow);
 }
 
-
 bool NewXboxController::getXHeld() {
-	return xLast&&xNow;
+	return xLast && xNow;
 }
 
 bool NewXboxController::getYHeld() {
-	return yLast&&yNow;
+	return yLast && yNow;
 }
 
 bool NewXboxController::getAHeld() {
-	return aLast&&aNow;
+	return aLast && aNow;
 }
 
 bool NewXboxController::getBHeld() {
-	return bLast&&bNow;
+	return bLast && bNow;
 }
 
 bool NewXboxController::getStartHeld() {
-	return startLast&&startNow;
+	return startLast && startNow;
 }
 
 bool NewXboxController::getBackHeld() {
-	return backLast&&backNow;
+	return backLast && backNow;
 }
 
 bool NewXboxController::getLeftBumperHeld() {
-	return leftBumperLast&&leftBumperNow;
+	return leftBumperLast && leftBumperNow;
 }
 
 bool NewXboxController::getRightBumperHeld() {
-	return rightBumperLast&&rightBumperNow;
+	return rightBumperLast && rightBumperNow;
 }
 
 bool NewXboxController::getL3Held() {
-	return l3Last&&l3Now;
+	return l3Last && l3Now;
 }
 
 bool NewXboxController::getR3Held() {
-	return r3Last&&r3Now;
+	return r3Last && r3Now;
 }
 
 bool NewXboxController::getLeftTriggerHeld() {
-	return leftTriggerLast&&leftTriggerNow;
+	return leftTriggerLast && leftTriggerNow;
 }
 
 bool NewXboxController::getRightTriggerHeld() {
-	return rightTriggerLast&&rightTriggerNow;
+	return rightTriggerLast && rightTriggerNow;
 }
-
 
 float NewXboxController::getAxisTriggerRight() {
 	return rstick.GetRawAxis(AXIS_TRIGGER_RIGHT);
@@ -271,16 +310,14 @@ float NewXboxController::getAxisTriggerLeft() {
 	return rstick.GetRawAxis(AXIS_TRIGGER_LEFT);
 }
 
-
 bool NewXboxController::isButtonHeld(int &debounceCounter, bool rawValue) {
 	if (rawValue) {
 		debounceCounter++;
-		if (debounceCounter > DEBOUNCE_COUNT_LIMIT) return true;
-	} 
-	else {//we are still debouncing...
+		if (debounceCounter > DEBOUNCE_COUNT_LIMIT)
+			return true;
+	} else { //we are still debouncing...
 		debounceCounter = 0;
 	}
 	return false;
 }
-
 
