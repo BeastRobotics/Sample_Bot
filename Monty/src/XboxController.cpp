@@ -11,15 +11,12 @@
 #include "WPILib.h"
 #include "Nivision.h"
 #include "XboxController.h"
+#include "NewXboxController.h"
 #include <cmath>
 /* These are the button mappings to the raw values on the xbox controller*/
 
-static XboxController *xbox = NULL;
 XboxController *XboxController::getInstance() {
-	if (xbox == NULL) {
-		xbox = new XboxController(0);
-	}
-	return xbox;
+	return NewXboxController::getInstance();
 }
 #define BUTTON_A 1
 #define BUTTON_B 2
