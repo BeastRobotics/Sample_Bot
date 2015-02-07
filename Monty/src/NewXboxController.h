@@ -6,8 +6,9 @@
 #include "WPILib.h"
 #include "RestrictedXboxController.h"
 #include "XboxController.h"
+#include "IControl.h"
 
-class NewXboxController: public RestrictedXboxController, public XboxController {
+class NewXboxController: public RestrictedXboxController, public XboxController, public IControl {
 public:
 	static NewXboxController* getInstance();
 	~NewXboxController() {
@@ -85,7 +86,7 @@ private:
 			r3DebounceCounter, l3DebounceCounter;
 	int leftTriggerDebounceCounter, rightTriggerDebounceCounter;
 
-public:
+public: //Stuff from Xbox Controller
 	bool isLeftJogPressed();
 	bool isRightJogPressed();
 	bool isUpJogPressed();
@@ -98,20 +99,23 @@ public:
 	bool isRBumperPressed() {return getRightBumperPressed();}
 	bool isBackPressed() {return getBackPressed();}
 	bool isStartPressed() {return getStartPressed();}
-	bool isL3Pressed(){return getL3Pressed();}
+	bool isL3Pressed() {return getL3Pressed();}
 	bool isR3Pressed() {return getR3Pressed();}
 	bool isAHeld() {return getAHeld();}
 	bool isBHeld() {return getBHeld();}
-	bool isXHeld(){return getXHeld();}
-	bool isYHeld(){return getYHeld();}
+	bool isXHeld() {return getXHeld();}
+	bool isYHeld() {return getYHeld();}
 	bool isLBumperHeld() {return getLeftBumperHeld();}
 	bool isRBumperHeld() {return getRightBumperHeld();}
 	bool isBackHeld() {return getBackHeld();}
 	bool isStartHeld() {return getStartHeld();}
 	bool isL3Held() {return getL3Held();}
 	bool isR3Held() {return getR3Held();}
-	bool isRightTriggerHeld(){return getRightTriggerHeld();}
-	bool isRightTriggerPressed(){return getRightTriggerPressed();}
-	bool isLeftTriggerHeld(){return getLeftTriggerHeld();}
+	bool isRightTriggerHeld() {return getRightTriggerHeld();}
+	bool isRightTriggerPressed() {return getRightTriggerPressed();}
+	bool isLeftTriggerHeld() {return getLeftTriggerHeld();}
+
+	//stuff from IControl
+	void TeleopPeriodic() {update();}
 };
 #endif	
