@@ -217,11 +217,11 @@ float XboxController::getAxisRightY() {
 }
 
 float XboxController::getAxisLeftX() {
-	return (-1.0) * lstick.GetRawAxis(1);
+	return (-1.0) * lstick.GetRawAxis(0);
 }
 
 float XboxController::getAxisLeftY() {
-	return (-1.0) * lstick.GetRawAxis(2);
+	return (-1.0) * lstick.GetRawAxis(1);
 }
 
 /* Remeber that the right and left trigger make up one axis total. */

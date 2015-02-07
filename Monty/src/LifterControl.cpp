@@ -20,7 +20,7 @@
 #define MOTOR_SPEED_DOWN 1.0
 #define HOLD_SPEED 0.05
 
-class LifterControl : public IControl {
+class LifterControl: public IControl {
 
 	Encoder *en1;
 	Talon *lifter;
@@ -38,8 +38,7 @@ public:
 	int level3Value;
 	int homeValue;
 	double lifterSpeed;
-	double accelerationSpeedUp;
-	double accelerationSpeedDown;
+	double acceleration;
 
 	LifterControl() {
 		en1 = new Encoder(0, 1);
@@ -55,11 +54,64 @@ public:
 		speedFactor = 1.0;
 		xbox = XboxController::getInstance();
 		time = new Timer();
-		accelerationSpeedUp = 0.05;
-		accelerationSpeedDown = 0.05;
+		acceleration = 0.05;
 	}
 
+	void RobotInit() {
+	}
+	void DisabledInit() {
+	}
+	void AutonomousInit() {
+	}
+	void TeleopInit() {
+		SmartDashboard::PutNumber("Lifter Encoder", 0.0);
+		SmartDashboard::PutBoolean("Manual Lifter Mode", true);
+		SmartDashboard::PutNumber("Lifter Speed Factor", 1.0);
+		SmartDashboard::PutNumber("Lifter Motor Value", 0.0); //This is the current output to the motor
+		SmartDashboard::PutNumber("Accel", 0.1); //Acceleration going up
+		SetEncoderValue();
+		Stop();
+	}
+	void AutonomousPeriodic() {
+	}
+	void TeleopPeriodic() {
+		SmartDashboard::PutNumber("Lifter Encoder", GetEnconder());
+		SmartDashboard::PutBoolean("Upper Limit", GetUpperLimit());
+		SmartDashboard::PutBoolean("Lower Limit", GetLowerLimit());
+		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
+		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
+		SetAccel(SmartDashboard::GetNumber("Accel"));
 
+		bool isLifterManual = SmartDashboard::GetBoolean("Manual Lifter Mode");
+
+		if (isLifterManual) {
+
+			if (xbox->isBHeld()) {
+				MoveUp();
+			} else if (xbox->isXHeld()) {
+				MoveDown();
+			} else {
+				Stop();
+			}
+
+		} else {
+			if (xbox->isLeftTriggerHeld()) {
+				if (xbox->isBHeld()) {
+					MoveToLevel1();
+				} else if (xbox->isYHeld()) {
+					MoveToLevel2();
+				} else if (xbox->isXHeld()) {
+					MoveToLevel3();
+				} else if (xbox->isAHeld()) {
+					MoveToHome();
+				} else {
+					Stop();
+				}
+			}
+		} //End big if and lifter move if
+
+		lifterupdate();
+	}
 	void lifterupdate() {
 		bool movingUp = lifterSpeed < 0;
 		bool movingDown = lifterSpeed > 0;
@@ -78,21 +130,6 @@ public:
 		speedFactor = factor;
 	}
 
-	void ManualMode() {
-
-		bool isUpperLimit = GetUpperLimit();
-		bool isLowerLimit = GetLowerLimit();
-		double yAxis = xbox->getAxisRightY();
-
-		if (isUpperLimit && yAxis > 0) {
-			lifterSpeed = -yAxis;
-		} else if (isLowerLimit && yAxis < 0) {
-			lifterSpeed = -yAxis;
-		} else {
-			lifterSpeed = 0;
-		}
-	}
-
 	void SetEncoderValue() {
 		if (!lowerLimit->Get()) {
 			lifterSpeed = MOTOR_SPEED_DOWN;
@@ -102,58 +139,53 @@ public:
 		}
 	}
 
-	void Stop() {
-		float speed=accelerationSpeedUp>accelerationSpeedDown?accelerationSpeedUp:accelerationSpeedDown;
-
-		if ((lifterSpeed<speed&&lifterSpeed>0)||(lifterSpeed>speed&&lifterSpeed<0)) lifterSpeed=0;
-
-		if (lifterSpeed > 0) {
-			lifterSpeed -= accelerationSpeedUp;
-		} else if (lifterSpeed < 0) {
-			lifterSpeed += accelerationSpeedDown;
+	/*
+	 * Gets a velocity based on the function f(x) = x^3.
+	 * It gets the lifterSpeed's cube root which is the x value,
+	 * add/subtracts the parameter rate, then cubes that value and returns it.
+	 * @param rate the rate of change of velocity or delta x.
+	 */
+	double getVelocity(double desiredVelocity, double rate) {
+		if (std::abs(desiredVelocity - lifterSpeed) <= 0.01)
+			return lifterSpeed;
+		double x = std::cbrt(lifterSpeed * 4);
+		if (desiredVelocity > lifterSpeed) {
+			x += rate;
+		} else {
+			x -= rate;
 		}
+		return ((int) ((x * x * x * (1.0/4.0)) * 10E8)) / 10E8; // removes insignificant decimal values before returning
 	}
 
-	void SetAccelUp(double up) {
-		accelerationSpeedUp = up;
+	//TODO
+	void Stop() {
+		float speed = acceleration;
+
+		if ((lifterSpeed < speed && lifterSpeed > 0)
+				|| (lifterSpeed > speed && lifterSpeed < 0))
+			lifterSpeed = 0;
+
+		lifterSpeed = getVelocity(0, acceleration);
 	}
 
-	void SetAccelDown(double down) {
-		accelerationSpeedDown = down;
+	void SetAccel(double n) {
+		acceleration = n;
 	}
+
 	//TODO
 	void MoveUp() {
-		if (lifterSpeed > 0) {
-			lifterSpeed = 0;
-		}
-		if (upperLimit->Get()) {
-			if (lifterSpeed > MOTOR_SPEED) {
-				lifterSpeed -= accelerationSpeedUp;
-			} else {
-				lifterSpeed = MOTOR_SPEED;
-			}
-		} else {
+		lifterSpeed = getVelocity(MOTOR_SPEED, acceleration);
+		if (!upperLimit->Get()) {
 			lifterSpeed = 0;
 		}
 	}
 
 	void MoveDown() {
-		if (lifterSpeed < 0) {
-			lifterSpeed = 0;
-		}
-		if (lowerLimit->Get()) {
-			if (lifterSpeed < MOTOR_SPEED_DOWN) {
-				lifterSpeed += accelerationSpeedDown;
-			} else {
-				lifterSpeed = MOTOR_SPEED_DOWN;
-			}
-		} else {
+		lifterSpeed = getVelocity(MOTOR_SPEED_DOWN, acceleration);
+		if (!lowerLimit->Get()) {
 			lifterSpeed = 0;
 		}
 	}
-
-
-
 
 	void MoveToHome() {
 
@@ -257,4 +289,5 @@ private:
 		}
 	}
 
-};
+}
+;
