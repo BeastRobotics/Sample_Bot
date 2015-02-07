@@ -18,8 +18,13 @@ public:
 		xbox = XboxController::getInstance();
 	}
 	void TeleopPeriodic() {
-		myRobot.ArcadeDrive(xbox->getLeftStick());
+		double x = xbox->getAxisLeftX();
+		double y = (-1) * xbox->getAxisLeftY();
 
+		SmartDashboard::PutNumber("X Value", x);
+		SmartDashboard::PutNumber("Y Value", y);
+
+		myRobot.ArcadeDrive(y,x);
 	}
 
 };

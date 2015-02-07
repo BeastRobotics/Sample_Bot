@@ -148,42 +148,44 @@ public:
 	double getVelocity(double desiredVelocity, double rate) {
 		if (std::abs(desiredVelocity - lifterSpeed) <= 0.01)
 			return lifterSpeed;
-		double x = std::cbrt(lifterSpeed);
+		double x = std::cbrt(lifterSpeed * 4);
 		if (desiredVelocity > lifterSpeed) {
 			x += rate;
 		} else {
 			x -= rate;
 		}
-		return ((int) ((x * x * x) * 10E8)) / 10E8; // removes insignificant decimal values before returning
+		return ((int) ((x * x * x * (1.0/4.0)) * 10E8)) / 10E8; // removes insignificant decimal values before returning
 	}
 
-		//TODO
+	//TODO
 	void Stop() {
-			float speed=acceleration;
+		float speed = acceleration;
 
-			if ((lifterSpeed<speed&&lifterSpeed>0)||(lifterSpeed>speed&&lifterSpeed<0)) lifterSpeed=0;
+		if ((lifterSpeed < speed && lifterSpeed > 0)
+				|| (lifterSpeed > speed && lifterSpeed < 0))
+			lifterSpeed = 0;
 
-			lifterSpeed = getVelocity(0, acceleration);
+		lifterSpeed = getVelocity(0, acceleration);
+	}
+
+	void SetAccel(double n) {
+		acceleration = n;
+	}
+
+	//TODO
+	void MoveUp() {
+		lifterSpeed = getVelocity(MOTOR_SPEED, acceleration);
+		if (!upperLimit->Get()) {
+			lifterSpeed = 0;
 		}
+	}
 
-		void SetAccel(double n) {
-			acceleration = n;
+	void MoveDown() {
+		lifterSpeed = getVelocity(MOTOR_SPEED_DOWN, acceleration);
+		if (!lowerLimit->Get()) {
+			lifterSpeed = 0;
 		}
-
-		//TODO
-		void MoveUp() {
-			lifterSpeed = getVelocity(MOTOR_SPEED, acceleration);
-			if (upperLimit->Get()) {
-				lifterSpeed = 0;
-			}
-		}
-
-		void MoveDown() {
-			lifterSpeed = getVelocity(MOTOR_SPEED_DOWN, acceleration);
-					if (lowerLimit->Get()) {
-						lifterSpeed = 0;
-					}
-		}
+	}
 
 	void MoveToHome() {
 

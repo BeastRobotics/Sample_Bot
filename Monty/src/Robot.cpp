@@ -3,8 +3,10 @@
 #include "IControl.h"
 #include "CompressorControl.cpp"
 #include "ArcadeDrive.cpp"
+#include "NewXboxController.h"
+#include "Grabber.cpp"
 
-#define NUM_CONTROLLERS 3
+#define NUM_CONTROLLERS 5
 
 class Robot: public IterativeRobot {
 	IControl *controllers[NUM_CONTROLLERS];
@@ -12,9 +14,11 @@ class Robot: public IterativeRobot {
 public:
 	Robot() :
 			lw(NULL) {
-		controllers[0] = new LifterControl();
-		controllers[1] = new CompressorControl();
-		controllers[2] = new ArcadeDrive();
+		controllers[0] = NewXboxController::getInstance();
+		controllers[1] = new LifterControl();
+		controllers[2] = new CompressorControl();
+		controllers[3] = new ArcadeDrive();
+		controllers[4] = new GrabberControl();
 	}
 private:
 	LiveWindow *lw;
