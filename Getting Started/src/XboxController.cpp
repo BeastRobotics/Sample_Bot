@@ -14,12 +14,9 @@
 #include <cmath>
 /* These are the button mappings to the raw values on the xbox controller*/
 
-static XboxController *xbox = NULL;
+
 XboxController *XboxController::getInstance() {
-	if (xbox == NULL) {
-		xbox = new XboxController(0);
-	}
-	return xbox;
+	return NULL;
 }
 #define BUTTON_A 1
 #define BUTTON_B 2
