@@ -1,117 +1,496 @@
-17:00:06 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:06:07 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
-..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
-    /**
- ^
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\GrabberControl.o" "..\\src\\GrabberControl.cpp" 
-arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
 c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
-17:00:21 **** Incremental Build of configuration Debug for project Getting Started ****
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:11:19 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Getting Started\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Getting Started\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Getting Started\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
-arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\LifterControl.o" "src\\NewXboxController.o" "src\\RestrictedXboxController.o" -lwpi 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:15:26 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:17:09 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:18:20 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:19:46 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:20:31 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\XboxController.o" "..\\src\\XboxController.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:21:41 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:22:51 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:23:53 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:24:34 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:25:19 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:27:04 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:28:03 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:31:04 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:31:14 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:31:40 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:35:12 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:35:22 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:35:30 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:36:19 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:37:13 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:37:49 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:41:59 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:42:51 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:43:52 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:46:07 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:49:08 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:50:26 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:51:28 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:51:53 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:53:25 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+11:59:11 **** Incremental Build of configuration Debug for project Mecanum Drive Test ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Mecanum Drive Test\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotMecanum.o" "..\\src\\RobotMecanum.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotMecanum.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Auto Mode
+Info: Nothing to build for Getting Started
+Info: Nothing to build for Mecanum Drive Test
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+12:43:26 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\LifterControl.o" -lwpi 
 c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
 Info: Nothing to build for TestLifter
-Info: Nothing to build for Getting Started
-17:11:38 **** Incremental Build of configuration Debug for project TestLifter ****
+12:47:35 **** Incremental Build of configuration Debug for project Monty ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
-..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
-    /**
- ^
-arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\LifterControl.o" -lwpi 
 c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
-Info: Nothing to build for Getting Started
-17:12:18 **** Incremental Build of configuration Debug for project TestLifter ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
-..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
-    /**
- ^
-arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
-c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
-Info: Nothing to build for Getting Started
 Info: Nothing to build for TestLifter
-Info: Nothing to build for Getting Started
-17:18:05 **** Incremental Build of configuration Debug for project TestLifter ****
+13:00:17 **** Incremental Build of configuration Debug for project Monty ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CompressorControl.o" "..\\src\\CompressorControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\LifterControl.o" "src\\CompressorControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+13:00:22 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
 arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
-..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
+..\src\RobotLifter.cpp:180:4: warning: "/*" within comment [-Wcomment]
     /**
  ^
 arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
 c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
-Info: Nothing to build for Getting Started
+13:06:37 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ArcadeDrive.o" "..\\src\\ArcadeDrive.cpp" 
+..\src\ArcadeDrive.cpp: In constructor 'ArcadeDrive::ArcadeDrive()':
+..\src\ArcadeDrive.cpp:15:16: error: class 'ArcadeDrive' does not have any field named 'myRobot'
+  ArcadeDrive():myRobot(0, 1) {
+                ^
+..\src\ArcadeDrive.cpp:16:3: error: 'myRobot' was not declared in this scope
+   myRobot.SetExpiration(0.1);
+   ^
 Info: Nothing to build for TestLifter
-Info: Nothing to build for Getting Started
+13:07:02 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ArcadeDrive.o" "..\\src\\ArcadeDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\LifterControl.o" "src\\CompressorControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
 Info: Nothing to build for TestLifter
-Info: Nothing to build for Getting Started
-17:20:25 **** Incremental Build of configuration Debug for project TestLifter ****
+13:10:12 **** Incremental Build of configuration Debug for project Monty ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
-..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
-    /**
- ^
-arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\ArcadeDrive.o" "..\\src\\ArcadeDrive.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\LifterControl.o" "src\\CompressorControl.o" "src\\ArcadeDrive.o" -lwpi 
 c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
-Info: Nothing to build for Getting Started
 Info: Nothing to build for TestLifter
-Info: Nothing to build for Getting Started
-17:34:34 **** Incremental Build of configuration Debug for project TestLifter ****
+13:23:30 **** Incremental Build of configuration Debug for project Monty ****
 Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
-..\src\LifterControl.cpp: In member function 'void LifterControl::Stop()':
-..\src\LifterControl.cpp:111:15: error: 'Math' was not declared in this scope
-   float speed=Math.max(accelerationSpeedUp, accelerationSpeedDown);
-               ^
-..\src\LifterControl.cpp:112:6: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
-   if (lifterSpeed<accelerationSpeedUp&&lifterSpeed)
-      ^
-..\src\LifterControl.cpp:111:9: warning: unused variable 'speed' [-Wunused-variable]
-   float speed=Math.max(accelerationSpeedUp, accelerationSpeedDown);
-         ^
-Info: Nothing to build for Getting Started
-17:35:58 **** Incremental Build of configuration Debug for project TestLifter ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
-..\src\LifterControl.cpp: In member function 'void LifterControl::Stop()':
-..\src\LifterControl.cpp:114:6: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
-   if (lifterSpeed<accelerationSpeedUp&&lifterSpeed)
-      ^
-..\src\LifterControl.cpp:112:9: warning: unused variable 'speed' [-Wunused-variable]
-   float speed=accelerationSpeedUp>accelerationSpeedDown?accelerationSpeedUp:accelerationSpeedDown;
-         ^
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
-..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
-    /**
- ^
-In file included from ..\src\RobotLifter.cpp:4:0:
-..\src\LifterControl.cpp: In member function 'void LifterControl::Stop()':
-..\src\LifterControl.cpp:114:6: warning: suggest explicit braces to avoid ambiguous 'else' [-Wparentheses]
-   if (lifterSpeed<accelerationSpeedUp&&lifterSpeed)
-      ^
-..\src\LifterControl.cpp:112:9: warning: unused variable 'speed' [-Wunused-variable]
-   float speed=accelerationSpeedUp>accelerationSpeedDown?accelerationSpeedUp:accelerationSpeedDown;
-         ^
-arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\LifterControl.o" "src\\CompressorControl.o" "src\\ArcadeDrive.o" -lwpi 
 c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
-Info: Nothing to build for Getting Started
-17:37:39 **** Incremental Build of configuration Debug for project TestLifter ****
-Info: Internal Builder is used for build
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
-..\src\RobotLifter.cpp:185:4: warning: "/*" within comment [-Wcomment]
-    /**
- ^
-arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
-arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
-c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
-Info: Nothing to build for Getting Started
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
 Info: Nothing to build for TestLifter

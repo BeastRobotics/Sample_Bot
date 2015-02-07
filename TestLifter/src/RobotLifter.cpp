@@ -6,6 +6,7 @@
 #include <RobotBase.h>
 #include <RobotDrive.h>
 #include <iostream>
+#include "IControl.h"
 
 class Robot: public IterativeRobot {
 
@@ -80,14 +81,13 @@ private:
 		SmartDashboard::PutNumber("Right Motor", 0.0);
 		SmartDashboard::PutNumber("Grabber Speed Factor", 1.0);
 		SmartDashboard::PutNumber("Lifter Speed Factor", 1.0);
-		SmartDashboard::PutBoolean("Hold Position", false);
 		SmartDashboard::PutString("Current Mode", "Init");
 		SmartDashboard::PutNumber("Y Axis Right Stick", 0.0);
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0);
 		SmartDashboard::PutNumber("Accel Up", 0.1);
 		SmartDashboard::PutNumber("Accel Down", 0.1);
 		//lifter->SetEncoderValue();
-		c->SetClosedLoopControl(true);
+
 		lifter->Stop();
 		SmartDashboard::PutString("Current Mode", "Init Complete");
 		std::cout << "init";
@@ -173,11 +173,6 @@ private:
 				}
 			}
 		}
-		/*
-		 if (SmartDashboard::GetBoolean("Hold Postion")) {
-		 lifter->HoldPosition();
-		 }
-		 */
 		/*
 		if (isArmManual && !isLifterManual) {
 			//grabber->DriveWithStick();

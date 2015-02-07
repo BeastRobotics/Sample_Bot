@@ -1,0 +1,28 @@
+/*
+ * ArcadeDrive.cpp
+ *
+ *  Created on: Feb 7, 2015
+ *      Author: Beasty
+ */
+#include "WPILib.h"
+#include "IControl.h"
+#include "XboxController.h"
+
+class ArcadeDrive: public IControl {
+	XboxController *xbox;
+	RobotDrive myRobot;
+
+public:
+	ArcadeDrive():myRobot(0, 1) {
+		myRobot.SetExpiration(0.1);
+		xbox = XboxController::getInstance();
+	}
+	void TeleopPeriodic() {
+		myRobot.ArcadeDrive(xbox->getLeftStick());
+
+	}
+
+};
+
+
+

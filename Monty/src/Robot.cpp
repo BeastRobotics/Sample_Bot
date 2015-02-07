@@ -1,8 +1,10 @@
 #include "WPILib.h"
 #include "LifterControl.cpp"
 #include "IControl.h"
+#include "CompressorControl.cpp"
+#include "ArcadeDrive.cpp"
 
-#define NUM_CONTROLLERS 1
+#define NUM_CONTROLLERS 3
 
 class Robot: public IterativeRobot {
 	IControl *controllers[NUM_CONTROLLERS];
@@ -11,6 +13,8 @@ public:
 	Robot() :
 			lw(NULL) {
 		controllers[0] = new LifterControl();
+		controllers[1] = new CompressorControl();
+		controllers[2] = new ArcadeDrive();
 	}
 private:
 	LiveWindow *lw;

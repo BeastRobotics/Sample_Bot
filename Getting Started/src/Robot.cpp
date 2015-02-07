@@ -149,7 +149,7 @@ private:
 		//SmartDashboard::PutNumber("Right Motor Count", en1->Get());
 		//SmartDashboard::PutNumber("Left Motor Count", en2->Get());
 
-		SmartDashboard::PutNumber("Stik it UP", xbox->getLeftStick()->GetX()); //X-Value of Joystick
+		SmartDashboard::PutNumber("Stick it UP", xbox->getLeftStick()->GetX()); //X-Value of Joystick
 
 		SmartDashboard::PutBoolean("X", xbox->isXHeld());
 		SmartDashboard::PutBoolean("Y", xbox->isYHeld());

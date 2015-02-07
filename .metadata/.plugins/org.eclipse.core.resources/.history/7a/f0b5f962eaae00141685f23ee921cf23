@@ -1,0 +1,46 @@
+#include "WPILib.h"
+#include "LifterControl.cpp"
+#include "IControl.h"
+
+#define NUM_CONTROLLERS 1
+
+class Robot: public IterativeRobot {
+	IControl *controllers[NUM_CONTROLLERS];
+
+public:
+	Robot() :
+			lw(NULL) {
+		controllers[0] = new LifterControl();
+	}
+private:
+	LiveWindow *lw;
+
+	void RobotInit() {
+		lw = LiveWindow::GetInstance();
+		for (int i = 0; i < NUM_CONTROLLERS; i++) {
+			controllers[i]->RobotInit();
+		}
+	}
+
+	void AutonomousInit() {
+
+	}
+
+	void AutonomousPeriodic() {
+
+	}
+
+	void TeleopInit() {
+
+	}
+
+	void TeleopPeriodic() {
+
+	}
+
+	void TestPeriodic() {
+		lw->Run();
+	}
+};
+
+START_ROBOT_CLASS(Robot);
