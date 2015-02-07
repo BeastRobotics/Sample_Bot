@@ -38,7 +38,8 @@ public:
 	int level3Value;
 	int homeValue;
 	double lifterSpeed;
-	double acceleration;
+	double accelerationSpeedUp;
+	double accelerationSpeedDown;
 
 	LifterControl() {
 		en1 = new Encoder(0, 1);
@@ -54,7 +55,8 @@ public:
 		speedFactor = 1.0;
 		xbox = XboxController::getInstance();
 		time = new Timer();
-		acceleration = 0.05;
+		accelerationSpeedUp = 0.05;
+		accelerationSpeedDown = 0.05;
 	}
 
 	void RobotInit() {
@@ -68,7 +70,8 @@ public:
 		SmartDashboard::PutBoolean("Manual Lifter Mode", true);
 		SmartDashboard::PutNumber("Lifter Speed Factor", 1.0);
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0); //This is the current output to the motor
-		SmartDashboard::PutNumber("Accel", 0.1); //Acceleration going up
+		SmartDashboard::PutNumber("Accel Up", 0.1); //Acceleration going up
+		SmartDashboard::PutNumber("Accel Down", 0.1); //Acceleration going down
 		SetEncoderValue();
 		Stop();
 	}
@@ -80,7 +83,8 @@ public:
 		SmartDashboard::PutBoolean("Lower Limit", GetLowerLimit());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
 		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
-		SetAccel(SmartDashboard::GetNumber("Accel"));
+		SetAccelUp(SmartDashboard::GetNumber("Accel Up"));
+		SetAccelDown(SmartDashboard::GetNumber("Accel Down"));
 
 		bool isLifterManual = SmartDashboard::GetBoolean("Manual Lifter Mode");
 
@@ -108,7 +112,7 @@ public:
 					Stop();
 				}
 			}
-		} //End big if and lifter move if
+		}//End big if and lifter move if
 
 		lifterupdate();
 	}
@@ -130,6 +134,7 @@ public:
 		speedFactor = factor;
 	}
 
+
 	void SetEncoderValue() {
 		if (!lowerLimit->Get()) {
 			lifterSpeed = MOTOR_SPEED_DOWN;
@@ -139,51 +144,59 @@ public:
 		}
 	}
 
-	/*
-	 * Gets a velocity based on the function f(x) = x^3.
-	 * It gets the lifterSpeed's cube root which is the x value,
-	 * add/subtracts the parameter rate, then cubes that value and returns it.
-	 * @param rate the rate of change of velocity or delta x.
-	 */
-	double getVelocity(double desiredVelocity, double rate) {
-		if (std::abs(desiredVelocity - lifterSpeed) <= 0.01)
-			return lifterSpeed;
-		double x = std::cbrt(lifterSpeed);
-		if (desiredVelocity > lifterSpeed) {
-			x += rate;
-		} else {
-			x -= rate;
+	void Stop() {
+		float speed =
+				accelerationSpeedUp > accelerationSpeedDown ?
+						accelerationSpeedUp : accelerationSpeedDown;
+
+		if ((lifterSpeed < speed && lifterSpeed > 0)
+				|| (lifterSpeed > speed && lifterSpeed < 0))
+			lifterSpeed = 0;
+
+		if (lifterSpeed > 0) {
+			lifterSpeed -= accelerationSpeedUp;
+		} else if (lifterSpeed < 0) {
+			lifterSpeed += accelerationSpeedDown;
 		}
-		return ((int) ((x * x * x) * 10E8)) / 10E8; // removes insignificant decimal values before returning
 	}
 
-		//TODO
-	void Stop() {
-			float speed=acceleration;
+	void SetAccelUp(double up) {
+		accelerationSpeedUp = up;
+	}
 
-			if ((lifterSpeed<speed&&lifterSpeed>0)||(lifterSpeed>speed&&lifterSpeed<0)) lifterSpeed=0;
-
-			lifterSpeed = getVelocity(0, acceleration);
+	void SetAccelDown(double down) {
+		accelerationSpeedDown = down;
+	}
+	//TODO
+	void MoveUp() {
+		if (lifterSpeed > 0) {
+			lifterSpeed = 0;
 		}
-
-		void SetAccel(double n) {
-			acceleration = n;
-		}
-
-		//TODO
-		void MoveUp() {
-			lifterSpeed = getVelocity(MOTOR_SPEED, acceleration);
-			if (upperLimit->Get()) {
-				lifterSpeed = 0;
+		if (upperLimit->Get()) {
+			if (lifterSpeed > MOTOR_SPEED) {
+				lifterSpeed -= accelerationSpeedUp;
+			} else {
+				lifterSpeed = MOTOR_SPEED;
 			}
+		} else {
+			lifterSpeed = 0;
 		}
+	}
 
-		void MoveDown() {
-			lifterSpeed = getVelocity(MOTOR_SPEED_DOWN, acceleration);
-					if (lowerLimit->Get()) {
-						lifterSpeed = 0;
-					}
+	void MoveDown() {
+		if (lifterSpeed < 0) {
+			lifterSpeed = 0;
 		}
+		if (lowerLimit->Get()) {
+			if (lifterSpeed < MOTOR_SPEED_DOWN) {
+				lifterSpeed += accelerationSpeedDown;
+			} else {
+				lifterSpeed = MOTOR_SPEED_DOWN;
+			}
+		} else {
+			lifterSpeed = 0;
+		}
+	}
 
 	void MoveToHome() {
 
@@ -287,5 +300,4 @@ private:
 		}
 	}
 
-}
-;
+};
