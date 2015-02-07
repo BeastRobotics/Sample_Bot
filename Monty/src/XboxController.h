@@ -56,8 +56,9 @@ public:
 	static XboxController *getInstance();
 	bool JogEnabled();
 	bool isEndGame();
-private:
+protected:
 	XboxController(int stick);
+private:
 	Joystick lstick;
 	Joystick rstick;
 	int a;
