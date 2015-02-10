@@ -5,20 +5,26 @@
 #include "ArcadeDrive.cpp"
 #include "NewXboxController.h"
 #include "Grabber.cpp"
+#include "MecanumDrive.cpp"
+#include "CameraControl.cpp"
 
-#define NUM_CONTROLLERS 5
+#define NUM_CONTROLLERS 8
 
 class Robot: public IterativeRobot {
 	IControl *controllers[NUM_CONTROLLERS];
 
+
 public:
 	Robot() :
 			lw(NULL) {
+
 		controllers[0] = NewXboxController::getInstance();
 		controllers[1] = new LifterControl();
 		controllers[2] = new CompressorControl();
 		controllers[3] = new ArcadeDrive();
 		controllers[4] = new GrabberControl();
+		//controllers[5] = new MecanumDrive();
+		controllers[6] = new CameraControl();
 	}
 private:
 	LiveWindow *lw;
@@ -32,7 +38,7 @@ private:
 
 	void AutonomousInit() {
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
-			controllers[i]->AutonomousInit();
+				controllers[i]->AutonomousInit();
 		}
 
 	}

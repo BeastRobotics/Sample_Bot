@@ -14,7 +14,7 @@ public:
 	CompressorControl() {
 		c = new Compressor(0);
 	}
-	void TeleopInit() {
+	void RobotInit() {
 		c->SetClosedLoopControl(true);
 	}
 

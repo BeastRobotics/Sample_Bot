@@ -695,3 +695,976 @@ c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnue
 Info: Nothing to build for TestLifter
 Info: Nothing to build for Monty
 Info: Nothing to build for TestLifter
+Info: Nothing to build for Mecanum Drive Test
+18:59:17 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In member function 'void LifterControl::MoveUp()':
+..\src\LifterControl.cpp:179:18: error: expression cannot be used as a function
+   if (upperLimit()) {
+                  ^
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Mecanum Drive Test
+19:00:19 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp: In member function 'void LifterControl::MoveUp()':
+..\src\LifterControl.cpp:179:18: error: expression cannot be used as a function
+   if (upperLimit()) {
+                  ^
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Mecanum Drive Test
+19:03:23 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In member function 'void LifterControl::MoveUp()':
+..\src\LifterControl.cpp:179:18: error: expression cannot be used as a function
+   if (upperLimit()) {
+                  ^
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Mecanum Drive Test
+19:04:11 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\MecanumDrive.o" "..\\src\\MecanumDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CameraControl.o" "..\\src\\CameraControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In member function 'void LifterControl::MoveUp()':
+..\src\LifterControl.cpp:179:18: error: expression cannot be used as a function
+   if (upperLimit()) {
+                  ^
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Mecanum Drive Test
+19:07:17 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CameraControl.o" "..\\src\\CameraControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In member function 'void LifterControl::MoveUp()':
+..\src\LifterControl.cpp:179:18: error: expression cannot be used as a function
+   if (upperLimit()) {
+                  ^
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Mecanum Drive Test
+19:08:13 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Mecanum Drive Test
+19:08:23 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+19:14:10 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CameraControl.o" "..\\src\\CameraControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+19:22:29 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CameraControl.o" "..\\src\\CameraControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+19:34:52 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+In file included from C:\Users\Beasty/wpilib/cpp/current/include/nivision.h:16:0,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/USBCamera.h:10,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/CameraServer.h:9,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/WPILib.h:25,
+                 from ..\src\LifterControl.cpp:9:
+..\src\LifterControl.cpp:44:40: error: 'constexpr' needed for in-class initialization of static data member 'LifterControl* LifterControl::lifterControl' of non-integral type [-fpermissive]
+  static LifterControl *lifterControl = NULL;
+                                        ^
+..\src\LifterControl.cpp: In static member function 'static LifterControl LifterControl::GetInstance()':
+..\src\LifterControl.cpp:47:27: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   if (lifterControl = NULL) {
+                           ^
+..\src\LifterControl.cpp:51:10: error: could not convert 'LifterControl::lifterControl' from 'LifterControl*' to 'LifterControl'
+   return lifterControl;
+          ^
+Info: Nothing to build for TestLifter
+19:36:05 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+In file included from C:\Users\Beasty/wpilib/cpp/current/include/nivision.h:16:0,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/USBCamera.h:10,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/CameraServer.h:9,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/WPILib.h:25,
+                 from ..\src\Autonomous.cpp:8:
+..\src\LifterControl.cpp:33:34: error: 'constexpr' needed for in-class initialization of static data member 'LifterControl* LifterControl::lifterC' of non-integral type [-fpermissive]
+  static LifterControl *lifterC = NULL;
+                                  ^
+In file included from ..\src\Autonomous.cpp:10:0:
+..\src\LifterControl.cpp: In static member function 'static LifterControl LifterControl::GetInstance()':
+..\src\LifterControl.cpp:46:21: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   if (lifterC = NULL) {
+                     ^
+..\src\LifterControl.cpp:50:10: error: could not convert 'LifterControl::lifterC' from 'LifterControl*' to 'LifterControl'
+   return lifterC;
+          ^
+Info: Nothing to build for TestLifter
+19:36:30 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In static member function 'static LifterControl LifterControl::GetInstance()':
+..\src\LifterControl.cpp:46:21: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   if (lifterC = NULL) {
+                     ^
+..\src\LifterControl.cpp:50:10: error: could not convert 'LifterControl::lifterC' from 'LifterControl*' to 'LifterControl'
+   return lifterC;
+          ^
+Info: Nothing to build for TestLifter
+19:36:39 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+In file included from C:\Users\Beasty/wpilib/cpp/current/include/nivision.h:16:0,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/USBCamera.h:10,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/CameraServer.h:9,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/WPILib.h:25,
+                 from ..\src\LifterControl.cpp:9:
+..\src\LifterControl.cpp:33:34: error: 'constexpr' needed for in-class initialization of static data member 'LifterControl* LifterControl::lifterC' of non-integral type [-fpermissive]
+  static LifterControl *lifterC = NULL;
+                                  ^
+..\src\LifterControl.cpp: In static member function 'static LifterControl LifterControl::GetInstance()':
+..\src\LifterControl.cpp:46:21: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   if (lifterC = NULL) {
+                     ^
+..\src\LifterControl.cpp:50:10: error: could not convert 'LifterControl::lifterC' from 'LifterControl*' to 'LifterControl'
+   return lifterC;
+          ^
+Info: Nothing to build for TestLifter
+19:36:55 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+In file included from C:\Users\Beasty/wpilib/cpp/current/include/nivision.h:16:0,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/USBCamera.h:10,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/CameraServer.h:9,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/WPILib.h:25,
+                 from ..\src\LifterControl.cpp:9:
+..\src\LifterControl.cpp:33:33: error: in-class initialization of static data member 'LifterControl LifterControl::lifterC' of incomplete type
+  static LifterControl lifterC = NULL;
+                                 ^
+..\src\LifterControl.cpp:33:33: error: 'LifterControl LifterControl::lifterC' has incomplete type
+Info: Nothing to build for TestLifter
+19:36:59 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+In file included from C:\Users\Beasty/wpilib/cpp/current/include/nivision.h:16:0,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/USBCamera.h:10,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/CameraServer.h:9,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/WPILib.h:25,
+                 from ..\src\Autonomous.cpp:8:
+..\src\LifterControl.cpp:33:34: error: 'constexpr' needed for in-class initialization of static data member 'LifterControl* LifterControl::lifterC' of non-integral type [-fpermissive]
+  static LifterControl *lifterC = NULL;
+                                  ^
+In file included from ..\src\Autonomous.cpp:10:0:
+..\src\LifterControl.cpp: In static member function 'static LifterControl LifterControl::GetInstance()':
+..\src\LifterControl.cpp:46:21: warning: suggest parentheses around assignment used as truth value [-Wparentheses]
+   if (lifterC = NULL) {
+                     ^
+..\src\LifterControl.cpp:50:10: error: could not convert 'LifterControl::lifterC' from 'LifterControl*' to 'LifterControl'
+   return lifterC;
+          ^
+Info: Nothing to build for TestLifter
+19:37:23 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from C:\Users\Beasty/wpilib/cpp/current/include/nivision.h:16:0,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/USBCamera.h:10,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/CameraServer.h:9,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/WPILib.h:25,
+                 from ..\src\Robot.cpp:1:
+..\src\LifterControl.cpp:33:34: error: 'constexpr' needed for in-class initialization of static data member 'LifterControl* LifterControl::lifterC' of non-integral type [-fpermissive]
+  static LifterControl *lifterC = NULL;
+                                  ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp: In static member function 'static LifterControl LifterControl::GetInstance()':
+..\src\LifterControl.cpp:50:10: error: could not convert 'LifterControl::lifterC' from 'LifterControl*' to 'LifterControl'
+   return lifterC;
+          ^
+Info: Nothing to build for TestLifter
+19:38:05 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+In file included from C:\Users\Beasty/wpilib/cpp/current/include/nivision.h:16:0,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/USBCamera.h:10,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/CameraServer.h:9,
+                 from C:\Users\Beasty/wpilib/cpp/current/include/WPILib.h:25,
+                 from ..\src\Autonomous.cpp:8:
+..\src\LifterControl.cpp:33:34: error: 'constexpr' needed for in-class initialization of static data member 'LifterControl* LifterControl::lifterC' of non-integral type [-fpermissive]
+  static LifterControl *lifterC = NULL;
+                                  ^
+In file included from ..\src\Autonomous.cpp:10:0:
+..\src\LifterControl.cpp: In static member function 'static LifterControl LifterControl::GetInstance()':
+..\src\LifterControl.cpp:50:10: error: could not convert 'LifterControl::lifterC' from 'LifterControl*' to 'LifterControl'
+   return lifterC;
+          ^
+Info: Nothing to build for TestLifter
+19:40:41 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\Autonomous.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+19:41:42 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\Autonomous.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+19:42:58 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+..\src\Robot.cpp: In constructor 'Robot::Robot()':
+..\src\Robot.cpp:27:49: error: invalid conversion from 'IControl*' to 'LifterControl*' [-fpermissive]
+   controllers[7] = new AutoControl(controllers[1]);
+                                                 ^
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:17:2: note: initializing argument 1 of 'AutoControl::AutoControl(LifterControl*)'
+  AutoControl(LifterControl *l) {
+  ^
+Info: Nothing to build for TestLifter
+19:43:23 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+..\src\Robot.cpp: In constructor 'Robot::Robot()':
+..\src\Robot.cpp:27:65: error: no matching function for call to 'LifterControl::LifterControl(IControl*&)'
+   controllers[7] = new AutoControl( (LifterControl)controllers[1]);
+                                                                 ^
+..\src\Robot.cpp:27:65: note: candidates are:
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'LifterControl&&'
+Info: Nothing to build for TestLifter
+19:43:36 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+..\src\Robot.cpp: In constructor 'Robot::Robot()':
+..\src\Robot.cpp:27:49: error: invalid conversion from 'IControl*' to 'LifterControl*' [-fpermissive]
+   controllers[7] = new AutoControl(controllers[1]);
+                                                 ^
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:17:2: note: initializing argument 1 of 'AutoControl::AutoControl(LifterControl*)'
+  AutoControl(LifterControl *l) {
+  ^
+Info: Nothing to build for TestLifter
+19:43:52 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl*)':
+..\src\Autonomous.cpp:18:10: error: invalid conversion from 'IControl*' to 'LifterControl*' [-fpermissive]
+   lifter = l;
+          ^
+Info: Nothing to build for TestLifter
+19:44:04 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl*)':
+..\src\Autonomous.cpp:18:27: error: no matching function for call to 'LifterControl::LifterControl(IControl*&)'
+   lifter = (LifterControl)l;
+                           ^
+..\src\Autonomous.cpp:18:27: note: candidates are:
+In file included from ..\src\Autonomous.cpp:10:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'LifterControl&&'
+Info: Nothing to build for TestLifter
+19:47:09 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl*, IControl*)':
+..\src\Autonomous.cpp:19:27: error: no matching function for call to 'LifterControl::LifterControl(IControl*&)'
+   lifter = (LifterControl)l;
+                           ^
+..\src\Autonomous.cpp:19:27: note: candidates are:
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'LifterControl&&'
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:20:25: error: no matching function for call to 'MecanumDrive::MecanumDrive(IControl*&)'
+   drive = (MecanumDrive)m;
+                         ^
+..\src\Autonomous.cpp:20:25: note: candidate is:
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:29:2: note: MecanumDrive::MecanumDrive()
+  MecanumDrive() :
+  ^
+..\src\MecanumDrive.cpp:29:2: note:   candidate expects 0 arguments, 1 provided
+..\src\Robot.cpp: In constructor 'Robot::Robot()':
+..\src\Robot.cpp:27:50: error: no matching function for call to 'AutoControl::AutoControl(IControl*&)'
+   controllers[7] = new AutoControl(controllers[1]);
+                                                  ^
+..\src\Robot.cpp:27:50: note: candidates are:
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:18:2: note: AutoControl::AutoControl(IControl*, IControl*)
+  AutoControl(IControl *l, IControl *m) {
+  ^
+..\src\Autonomous.cpp:18:2: note:   candidate expects 2 arguments, 1 provided
+..\src\Autonomous.cpp:13:7: note: constexpr AutoControl::AutoControl(const AutoControl&)
+ class AutoControl: public IControl {
+       ^
+..\src\Autonomous.cpp:13:7: note:   no known conversion for argument 1 from 'IControl*' to 'const AutoControl&'
+..\src\Autonomous.cpp:13:7: note: constexpr AutoControl::AutoControl(AutoControl&&)
+..\src\Autonomous.cpp:13:7: note:   no known conversion for argument 1 from 'IControl*' to 'AutoControl&&'
+Info: Nothing to build for TestLifter
+19:47:28 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl*, IControl*)':
+..\src\Autonomous.cpp:19:27: error: no matching function for call to 'LifterControl::LifterControl(IControl*&)'
+   lifter = (LifterControl)l;
+                           ^
+..\src\Autonomous.cpp:19:27: note: candidates are:
+In file included from ..\src\Autonomous.cpp:10:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'LifterControl&&'
+..\src\Autonomous.cpp:20:25: error: no matching function for call to 'MecanumDrive::MecanumDrive(IControl*&)'
+   drive = (MecanumDrive)m;
+                         ^
+..\src\Autonomous.cpp:20:25: note: candidate is:
+In file included from ..\src\Autonomous.cpp:11:0:
+..\src\MecanumDrive.cpp:29:2: note: MecanumDrive::MecanumDrive()
+  MecanumDrive() :
+  ^
+..\src\MecanumDrive.cpp:29:2: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+19:47:38 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl*, IControl*)':
+..\src\Autonomous.cpp:19:27: error: no matching function for call to 'LifterControl::LifterControl(IControl*&)'
+   lifter = (LifterControl)l;
+                           ^
+..\src\Autonomous.cpp:19:27: note: candidates are:
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'LifterControl&&'
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:20:25: error: no matching function for call to 'MecanumDrive::MecanumDrive(IControl*&)'
+   drive = (MecanumDrive)m;
+                         ^
+..\src\Autonomous.cpp:20:25: note: candidate is:
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:29:2: note: MecanumDrive::MecanumDrive()
+  MecanumDrive() :
+  ^
+..\src\MecanumDrive.cpp:29:2: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+19:48:17 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl*, IControl*)':
+..\src\Autonomous.cpp:19:27: error: no matching function for call to 'LifterControl::LifterControl(IControl*&)'
+   lifter = (LifterControl)l;
+                           ^
+..\src\Autonomous.cpp:19:27: note: candidates are:
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'LifterControl&&'
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:20:25: error: no matching function for call to 'MecanumDrive::MecanumDrive(IControl*&)'
+   drive = (MecanumDrive)m;
+                         ^
+..\src\Autonomous.cpp:20:25: note: candidate is:
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:29:2: note: MecanumDrive::MecanumDrive()
+  MecanumDrive() :
+  ^
+..\src\MecanumDrive.cpp:29:2: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+19:49:03 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl*, IControl*)':
+..\src\Autonomous.cpp:19:27: error: no matching function for call to 'LifterControl::LifterControl(IControl*&)'
+   lifter = (LifterControl)lift;
+                           ^
+..\src\Autonomous.cpp:19:27: note: candidates are:
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl*' to 'LifterControl&&'
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:20:25: error: no matching function for call to 'MecanumDrive::MecanumDrive(IControl*&)'
+   drive = (MecanumDrive)mecanum;
+                         ^
+..\src\Autonomous.cpp:20:25: note: candidate is:
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:29:2: note: MecanumDrive::MecanumDrive()
+  MecanumDrive() :
+  ^
+..\src\MecanumDrive.cpp:29:2: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+19:50:40 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl, IControl)':
+..\src\Autonomous.cpp:19:27: error: no matching function for call to 'LifterControl::LifterControl(IControl&)'
+   lifter = (LifterControl)lift;
+                           ^
+..\src\Autonomous.cpp:19:27: note: candidates are:
+In file included from ..\src\Autonomous.cpp:10:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl' to 'LifterControl&&'
+..\src\Autonomous.cpp:20:25: error: no matching function for call to 'MecanumDrive::MecanumDrive(IControl&)'
+   drive = (MecanumDrive)mecanum;
+                         ^
+..\src\Autonomous.cpp:20:25: note: candidate is:
+In file included from ..\src\Autonomous.cpp:11:0:
+..\src\MecanumDrive.cpp:29:2: note: MecanumDrive::MecanumDrive()
+  MecanumDrive() :
+  ^
+..\src\MecanumDrive.cpp:29:2: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+19:54:13 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Autonomous.o" "..\\src\\Autonomous.cpp" 
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl, IControl)':
+..\src\Autonomous.cpp:19:32: error: no matching function for call to 'LifterControl::LifterControl(IControl&)'
+   lifter = (LifterControl)(lift);
+                                ^
+..\src\Autonomous.cpp:19:32: note: candidates are:
+In file included from ..\src\Autonomous.cpp:10:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl' to 'LifterControl&&'
+..\src\Autonomous.cpp:20:33: error: no matching function for call to 'MecanumDrive::MecanumDrive(IControl&)'
+   drive = (MecanumDrive)(mecanum);
+                                 ^
+..\src\Autonomous.cpp:20:33: note: candidate is:
+In file included from ..\src\Autonomous.cpp:11:0:
+..\src\MecanumDrive.cpp:29:2: note: MecanumDrive::MecanumDrive()
+  MecanumDrive() :
+  ^
+..\src\MecanumDrive.cpp:29:2: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+19:54:29 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Autonomous.cpp:10:0,
+                 from ..\src\Robot.cpp:10:
+..\src\LifterControl.cpp:24:7: error: redefinition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:24:7: error: previous definition of 'class LifterControl'
+ class LifterControl: public IControl {
+       ^
+In file included from ..\src\Autonomous.cpp:11:0,
+                 from ..\src\Robot.cpp:10:
+..\src\MecanumDrive.cpp:12:7: error: redefinition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:12:7: error: previous definition of 'class MecanumDrive'
+ class MecanumDrive: public IControl {
+       ^
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp: In constructor 'AutoControl::AutoControl(IControl, IControl)':
+..\src\Autonomous.cpp:19:27: error: no matching function for call to 'LifterControl::LifterControl(IControl&)'
+   lifter = (LifterControl)lift;
+                           ^
+..\src\Autonomous.cpp:19:27: note: candidates are:
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp:43:2: note: LifterControl::LifterControl()
+  LifterControl() {
+  ^
+..\src\LifterControl.cpp:43:2: note:   candidate expects 0 arguments, 1 provided
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(const LifterControl&)
+ class LifterControl: public IControl {
+       ^
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl' to 'const LifterControl&'
+..\src\LifterControl.cpp:24:7: note: constexpr LifterControl::LifterControl(LifterControl&&)
+..\src\LifterControl.cpp:24:7: note:   no known conversion for argument 1 from 'IControl' to 'LifterControl&&'
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:20:25: error: no matching function for call to 'MecanumDrive::MecanumDrive(IControl&)'
+   drive = (MecanumDrive)mecanum;
+                         ^
+..\src\Autonomous.cpp:20:25: note: candidate is:
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp:29:2: note: MecanumDrive::MecanumDrive()
+  MecanumDrive() :
+  ^
+..\src\MecanumDrive.cpp:29:2: note:   candidate expects 0 arguments, 1 provided
+..\src\Robot.cpp: In constructor 'Robot::Robot()':
+..\src\Robot.cpp:27:65: error: no matching function for call to 'AutoControl::AutoControl(IControl*&, IControl*&)'
+   controllers[7] = new AutoControl(controllers[1],controllers[5]);
+                                                                 ^
+..\src\Robot.cpp:27:65: note: candidates are:
+In file included from ..\src\Robot.cpp:10:0:
+..\src\Autonomous.cpp:18:2: note: AutoControl::AutoControl(IControl, IControl)
+  AutoControl(IControl lift, IControl mecanum) {
+  ^
+..\src\Autonomous.cpp:18:2: note:   no known conversion for argument 1 from 'IControl*' to 'IControl'
+..\src\Autonomous.cpp:13:7: note: constexpr AutoControl::AutoControl(const AutoControl&)
+ class AutoControl: public IControl {
+       ^
+..\src\Autonomous.cpp:13:7: note:   candidate expects 1 argument, 2 provided
+..\src\Autonomous.cpp:13:7: note: constexpr AutoControl::AutoControl(AutoControl&&)
+..\src\Autonomous.cpp:13:7: note:   candidate expects 1 argument, 2 provided
+Info: Nothing to build for TestLifter
+20:05:35 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" "src\\Autonomous.o" -lwpi 
+arm-frc-linux-gnueabi-g++: error: src\Autonomous.o: No such file or directory
+Info: Nothing to build for TestLifter
+20:17:05 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp: In member function 'void LifterControl::AutonomousInit(int)':
+..\src\LifterControl.cpp:69:3: error: expected primary-expression before '}' token
+   }
+   ^
+..\src\LifterControl.cpp:69:3: error: expected ':' before '}' token
+..\src\LifterControl.cpp:69:3: error: expected primary-expression before '}' token
+..\src\Robot.cpp: In member function 'virtual void Robot::AutonomousInit()':
+..\src\Robot.cpp:39:23: error: expected ')' before 'instanceof'
+    if (controllers[i] instanceof LifterControl) {
+                       ^
+Info: Nothing to build for TestLifter
+20:19:03 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In member function 'void LifterControl::AutonomousInit(int)':
+..\src\LifterControl.cpp:69:3: error: expected primary-expression before '}' token
+   }
+   ^
+..\src\LifterControl.cpp:69:3: error: expected ':' before '}' token
+..\src\LifterControl.cpp:69:3: error: expected primary-expression before '}' token
+Info: Nothing to build for TestLifter
+20:20:27 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+..\src\LifterControl.cpp: In member function 'void LifterControl::AutonomousInit(int)':
+..\src\LifterControl.cpp:69:3: error: expected primary-expression before '}' token
+   }
+   ^
+..\src\LifterControl.cpp:69:3: error: expected ':' before '}' token
+..\src\LifterControl.cpp:69:3: error: expected primary-expression before '}' token
+Info: Nothing to build for TestLifter
+20:21:25 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Robot.cpp:2:0:
+..\src\LifterControl.cpp: In member function 'void LifterControl::AutonomousInit(int)':
+..\src\LifterControl.cpp:69:3: error: expected primary-expression before '}' token
+   }
+   ^
+..\src\LifterControl.cpp:69:3: error: expected ':' before '}' token
+..\src\LifterControl.cpp:69:3: error: expected primary-expression before '}' token
+..\src\Robot.cpp: In member function 'virtual void Robot::AutonomousInit()':
+..\src\Robot.cpp:41:23: error: expected ')' before 'instanceof'
+    if (controllers[i] instanceof LifterControl) {
+                       ^
+..\src\Robot.cpp:42:60: error: no matching function for call to 'IControl::AutonomousInit(int)'
+     controllers[i]->AutonomousInit(pref->GetInt("AutoPref")); //TODO
+                                                            ^
+..\src\Robot.cpp:42:60: note: candidate is:
+In file included from ..\src\LifterControl.cpp:12:0,
+                 from ..\src\Robot.cpp:2:
+..\src\IControl.h:53:15: note: virtual void IControl::AutonomousInit()
+  virtual void AutonomousInit(){}
+               ^
+..\src\IControl.h:53:15: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+20:25:00 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\MecanumDrive.o" "..\\src\\MecanumDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+..\src\Robot.cpp: In member function 'virtual void Robot::AutonomousInit()':
+..\src\Robot.cpp:41:23: error: expected ')' before 'instanceof'
+    if (controllers[i] instanceof LifterControl) {
+                       ^
+..\src\Robot.cpp:42:60: error: no matching function for call to 'IControl::AutonomousInit(int)'
+     controllers[i]->AutonomousInit(pref->GetInt("AutoPref")); //TODO
+                                                            ^
+..\src\Robot.cpp:42:60: note: candidate is:
+In file included from ..\src\LifterControl.cpp:12:0,
+                 from ..\src\Robot.cpp:2:
+..\src\IControl.h:53:15: note: virtual void IControl::AutonomousInit()
+  virtual void AutonomousInit(){}
+               ^
+..\src\IControl.h:53:15: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+20:25:49 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+..\src\Robot.cpp: In member function 'virtual void Robot::AutonomousInit()':
+..\src\Robot.cpp:41:23: error: expected ')' before 'instanceof'
+    if (controllers[i] instanceof LifterControl) {
+                       ^
+..\src\Robot.cpp:42:60: error: no matching function for call to 'IControl::AutonomousInit(int)'
+     controllers[i]->AutonomousInit(pref->GetInt("AutoPref")); //TODO
+                                                            ^
+..\src\Robot.cpp:42:60: note: candidate is:
+In file included from ..\src\LifterControl.cpp:12:0,
+                 from ..\src\Robot.cpp:2:
+..\src\IControl.h:53:15: note: virtual void IControl::AutonomousInit()
+  virtual void AutonomousInit(){}
+               ^
+..\src\IControl.h:53:15: note:   candidate expects 0 arguments, 1 provided
+Info: Nothing to build for TestLifter
+20:34:07 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp: In member function 'void MecanumDrive::setAutoProgram(int)':
+..\src\MecanumDrive.cpp:92:3: error: 'autoProgram' was not declared in this scope
+   autoProgram = s;
+   ^
+Info: Nothing to build for TestLifter
+20:34:55 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\MecanumDrive.o" "..\\src\\MecanumDrive.cpp" 
+..\src\MecanumDrive.cpp: In member function 'void MecanumDrive::setAutoProgram(int)':
+..\src\MecanumDrive.cpp:92:3: error: 'autoProgram' was not declared in this scope
+   autoProgram = s;
+   ^
+Info: Nothing to build for TestLifter
+20:36:58 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\MecanumDrive.o" "..\\src\\MecanumDrive.cpp" 
+..\src\MecanumDrive.cpp: In member function 'void MecanumDrive::setAutoProgram(int)':
+..\src\MecanumDrive.cpp:92:3: error: 'autoProgram' was not declared in this scope
+   autoProgram = s;
+   ^
+Info: Nothing to build for TestLifter
+20:37:07 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp: In member function 'void MecanumDrive::setAutoProgram(int)':
+..\src\MecanumDrive.cpp:92:3: error: 'autoProgram' was not declared in this scope
+   autoProgram = s;
+   ^
+Info: Nothing to build for TestLifter
+20:38:47 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+In file included from ..\src\Robot.cpp:8:0:
+..\src\MecanumDrive.cpp: In member function 'void MecanumDrive::setAutoProgram(int)':
+..\src\MecanumDrive.cpp:92:3: error: 'autoProgram' was not declared in this scope
+   autoProgram = s;
+   ^
+Info: Nothing to build for TestLifter
+20:39:00 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\CompressorControl.o" "..\\src\\CompressorControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\MecanumDrive.o" "..\\src\\MecanumDrive.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+20:39:26 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+20:41:07 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+20:42:07 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+20:44:34 **** Incremental Build of configuration Debug for project Monty ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\Monty\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\Robot.o" "..\\src\\Robot.cpp" 
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\Robot.o" "src\\RestrictedXboxController.o" "src\\NewXboxController.o" "src\\MecanumDrive.o" "src\\LifterControl.o" "src\\Grabber.o" "src\\CompressorControl.o" "src\\CameraControl.o" "src\\ArcadeDrive.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+20:48:52 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\LifterControl.o" "..\\src\\LifterControl.cpp" 
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:182:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+..\src\RobotLifter.cpp: In member function 'virtual void Robot::TeleopPeriodic()':
+..\src\RobotLifter.cpp:104:45: error: 'class LifterControl' has no member named 'g'
+   SmartDashboard::PutBoolean("Mag", lifter->g)
+                                             ^
+Info: Nothing to build for Monty
+20:49:07 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:182:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter
+Info: Nothing to build for Monty
+20:49:54 **** Incremental Build of configuration Debug for project TestLifter ****
+Info: Internal Builder is used for build
+arm-frc-linux-gnueabi-g++ -std=c++1y "-IC:\\Users\\Beasty/wpilib/cpp/current/include" "-IC:\\Users\\Beasty\\git\\Sample_Bot\\TestLifter\\src" -O0 -g3 -Wall -c -fmessage-length=0 -o "src\\RobotLifter.o" "..\\src\\RobotLifter.cpp" 
+..\src\RobotLifter.cpp:182:4: warning: "/*" within comment [-Wcomment]
+    /**
+ ^
+arm-frc-linux-gnueabi-g++ "-LC:\\Users\\Beasty/wpilib/cpp/current/lib" -Wl,-rpath,/opt/GenICam_v2_3/bin/Linux_armv7-a -o FRCUserProgram "src\\XboxController.o" "src\\RobotLifter.o" "src\\LifterControl.o" "src\\GrabberControl.o" -lwpi 
+c:/frc/bin/../lib/gcc/arm-frc-linux-gnueabi/4.9.1/../../../../arm-frc-linux-gnueabi/bin/ld.exe: warning: libstdc++.so.6, needed by C:\Users\Beasty/wpilib/cpp/current/lib\libFRC_NetworkCommunication.so.1.5.0, not found (try using -rpath or -rpath-link)
+Info: Nothing to build for Monty
+Info: Nothing to build for TestLifter

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Monty/src/MecanumDive.cpp&apos; to &apos;MecanumDrive.cpp&apos;" description="Rename resource &apos;MecanumDive.cpp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/MecanumDive.cpp" name="MecanumDrive.cpp" stamp="1423529656909" updateReferences="true"/>
+</session>

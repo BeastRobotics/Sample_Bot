@@ -26,6 +26,7 @@ class LifterControl : public IControl {
 	Talon *lifter;
 	DigitalInput *upperLimit;
 	DigitalInput *lowerLimit;
+	DigitalInput *magInput;
 	XboxController *xbox;
 	Timer *time;
 
@@ -57,6 +58,7 @@ public:
 		time = new Timer();
 		accelerationSpeedUp = 0.05;
 		accelerationSpeedDown = 0.05;
+		magInput = new DigitalInput(5);
 	}
 
 
@@ -214,6 +216,10 @@ public:
 
 	bool GetLowerLimit() {
 		return lowerLimit->Get();
+	}
+
+	bool GetMagInput() {
+		return magInput->Get();
 	}
 
 private:

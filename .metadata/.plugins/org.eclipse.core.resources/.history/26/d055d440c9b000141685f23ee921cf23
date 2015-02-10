@@ -1,0 +1,36 @@
+/*
+ * Autonomous.cpp
+ *
+ *  Created on: Feb 9, 2015
+ *      Author: Beasty
+ */
+
+#include "WPILib.h"
+#include "IControl.h"
+#include "LifterControl.cpp"
+#include "MecanumDrive.cpp"
+#include "CompressorControl.cpp"
+
+class AutoControl: public IControl {
+	LifterControl *lifter;
+	MecanumDrive *drive;
+	CompressorControl *comp;
+
+public:
+	AutoControl(IControl lift, IControl mecanum, IControl compressor) {
+		lifter = (LifterControl)lift;
+		drive = (MecanumDrive)mecanum;
+		comp = (CompressorControl)compressor; 
+	}
+
+	void AutonomousInit() {
+	}
+
+	void AutonomousPeriodic() {
+
+	}
+};
+
+
+
+
