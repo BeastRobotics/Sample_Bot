@@ -10,6 +10,7 @@
 #include "XboxController.h"
 #include "Math.h"
 #include "IControl.h"
+#include <cTime>
 
 #define TOLERANCE 25
 #define HOME 1
@@ -26,9 +27,9 @@ class LifterControl: public IControl {
 	Talon *lifter;
 	DigitalInput *upperLimit;
 	DigitalInput *lowerLimit;
+	DigitalInput *magInput;
 	XboxController *xbox;
 	Timer *time;
-
 	double speedFactor;
 
 public:
@@ -39,6 +40,7 @@ public:
 	int homeValue;
 	double lifterSpeed;
 	double acceleration;
+	int autoProgram = 0;
 
 	LifterControl() {
 		en1 = new Encoder(0, 1);
@@ -50,6 +52,7 @@ public:
 		homeValue = HOME;
 		upperLimit = new DigitalInput(3);
 		lowerLimit = new DigitalInput(4);
+		magInput = new DigitalInput(5);
 		lifterSpeed = 0;
 		speedFactor = 1.0;
 		xbox = XboxController::getInstance();
@@ -61,7 +64,29 @@ public:
 	}
 	void DisabledInit() {
 	}
-	void AutonomousInit() {
+	void AutonomousInit(int autoProg) {
+		setAutoProgram(autoProg);
+	}
+
+	void AutonomousPeriodic() {
+		/*switch (autoProgram) {
+		case 1:
+			//Drive to auto
+			break;
+		case 2:
+			//Take RC to auto
+
+			break;
+		case 3:
+			//Take tote to auto
+			break;
+		case 4:
+			//Take RC and tote to Auto
+			break;
+		default:
+			//Drive to auto
+			break;
+		}*/
 	}
 	void TeleopInit() {
 		SmartDashboard::PutNumber("Lifter Encoder", 0.0);
@@ -69,15 +94,15 @@ public:
 		SmartDashboard::PutNumber("Lifter Speed Factor", 1.0);
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0); //This is the current output to the motor
 		SmartDashboard::PutNumber("Accel", 0.1); //Acceleration going up
+		SmartDashboard::PutBoolean("Mag Input", false);
 		SetEncoderValue();
 		Stop();
-	}
-	void AutonomousPeriodic() {
 	}
 	void TeleopPeriodic() {
 		SmartDashboard::PutNumber("Lifter Encoder", GetEnconder());
 		SmartDashboard::PutBoolean("Upper Limit", GetUpperLimit());
 		SmartDashboard::PutBoolean("Lower Limit", GetLowerLimit());
+		SmartDashboard::PutBoolean("Mag Input", GetMagInput());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
 		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
 		SetAccel(SmartDashboard::GetNumber("Accel"));
@@ -130,6 +155,10 @@ public:
 		speedFactor = factor;
 	}
 
+	void setAutoProgram(int s) {
+		autoProgram = s;
+	}
+
 	void SetEncoderValue() {
 		if (!lowerLimit->Get()) {
 			lifterSpeed = MOTOR_SPEED_DOWN;
@@ -154,7 +183,7 @@ public:
 		} else {
 			x -= rate;
 		}
-		return ((int) ((x * x * x * (1.0/4.0)) * 10E8)) / 10E8; // removes insignificant decimal values before returning
+		return ((int) ((x * x * x * (1.0 / 4.0)) * 10E8)) / 10E8; // removes insignificant decimal values before returning
 	}
 
 	//TODO
@@ -246,6 +275,10 @@ public:
 
 	bool GetLowerLimit() {
 		return lowerLimit->Get();
+	}
+
+	bool GetMagInput() {
+		return magInput->Get();
 	}
 
 private:

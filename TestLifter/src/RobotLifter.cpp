@@ -86,6 +86,7 @@ private:
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0);
 		SmartDashboard::PutNumber("Accel Up", 0.1);
 		SmartDashboard::PutNumber("Accel Down", 0.1);
+		SmartDashboard::PutBoolean("Mag", false);
 		//lifter->SetEncoderValue();
 
 		lifter->Stop();
@@ -100,6 +101,7 @@ private:
 
 		SmartDashboard::PutString("Current Mode", "Teleop");
 
+		SmartDashboard::PutBoolean("Mag", lifter->GetMagInput());
 		home = SmartDashboard::GetNumber("Set Home Value");
 		level1 = SmartDashboard::GetNumber("Set Level 1 Value");
 		level2 = SmartDashboard::GetNumber("Set Level 2 Value");
