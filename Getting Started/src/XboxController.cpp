@@ -256,7 +256,7 @@ bool XboxController::isButtonHeld(int &counter, bool rawValue,
 	if (rawValue) {
 		// This debounces the button
 		counter++;
-		// Button must be recounterd counters pressed 60 times, then toggle
+		// Button must be re-countered counters pressed 60 times, then toggle
 		if (counter > debounceCount) {
 			return true;
 		}
