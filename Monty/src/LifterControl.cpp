@@ -23,7 +23,7 @@
 
 class LifterControl: public IControl {
 
-	Encoder *en1;
+protected:
 	Talon *lifter;
 	DigitalInput *upperLimit;
 	DigitalInput *lowerLimit;
@@ -43,8 +43,6 @@ public:
 	int autoProgram = 0;
 
 	LifterControl() {
-		en1 = new Encoder(0, 1);
-		en1->Reset();
 		lifter = new Talon(6);
 		level1Value = LEVEL_1;
 		level2Value = LEVEL_2;
@@ -95,11 +93,10 @@ public:
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0); //This is the current output to the motor
 		SmartDashboard::PutNumber("Accel", 0.1); //Acceleration going up
 		SmartDashboard::PutBoolean("Mag Input", false);
-		SetEncoderValue();
+		//SetEncoderValue();
 		Stop();
 	}
 	void TeleopPeriodic() {
-		SmartDashboard::PutNumber("Lifter Encoder", GetEnconder());
 		SmartDashboard::PutBoolean("Upper Limit", GetUpperLimit());
 		SmartDashboard::PutBoolean("Lower Limit", GetLowerLimit());
 		SmartDashboard::PutBoolean("Mag Input", GetMagInput());
@@ -120,6 +117,8 @@ public:
 			}
 
 		} else {
+			Stop();
+			/*
 			if (xbox->isLeftTriggerHeld()) {
 				if (xbox->isBHeld()) {
 					MoveToLevel1();
@@ -132,22 +131,31 @@ public:
 				} else {
 					Stop();
 				}
-			}
+			} */
 		} //End big if and lifter move if
 
 		lifterupdate();
 	}
 	void lifterupdate() {
+		double finalSpeed=0.0;
+
 		bool movingUp = lifterSpeed < 0;
 		bool movingDown = lifterSpeed > 0;
 		bool canGoUp = (upperLimit->Get() && movingUp);
 		bool canGoDown = (lowerLimit->Get() && movingDown);
 		if (canGoUp && lifterSpeed <= -0.1) {
-			lifter->Set(speedFactor * lifterSpeed);
+			finalSpeed=speedFactor * lifterSpeed;
 		} else if (canGoDown && lifterSpeed >= 0.1) {
-			lifter->Set(speedFactor * lifterSpeed);
+			finalSpeed=speedFactor * lifterSpeed;
 		} else {
-			lifter->Set(0.0);
+			finalSpeed=0.0;
+		}
+
+		if (finalSpeed==0.0) {
+			this->brake();
+		} else {
+			this->release();
+			lifter->Set(finalSpeed);
 		}
 	}
 
@@ -159,14 +167,14 @@ public:
 		autoProgram = s;
 	}
 
-	void SetEncoderValue() {
+	/*void SetEncoderValue() {
 		if (!lowerLimit->Get()) {
 			lifterSpeed = MOTOR_SPEED_DOWN;
 		} else {
 			lifterSpeed = 0;
 			en1->Reset();
 		}
-	}
+	}*/
 
 	/*
 	 * Gets a velocity based on the function f(x) = x^3.
@@ -216,6 +224,7 @@ public:
 		}
 	}
 
+	/*
 	void MoveToHome() {
 
 		if (lowerLimit->Get()) {
@@ -247,8 +256,7 @@ public:
 		} else {
 			lifterSpeed = 0;
 		}
-	}
-
+	} */
 	void SetHome(int homeValue) {
 		this->homeValue = homeValue;
 	}
@@ -265,10 +273,6 @@ public:
 		this->level3Value = level3Value;
 	}
 
-	int GetEnconder() {
-		return en1->Get();
-	}
-
 	bool GetUpperLimit() {
 		return upperLimit->Get();
 	}
@@ -281,8 +285,17 @@ public:
 		return magInput->Get();
 	}
 
+	virtual void brake() {
+		lifter->Set(0.0);
+	}
+
+	virtual void release() {
+
+	}
+
 private:
 
+	/*
 	void MoveToHomePrivate() {
 		if (en1->Get() > HOME + TOLERANCE) {
 			lifterSpeed = MOTOR_SPEED_DOWN;
@@ -320,7 +333,6 @@ private:
 		} else {
 			lifterSpeed = 0;
 		}
-	}
+	} */
 
-}
-;
+};
