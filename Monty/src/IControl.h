@@ -55,7 +55,9 @@ public:
 	virtual void TestInit(){}
 
 	virtual void DisabledPeriodic(){}
-	virtual void AutonomousPeriodic(){}
+	virtual int AutonomousPeriodic(void* input) {
+		return 1;
+	}
 	virtual void TeleopPeriodic(){}
 	virtual void TestPeriodic(){}
 

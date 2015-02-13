@@ -11,14 +11,50 @@
 #define GRABBERCHANNELOPEN 0
 #define GRABBERCHANNELCLOSE 1
 
+#define EXTEND_TIME_IN_MS 500
+#define EXTEND_COUNT EXTEND_TIME_IN_MS/5
+
 class GrabberControl : public IControl {
 	DoubleSolenoid *sol1;
 	XboxController *xbox;
+	int currentAutoCommand;
+	int autoCount;
 
 public:
 	GrabberControl() {
 		sol1 = new DoubleSolenoid(GRABBERCHANNELOPEN, GRABBERCHANNELCLOSE);
 		xbox = XboxController::getInstance();
+	}
+
+	void AutonomousInit() {
+		currentAutoCommand=-1;
+		autoCount=0;
+	}
+
+	int AutonomousPeriodic(void* input) {
+		int option=*((int*)input);//convert to int
+
+		if (currentAutoCommand!=option) {
+			currentAutoCommand=option;
+			autoCount=EXTEND_COUNT;
+		}
+
+		autoCount--;
+		if (autoCount<=0) {
+			AutonomousInit();
+			return 1;
+		}
+
+		switch(option) {
+		case 0:
+			SetGrabberArm(true);
+			break;
+		case 1:
+			SetGrabberArm(false);
+			break;
+
+		}
+		return 0;
 	}
 
 private:

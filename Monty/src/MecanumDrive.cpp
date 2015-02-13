@@ -46,10 +46,6 @@ public:
 
 	}
 
-	void AutonomousPeriodic() {
-
-	}
-
 	void TeleopInit() {
 		myRobot.SetSafetyEnabled(false);
 		SmartDashboard::PutBoolean("Use Gyro", false);

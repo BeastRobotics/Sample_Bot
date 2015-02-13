@@ -78,7 +78,7 @@ public:
 		setAutoProgram(autoProg);
 	}
 
-	void AutonomousPeriodic() {
+	int AutonomousPeriodic() {
 		/*switch (autoProgram) {
 		case 1:
 			//Drive to auto
@@ -97,6 +97,7 @@ public:
 			//Drive to auto
 			break;
 		}*/
+		return 0;
 	}
 	void TeleopInit() {
 		SmartDashboard::PutNumber("Lifter Encoder", 0.0);

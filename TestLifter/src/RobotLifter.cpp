@@ -179,7 +179,6 @@ private:
 		if (isArmManual && !isLifterManual) {
 			//grabber->DriveWithStick();
 		} else {
-			/**
 			 * A Dive in
 			 * B Drive out
 			 * X spin clockwise

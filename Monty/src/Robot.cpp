@@ -16,6 +16,7 @@
 
 class Robot: public IterativeRobot {
 	IControl *controllers[NUM_CONTROLLERS];
+	int autoReturns[NUM_CONTROLLERS];
 
 	LifterControlTester *lifter;
 public:
@@ -36,6 +37,11 @@ public:
 		controllers[5] = new CameraControl();
 
 		//lifter = new LifterControlTester();
+		//controllers[5] = new MecanumDrive();
+		controllers[6] = new CameraControl();
+		for (int i=0; i<NUM_CONTROLLERS; i++) {
+			autoReturns[i]=0;
+		}
 	}
 private:
 	LiveWindow *lw;
@@ -61,7 +67,7 @@ private:
 	void AutonomousPeriodic() {
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
-				controllers[i]->AutonomousPeriodic();
+				autoReturns[i]=controllers[i]->AutonomousPeriodic(autoReturns);
 		}
 
 	}
