@@ -5,6 +5,9 @@
  *      Author: Beasty
  */
 
+#ifndef LIFTERCONTROL_H
+#define LIFTERCONTROL_H
+
 // Make look like arm class
 #include "WPILib.h"
 #include "XboxController.h"
@@ -22,15 +25,15 @@
 #define HOLD_SPEED 0.05
 
 #define LIFTER_MOTOR 5
-#define LOWER_LIMIT 1
-#define UPPER_LIMIT 2
+#define LOWER_LIMIT 5
+#define UPPER_LIMIT 4
 
 class LifterControl: public IControl {
 
 protected:
 	Talon *lifter;
-	AnalogInput *upperLimit;
-	AnalogInput *lowerLimit;
+	DigitalInput *upperLimit;
+	DigitalInput *lowerLimit;
 	//DigitalInput *magInput;
 	XboxController *xbox;
 	Timer *time;
@@ -54,8 +57,8 @@ public:
 		level2Value = LEVEL_2;
 		level3Value = LEVEL_3;
 		homeValue = HOME;
-		upperLimit = new AnalogInput(UPPER_LIMIT);
-		lowerLimit = new AnalogInput(LOWER_LIMIT);
+		upperLimit = new DigitalInput(UPPER_LIMIT);
+		lowerLimit = new DigitalInput(LOWER_LIMIT);
 		//magInput = new DigitalInput(5);
 		lifterSpeed = 0;
 		speedFactor = 1.0;
@@ -107,8 +110,8 @@ public:
 		lifter->Set(0.0);
 	}
 	void TeleopPeriodic() {
-		SmartDashboard::PutNumber("Upper Limit", upperLimit->GetVoltage());
-		SmartDashboard::PutNumber("Lower Limit", lowerLimit->GetVoltage());
+		SmartDashboard::PutBoolean("Lower Limit", GetUpperLimit());
+		SmartDashboard::PutBoolean("Upper Limit", GetLowerLimit());
 		//SmartDashboard::PutBoolean("Mag Input", GetMagInput());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
 		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
@@ -144,17 +147,17 @@ public:
 			} */
 		} //End big if and lifter move if
 
-		//lifterupdate();
-		lifter->Set(0.0);
+		lifterupdate();
+		//lifter->Set(0.0);
 	}
 	void lifterupdate() {
-		UpperLimitValue = upperLimit->GetVoltage();
-		LowerLimitValue = lowerLimit->GetVoltage();
+		UpperLimitValue = GetUpperLimit();
+		LowerLimitValue = GetLowerLimit();
 		double finalSpeed=0.0;
 		bool movingUp = lifterSpeed < 0;
 		bool movingDown = lifterSpeed > 0;
-		bool canGoUp = ((UpperLimitValue < 2.0) && movingUp);
-		bool canGoDown = ((LowerLimitValue < 2.0) && movingDown);
+		bool canGoUp = (UpperLimitValue && movingUp);
+		bool canGoDown = (LowerLimitValue && movingDown);
 
 		if (canGoUp && lifterSpeed <= -0.1) {
 			finalSpeed=speedFactor * lifterSpeed;
@@ -225,14 +228,14 @@ public:
 	//TODO
 	void MoveUp() {
 		lifterSpeed = getVelocity(MOTOR_SPEED, acceleration);
-		if (upperLimit->GetVoltage() < 2.0) {
+		if (!GetUpperLimit()) {
 			lifterSpeed = 0;
 		}
 	}
 
 	void MoveDown() {
 		lifterSpeed = getVelocity(MOTOR_SPEED_DOWN, acceleration);
-		if (lowerLimit->GetVoltage() < 2.0) {
+		if (!GetLowerLimit()) {
 			lifterSpeed = 0;
 		}
 	}
@@ -286,15 +289,16 @@ public:
 		this->level3Value = level3Value;
 	}
 
-	/*
+
 	bool GetUpperLimit() {
-		return upperLimit->Get();
+		return lowerLimit->Get();  //Backwords
 	}
 
 	bool GetLowerLimit() {
-		return lowerLimit->Get();
+		return upperLimit->Get();  //backwords
 	}
 
+	/*
 	bool GetMagInput() {
 		return magInput->Get();
 	} */
@@ -350,3 +354,4 @@ private:
 	} */
 };
 
+#endif

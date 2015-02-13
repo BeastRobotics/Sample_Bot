@@ -10,6 +10,7 @@
 
 #define GRABBERCHANNELOPEN 0
 #define GRABBERCHANNELCLOSE 1
+
 class GrabberControl : public IControl {
 	DoubleSolenoid *sol1;
 	XboxController *xbox;

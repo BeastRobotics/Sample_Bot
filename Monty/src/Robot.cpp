@@ -9,12 +9,15 @@
 #include <stddef.h>
 #include "MecanumDrive.cpp"
 #include "LifterControl.cpp"
+#include "LifterControlTester.cpp"
+#include "CameraControl.cpp"
 
-#define NUM_CONTROLLERS 5
+#define NUM_CONTROLLERS 6
 
 class Robot: public IterativeRobot {
 	IControl *controllers[NUM_CONTROLLERS];
 
+	LifterControlTester *lifter;
 public:
 	Robot() :
 			lw(NULL) {
@@ -24,13 +27,15 @@ public:
 		}
 
 		controllers[0] = NewXboxController::getInstance();
-		controllers[1] = new LifterControl();
-		//controllers[1] = new LifterBrake();
+		//controllers[1] = new LifterControl();
+		controllers[1] = new LifterBrake();
 		controllers[2] = new CompressorControl();
 		//controllers[3] = new ArcadeDrive();
 		controllers[3] = new MecanumDrive();
 		controllers[4] = new GrabberControl();
-		//controllers[5] = new CameraControl();
+		controllers[5] = new CameraControl();
+
+		//lifter = new LifterControlTester();
 	}
 private:
 	LiveWindow *lw;
@@ -48,7 +53,7 @@ private:
 	void AutonomousInit() {
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
-			controllers[i]->AutonomousInit();
+				controllers[i]->AutonomousInit();
 		}
 
 	}
@@ -56,7 +61,7 @@ private:
 	void AutonomousPeriodic() {
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
-			controllers[i]->AutonomousPeriodic();
+				controllers[i]->AutonomousPeriodic();
 		}
 
 	}
@@ -66,9 +71,9 @@ private:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			SmartDashboard::PutNumber("State 2", i);
 			if (controllers[i] != NULL)
-			controllers[i]->TeleopInit();
+				controllers[i]->TeleopInit();
 		}
-
+		//lifter->init();
 	}
 
 	void TeleopPeriodic() {
@@ -76,15 +81,17 @@ private:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 
 			if (controllers[i] != NULL)
-			controllers[i]->TeleopPeriodic();
+				controllers[i]->TeleopPeriodic();
 		}
+
+		//lifter->move();
 	}
 
 	void TestPeriodic() {
 		lw->Run();
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
-			controllers[i]->TestPeriodic();
+				controllers[i]->TestPeriodic();
 		}
 	}
 };

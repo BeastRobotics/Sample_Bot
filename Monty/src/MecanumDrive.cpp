@@ -32,6 +32,8 @@ public:
 					rearRightChannel) {
 		myRobot.SetExpiration(0.1);
 		xbox = XboxController::getInstance();
+		myRobot.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);	// invert the left side motors
+		myRobot.SetInvertedMotor(RobotDrive::kRearLeftMotor, true);// you may need to change or remove this to match your robot
 		x = 0.0;
 		y = 0.0;
 		twist = 0.0;
@@ -57,12 +59,11 @@ public:
 		gyro->Reset();
 	}
 	void TeleopPeriodic() {
-		SmartDashboard::PutNumber("Speed Factor", speedFactor);
 		speedFactor = SmartDashboard::GetNumber("Speed Factor");
 
-		x = -xbox->getAxisLeftX();
+		x = xbox->getAxisLeftX();
 		y = xbox->getAxisLeftY();
-		twist = -xbox->getAxisRightX();
+		twist = xbox->getAxisRightX();
 
 		if (fabs(x) < 0.1) {
 			x = 0.0;
