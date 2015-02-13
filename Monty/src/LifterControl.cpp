@@ -21,13 +21,17 @@
 #define MOTOR_SPEED_DOWN 1.0
 #define HOLD_SPEED 0.05
 
+#define LIFTER_MOTOR 5
+#define LOWER_LIMIT 1
+#define UPPER_LIMIT 2
+
 class LifterControl: public IControl {
 
 protected:
 	Talon *lifter;
-	DigitalInput *upperLimit;
-	DigitalInput *lowerLimit;
-	DigitalInput *magInput;
+	AnalogInput *upperLimit;
+	AnalogInput *lowerLimit;
+	//DigitalInput *magInput;
 	XboxController *xbox;
 	Timer *time;
 	double speedFactor;
@@ -41,21 +45,27 @@ public:
 	double lifterSpeed;
 	double acceleration;
 	int autoProgram = 0;
+	float UpperLimitValue;
+	float LowerLimitValue;
 
 	LifterControl() {
-		lifter = new Talon(6);
+		lifter = new Talon(LIFTER_MOTOR);
+
 		level1Value = LEVEL_1;
 		level2Value = LEVEL_2;
 		level3Value = LEVEL_3;
 		homeValue = HOME;
-		upperLimit = new DigitalInput(3);
-		lowerLimit = new DigitalInput(4);
-		magInput = new DigitalInput(5);
+		upperLimit = new AnalogInput(UPPER_LIMIT);
+		lowerLimit = new AnalogInput(LOWER_LIMIT);
+		//magInput = new DigitalInput(5);
 		lifterSpeed = 0;
 		speedFactor = 1.0;
 		xbox = XboxController::getInstance();
 		time = new Timer();
 		acceleration = 0.05;
+
+		UpperLimitValue = 0.0;
+		LowerLimitValue = 0.0;
 	}
 
 	void RobotInit() {
@@ -94,12 +104,12 @@ public:
 		SmartDashboard::PutNumber("Accel", 0.1); //Acceleration going up
 		SmartDashboard::PutBoolean("Mag Input", false);
 		//SetEncoderValue();
-		Stop();
+		//Stop();
 	}
 	void TeleopPeriodic() {
-		SmartDashboard::PutBoolean("Upper Limit", GetUpperLimit());
-		SmartDashboard::PutBoolean("Lower Limit", GetLowerLimit());
-		SmartDashboard::PutBoolean("Mag Input", GetMagInput());
+		SmartDashboard::PutNumber("Upper Limit", upperLimit->GetVoltage());
+		SmartDashboard::PutNumber("Lower Limit", lowerLimit->GetVoltage());
+		//SmartDashboard::PutBoolean("Mag Input", GetMagInput());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
 		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
 		SetAccel(SmartDashboard::GetNumber("Accel"));
@@ -137,12 +147,14 @@ public:
 		lifterupdate();
 	}
 	void lifterupdate() {
+		UpperLimitValue = upperLimit->GetVoltage();
+		LowerLimitValue = lowerLimit->GetVoltage();
 		double finalSpeed=0.0;
-
 		bool movingUp = lifterSpeed < 0;
 		bool movingDown = lifterSpeed > 0;
-		bool canGoUp = (upperLimit->Get() && movingUp);
-		bool canGoDown = (lowerLimit->Get() && movingDown);
+		bool canGoUp = ((UpperLimitValue < 2.0) && movingUp);
+		bool canGoDown = ((LowerLimitValue < 2.0) && movingDown);
+
 		if (canGoUp && lifterSpeed <= -0.1) {
 			finalSpeed=speedFactor * lifterSpeed;
 		} else if (canGoDown && lifterSpeed >= 0.1) {
@@ -212,14 +224,14 @@ public:
 	//TODO
 	void MoveUp() {
 		lifterSpeed = getVelocity(MOTOR_SPEED, acceleration);
-		if (!upperLimit->Get()) {
+		if (upperLimit->GetVoltage() < 2.0) {
 			lifterSpeed = 0;
 		}
 	}
 
 	void MoveDown() {
 		lifterSpeed = getVelocity(MOTOR_SPEED_DOWN, acceleration);
-		if (!lowerLimit->Get()) {
+		if (lowerLimit->GetVoltage() < 2.0) {
 			lifterSpeed = 0;
 		}
 	}
@@ -273,6 +285,7 @@ public:
 		this->level3Value = level3Value;
 	}
 
+	/*
 	bool GetUpperLimit() {
 		return upperLimit->Get();
 	}
@@ -283,7 +296,7 @@ public:
 
 	bool GetMagInput() {
 		return magInput->Get();
-	}
+	} */
 
 	virtual void brake() {
 		lifter->Set(0.0);

@@ -8,13 +8,15 @@
 #include "XboxController.h"
 #include "IControl.h"
 
+#define GRABBERCHANNELOPEN 0
+#define GRABBERCHANNELCLOSE 1
 class GrabberControl : public IControl {
 	DoubleSolenoid *sol1;
 	XboxController *xbox;
 
 public:
 	GrabberControl() {
-		sol1 = new DoubleSolenoid(0, 1);
+		sol1 = new DoubleSolenoid(GRABBERCHANNELOPEN, GRABBERCHANNELCLOSE);
 		xbox = XboxController::getInstance();
 	}
 

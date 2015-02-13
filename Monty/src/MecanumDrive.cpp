@@ -18,6 +18,7 @@ class MecanumDrive: public IControl {
 	const static int rearLeftChannel = 4;
 	const static int frontRightChannel = 1;
 	const static int rearRightChannel = 3;
+	const static int gyroChannel = 0;
 
 	float x;
 	float y;
@@ -36,7 +37,7 @@ public:
 		twist = 0.0;
 		angle = 0.0;
 		speedFactor = 1.0;
-		gyro = new Gyro(1);
+		gyro = new Gyro(gyroChannel);
 	}
 
 	void AutonomousInit() {
