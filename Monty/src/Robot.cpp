@@ -8,6 +8,7 @@
 #include <RobotBase.h>
 #include <stddef.h>
 #include "MecanumDrive.cpp"
+#include "LifterControl.cpp"
 
 #define NUM_CONTROLLERS 5
 
@@ -71,11 +72,12 @@ private:
 	}
 
 	void TeleopPeriodic() {
+		SmartDashboard::PutString("State", "Tele Periodic");
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
+
 			if (controllers[i] != NULL)
 			controllers[i]->TeleopPeriodic();
 		}
-		SmartDashboard::PutString("State", "Tele Periodic");
 	}
 
 	void TestPeriodic() {

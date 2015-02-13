@@ -50,7 +50,6 @@ public:
 
 	LifterControl() {
 		lifter = new Talon(LIFTER_MOTOR);
-
 		level1Value = LEVEL_1;
 		level2Value = LEVEL_2;
 		level3Value = LEVEL_3;
@@ -105,6 +104,7 @@ public:
 		SmartDashboard::PutBoolean("Mag Input", false);
 		//SetEncoderValue();
 		//Stop();
+		lifter->Set(0.0);
 	}
 	void TeleopPeriodic() {
 		SmartDashboard::PutNumber("Upper Limit", upperLimit->GetVoltage());
@@ -144,7 +144,8 @@ public:
 			} */
 		} //End big if and lifter move if
 
-		lifterupdate();
+		//lifterupdate();
+		lifter->Set(0.0);
 	}
 	void lifterupdate() {
 		UpperLimitValue = upperLimit->GetVoltage();
@@ -347,5 +348,5 @@ private:
 			lifterSpeed = 0;
 		}
 	} */
-
 };
+
