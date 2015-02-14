@@ -15,6 +15,7 @@
 
 #define NUM_CONTROLLERS 7
 
+
 struct Command_Node {
 	int index;
 	int operation;
@@ -24,7 +25,11 @@ struct Command_Node {
 class Robot: public IterativeRobot {
 	IControl *controllers[NUM_CONTROLLERS];
 	int autoReturns[NUM_CONTROLLERS];
-
+	int *autoGrab = 0;
+	int *autoLift = 1;
+	int *autoPick = 2;
+	int *autoRotate = 3;
+	int *autoForward = 4;
 	Command_Node* head;
 	Command_Node* currentCommand;
 public:
@@ -44,7 +49,7 @@ public:
 	}
 
 	Robot() :
-			lw(NULL) {
+		lw(NULL) {
 		head = NULL;
 		currentCommand = NULL;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
@@ -69,6 +74,8 @@ public:
 	}
 private:
 	LiveWindow *lw;
+	int automonusCommand;
+	SendableChooser *chooser;
 
 	void addCommand(int index, int operation) {
 
@@ -90,6 +97,17 @@ private:
 
 	void RobotInit() {
 		lw = LiveWindow::GetInstance();
+
+		chooser = new SendableChooser();
+		chooser->AddDefault("Graber", autoGrab);
+		chooser->AddObject("Lifer", autoLift);
+		chooser->AddObject("Pickup", autoPick);
+		chooser->AddObject("Rotate", autoRotate);
+		chooser->AddObject("Forward", autoForward);
+		SmartDashboard::PutData("Auto Modes",chooser);
+
+
+
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			SmartDashboard::PutNumber("State 2", i);
 			if (controllers[i] != NULL)
@@ -109,6 +127,7 @@ private:
 
 	void AutonomousPeriodic() {
 		SmartDashboard::PutBoolean("DoneAuto", currentCommand==NULL);
+
 		if (currentCommand != NULL) {
 			int result = controllers[currentCommand->index]->AutonomousPeriodic(
 					currentCommand->operation);
@@ -124,6 +143,7 @@ private:
 	}
 
 	void TeleopInit() {
+		SmartDashboard::PutNumber("Tommy Genius", (double)chooser->GetSelected());
 		SmartDashboard::PutString("State", "Tele Init");
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			SmartDashboard::PutNumber("State 2", i);
