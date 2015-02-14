@@ -3,7 +3,6 @@
  */
 
 #include "WPILib.h"
-#include "Nivision.h"
 #include "NewXboxController.h"
 #include <cmath>
 

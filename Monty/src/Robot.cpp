@@ -14,11 +14,17 @@
 
 #define NUM_CONTROLLERS 6
 
+struct Command{
+	int index;
+	int operation;
+	Command* nextCommand;
+};
+
 class Robot: public IterativeRobot {
 	IControl *controllers[NUM_CONTROLLERS];
 	int autoReturns[NUM_CONTROLLERS];
 
-	LifterControlTester *lifter;
+	Command* head;
 public:
 	Robot() :
 			lw(NULL) {
@@ -45,6 +51,25 @@ public:
 	}
 private:
 	LiveWindow *lw;
+
+	void addCommand(int index, int operation){
+
+		Command* toAdd = new Command();
+		toAdd->index = index;
+		toAdd->nextCommand = NULL;
+		toAdd->operation = operation;
+		Command* current = head;
+		if(head == NULL){
+			head = toAdd;
+			return;
+		}
+		else{
+			while(current->nextCommand != NULL){
+				current =  current->nextCommand;
+			}
+			current->nextCommand = toAdd;
+		}
+	}
 
 	void RobotInit() {
 		lw = LiveWindow::GetInstance();

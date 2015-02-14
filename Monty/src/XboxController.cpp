@@ -9,7 +9,6 @@
 /* This is the CPP file for Xbox Controller */
 
 #include "WPILib.h"
-#include "Nivision.h"
 #include "XboxController.h"
 #include "NewXboxController.h"
 #include <cmath>
