@@ -58,6 +58,7 @@ public:
 	virtual int AutonomousPeriodic(int input) {
 		return 1;
 	}
+	virtual void AutonomousExecute(){}
 	virtual void TeleopPeriodic(){}
 	virtual void TestPeriodic(){}
 

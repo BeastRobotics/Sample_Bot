@@ -13,9 +13,7 @@
 #include "CameraControl.cpp"
 #include "AutoDelay.h"
 
-
 #define NUM_CONTROLLERS 7
-
 
 struct Command_Node {
 	int index;
@@ -113,10 +111,10 @@ private:
 				currentCommand = currentCommand->nextCommand;
 			}
 		}
-//		for (int i = 0; i < NUM_CONTROLLERS; i++) {
-//			if (controllers[i] != NULL)
-//				autoReturns[i]=controllers[i]->AutonomousPeriodic(0);
-//		}
+		for (int i = 0; i < NUM_CONTROLLERS; i++) {
+			if (controllers[i] != NULL)
+				controllers[i]->AutonomousExecute();
+		}
 
 	}
 
@@ -148,6 +146,7 @@ private:
 				controllers[i]->TestPeriodic();
 		}
 	}
+
 };
 
 START_ROBOT_CLASS(Robot);

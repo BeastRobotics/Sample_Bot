@@ -71,29 +71,34 @@ public:
 
 		UpperLimitValue = 0.0;
 		LowerLimitValue = 0.0;
+
+		autoCount = -1;
+		lastCommand = 0;
 	}
 
 	void RobotInit() {
 	}
+
 	void DisabledInit() {
 	}
 
 	void AutonomousInit() {
-		autoCount=-1;
-		lastCommand=0;
+		autoCount = -1;
+		lastCommand = 0;
+		Stop();
 	}
 
 	//input==1 means go up
 	//input==2 means go down
 	//input==0 means stop moving
 	int AutonomousPeriodic(int input) {
-		if (input!=lastCommand) {
-			lastCommand=input;
-			autoCount=abs(input/TIME_BETWEEN_CALLS);
+		if (input != lastCommand) {
+			lastCommand = input;
+			autoCount = abs(input / TIME_BETWEEN_CALLS);
 		}
 
 		autoCount--;
-		if (autoCount<=0) {
+		if (autoCount <= 0) {
 			AutonomousInit();
 			Stop();
 			return 1;
@@ -108,6 +113,7 @@ public:
 
 		return 0;
 	}
+
 	void TeleopInit() {
 		SmartDashboard::PutNumber("Lifter Encoder", 0.0);
 		SmartDashboard::PutBoolean("Manual Lifter Mode", true);
@@ -119,6 +125,7 @@ public:
 		//Stop();
 		lifter->Set(0.0);
 	}
+
 	void TeleopPeriodic() {
 		SmartDashboard::PutBoolean("Lower Limit", GetUpperLimit());
 		SmartDashboard::PutBoolean("Upper Limit", GetLowerLimit());
@@ -239,15 +246,15 @@ public:
 	void MoveUp() {
 		lifterSpeed = getVelocity(MOTOR_SPEED, acceleration);
 		/*if (!GetUpperLimit()) {
-			lifterSpeed = 0;
-		}*/
+		 lifterSpeed = 0;
+		 }*/
 	}
 
 	void MoveDown() {
 		lifterSpeed = getVelocity(MOTOR_SPEED_DOWN, acceleration);
 		/*if (!GetLowerLimit()) {
-			lifterSpeed = 0;
-		}*/
+		 lifterSpeed = 0;
+		 }*/
 	}
 
 	/*
@@ -318,6 +325,10 @@ public:
 
 	virtual void release() {
 
+	}
+
+	void AutonomousExecute() {
+		lifterupdate();
 	}
 
 private:
