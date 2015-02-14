@@ -11,8 +11,10 @@
 #include <SmartDashboard/SmartDashboard.h>
 #include <XboxController.h>
 #include <cmath>
+#include "WPILib.h"
 
 #include "MultiOutputPID.h"
+#define THRESHHOLD_RANGE 2 //measured in degrees
 
 class MecanumDrive: public IControl {
 	XboxController *xbox;
@@ -20,12 +22,14 @@ class MecanumDrive: public IControl {
 	Gyro *gyro;
 	MultiOutputPID *motorOutput;
 	Talon *motor1, *motor2, *motor3, *motor4;
+	PIDController *autoRotateController;
 
 	const static int frontLeftChannel=2;
 	const static int rearLeftChannel=4;
 	const static int frontRightChannel=1;
 	const static int rearRightChannel=3;
 	const static int gyroChannel=0;
+	int lastCommand;
 
 	float x;
 	float y;
@@ -35,11 +39,14 @@ class MecanumDrive: public IControl {
 
 public:
 	MecanumDrive() {
-		motorOutput = NULL;
 		motor1=new Talon(frontRightChannel);
 		motor2=new Talon(rearRightChannel);
 		motor3=new Talon(frontLeftChannel);
 		motor4=new Talon(rearLeftChannel);
+
+		motorOutput = new MultiOutputPID(motor1,motor2,motor4,motor3,true);
+		gyro=new Gyro(gyroChannel);
+		autoRotateController=new PIDController(0.5, 0.0, 0.0, gyro, motorOutput);
 
 		myRobot = new RobotDrive(motor3, motor4, motor1, motor2);
 		myRobot->SetExpiration(0.1);
@@ -51,16 +58,26 @@ public:
 		twist=0.0;
 		angle=0.0;
 		speedFactor=1.0;
-		gyro=new Gyro(gyroChannel);
 	}
 
 	void AutonomousInit() {
-		motorOutput = new MultiOutputPID(motor1,motor2,motor4,motor3,false);
-
+		lastCommand=0;
+		autoRotateController->Disable();
+		gyro->Reset();
 	}
 
-	void AutonomousPeriodic() {
-
+	int AutonomousPeriodic(int input) {
+		if (lastCommand!=input) {
+			lastCommand=input;
+			autoRotateController->SetSetpoint(input);
+			autoRotateController->Enable();
+		}
+		double gyroValue=gyro->GetAngle();
+		if (abs(gyroValue-input)<THRESHHOLD_RANGE) {
+			AutonomousInit();
+			return 1;
+		}
+		return 0;
 	}
 
 	void TeleopInit() {
