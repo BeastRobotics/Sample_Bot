@@ -15,6 +15,8 @@
 
 #include "MultiOutputPID.h"
 #define THRESHHOLD_RANGE 2 //measured in degrees
+#define DAVIDS_FUN_INPUT 20
+#define FINAL_DEBOUNCE_TURN 300
 
 class MecanumDrive: public IControl {
 	XboxController *xbox;
@@ -33,6 +35,7 @@ class MecanumDrive: public IControl {
 	int lastCommandTurn;
 	int lastCommandDrive;
 	int autoDriveCounter;
+	int autoTurnCounter;
 
 	float x;
 	float y;
@@ -47,9 +50,9 @@ public:
 		motor3 = new Talon(frontLeftChannel);
 		motor4 = new Talon(rearLeftChannel);
 
-		motorOutput = new MultiOutputPID(motor1, motor2, motor4, motor3, true);
+		motorOutput = new MultiOutputPID(motor1, motor3, motor2, motor4, true);
 		gyro = new Gyro(gyroChannel);
-		autoRotateController = new PIDController(0.5, 0.0, 0.0, gyro,
+		autoRotateController = new PIDController(0.005, 0.0, 0.0, gyro,
 				motorOutput);
 
 		myRobot = new RobotDrive(motor3, motor4, motor1, motor2);
@@ -67,6 +70,7 @@ public:
 		lastCommandTurn = 0;
 		lastCommandDrive = 0;
 		autoDriveCounter = 0;
+		autoTurnCounter = 0;
 	}
 
 	void AutonomousInit() {
@@ -74,6 +78,7 @@ public:
 		lastCommandTurn = 0;
 		lastCommandDrive = 0;
 		autoDriveCounter = 0;
+		autoTurnCounter = 0;
 		autoRotateController->Disable();
 		gyro->Reset();
 		motorOutput->DisableOverDrive();
@@ -93,7 +98,7 @@ public:
 			return turn(-90);
 		default:
 			if (abs(input) > 10) {
-				return drive(abs(input), input > 0);
+				return drive(abs(input / DAVIDS_FUN_INPUT), input > 0);
 			}
 			break;
 		}
@@ -106,11 +111,17 @@ public:
 			lastCommandTurn = input;
 			autoRotateController->SetSetpoint(input);
 			autoRotateController->Enable();
+			autoTurnCounter = FINAL_DEBOUNCE_TURN / DAVIDS_FUN_INPUT;
 		}
 		double gyroValue = gyro->GetAngle();
 		if (abs(gyroValue - input) < THRESHHOLD_RANGE) {
-			AutonomousInit();
-			return 1;
+			if (--autoTurnCounter < 0) {
+				AutonomousInit();
+				return 1;
+			}
+		}
+		else{
+			autoTurnCounter = FINAL_DEBOUNCE_TURN / DAVIDS_FUN_INPUT;
 		}
 		return 0;
 	}
@@ -118,7 +129,7 @@ public:
 	int drive(int input, bool forward) { //input is how long we want to drive
 		if (lastCommandDrive != input) {
 			lastCommandDrive = input;
-			motorOutput->SetOverDrive(forward ? 0.5 : -0.5);
+			motorOutput->SetOverDrive(forward ? 0.25 : -0.25);
 			gyro->Reset();
 			autoRotateController->SetSetpoint(0);
 			autoRotateController->Enable();
@@ -135,10 +146,11 @@ public:
 	void TeleopInit() {
 		myRobot->SetSafetyEnabled(false);
 		SmartDashboard::PutBoolean("Use Gyro", false);
-
 		SmartDashboard::PutNumber("Speed Factor", speedFactor);
 
 		gyro->Reset();
+
+		autoRotateController->Disable();
 	}
 
 	void TeleopPeriodic() {
@@ -178,12 +190,12 @@ public:
 	}
 
 	void AutonomousExecute() {
-		//if (!(lastCommand||lastCommandTurn||lastCommandDrive)) {
+		if (!(lastCommand || lastCommandTurn || lastCommandDrive)) {
 			motor1->PIDWrite(0.0);
 			motor2->PIDWrite(0.0);
 			motor3->PIDWrite(0.0);
 			motor4->PIDWrite(0.0);
-		//}
+		}
 	}
 };
 

@@ -27,7 +27,7 @@
 #define LIFTER_MOTOR 5
 #define LOWER_LIMIT 5
 #define UPPER_LIMIT 4
-#define TIME_BETWEEN_CALLS 5
+#define TIME_BETWEEN_CALLS 20
 
 class LifterControl: public IControl {
 
@@ -104,10 +104,10 @@ public:
 			return 1;
 		}
 
-		if (input > 0) {
+		if (input < 0) {
 			MoveUp();
 		}
-		if (input < 0) {
+		if (input > 0) {
 			MoveDown();
 		}
 
@@ -132,6 +132,7 @@ public:
 		//SmartDashboard::PutBoolean("Mag Input", GetMagInput());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
 		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
+		SmartDashboard::PutNumber("Lifter Speed Factor", speedFactor);
 		SetAccel(SmartDashboard::GetNumber("Accel"));
 
 		bool isLifterManual = SmartDashboard::GetBoolean("Manual Lifter Mode");

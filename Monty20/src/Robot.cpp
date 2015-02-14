@@ -15,9 +15,14 @@
 
 #define NUM_CONTROLLERS 7
 #define GRABBER 4
-#define MECHANUM_DRIVE 3
+#define MOVE 3
 #define LIFTER 1
 #define DELAY 6
+#define G_OPEN 0
+#define G_CLOSE 1
+#define AUTODRIVE 0
+#define GRABTURNLEFT 1
+#define GRABTURNRIGHT 2
 
 struct Command_Node {
 	int index;
@@ -29,11 +34,9 @@ class Robot: public IterativeRobot {
 
 	IControl *controllers[NUM_CONTROLLERS];
 	int autoReturns[NUM_CONTROLLERS];
-	int *autoGrab = 0;
-	int *autoLift = 1;
-	int *autoPick = 2;
-	int *autoRotate = 3;
-	int *autoForward = 4;
+	int autoDrive = AUTODRIVE;
+	int grabTurnLeft = GRABTURNLEFT;
+	int grabTurnRight = GRABTURNRIGHT;
 
 	Command_Node* head;
 	Command_Node* currentCommand;
@@ -54,27 +57,78 @@ public:
 	}
 
 	void lifterTest() {
-		/*addCommand(LIFTER, 500);
-		addCommand(DELAY, 5000);
-		addCommand(LIFTER, -300);
-		addCommand(DELAY, 5000);
-		addCommand(LIFTER, 300);
-		addCommand(DELAY, 5000);
-		addCommand(LIFTER, -300);
-		addCommand(DELAY, 5000);*/
-		//addCommand(LIFTER, 3000);
-		//addCommand(DELAY, 10000);
-		//addCommand(LIFTER, -3000);
+		addCommand(LIFTER, 1000);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, -1000);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, 1000);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, -1000);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, 3000);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, -3000);
 	}
 
 	void pickupTest() {
-		addCommand(GRABBER, 0);
-		addCommand(DELAY, 250);
-		addCommand(LIFTER, -500);
+		addCommand(GRABBER, G_OPEN);
+		addCommand(DELAY, 2500);
+		addCommand(LIFTER, 3000);
+		addCommand(DELAY, 2500);
+		addCommand(LIFTER, -3000);
+		addCommand(DELAY, 2500);
+		addCommand(GRABBER, G_CLOSE);
+	}
+
+	void rotateTest() {
+		addCommand(MOVE, 1);
+		addCommand(DELAY, 1000);
+		addCommand(MOVE, 2);
+		addCommand(DELAY, 1000);
+		addCommand(MOVE, 1);
+		addCommand(DELAY, 1000);
+		addCommand(MOVE, 2);
+	}
+
+	void driveStraight() {
+		addCommand(MOVE, 2000);
+	}
+
+	void finalAuto() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, 2500);
+		addCommand(LIFTER, 1000);
+		addCommand(DELAY, 2500);
+		addCommand(MOVE, 1);
 		addCommand(DELAY, 500);
-		addCommand(LIFTER, 500);
-		addCommand(DELAY, 250);
-		addCommand(GRABBER, 1);
+		addCommand(MOVE, 1000);
+		addCommand(DELAY, 2000);
+		addCommand(LIFTER, -1000);
+		addCommand(GRABBER, G_OPEN);
+	}
+	void rotateRightDrive() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, 1000);
+		addCommand(DELAY, 1000);
+		addCommand(MOVE, 1);
+		addCommand(DELAY, 500);
+		addCommand(MOVE, 1000);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, -1000);
+		addCommand(GRABBER, G_OPEN);
+	}
+	void rotateLeftDrive() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, 1000);
+		addCommand(DELAY, 1000);
+		addCommand(MOVE, 2);
+		addCommand(DELAY, 500);
+		addCommand(MOVE, 1000);
+		addCommand(DELAY, 1000);
+		addCommand(LIFTER, -1000);
+		addCommand(GRABBER, G_OPEN);
 	}
 
 	Robot() :
@@ -84,7 +138,6 @@ public:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			controllers[i] = NULL;
 		}
-		//lifterTest();
 		controllers[0] = NewXboxController::getInstance();
 		controllers[1] = new LifterControl();
 		//controllers[1] = new LifterBrake();
@@ -101,6 +154,7 @@ public:
 			autoReturns[i] = 0;
 		}
 	}
+
 private:
 	LiveWindow *lw;
 	int automonusCommand;
@@ -124,6 +178,12 @@ private:
 		current->nextCommand = toAdd;
 	}
 
+	void deleteList(Command_Node *bob) {
+		if (bob->nextCommand != NULL)
+			deleteList(bob->nextCommand);
+		delete bob;
+	}
+
 	void RobotInit() {
 		lw = LiveWindow::GetInstance();
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
@@ -133,17 +193,31 @@ private:
 		}
 
 		chooser = new SendableChooser();
-		chooser->AddDefault("Graber", autoGrab);
-		chooser->AddObject("Lifer", autoLift);
-		chooser->AddObject("Pickup", autoPick);
-		chooser->AddObject("Rotate", autoRotate);
-		chooser->AddObject("Forward", autoForward);
-		SmartDashboard::PutData("Auto Modes",chooser);
+		chooser->AddDefault("Drive Forward", &autoDrive);
+		chooser->AddObject("Left And Forward", &grabTurnLeft);
+		chooser->AddObject("Right And Forward", &grabTurnRight);
+		SmartDashboard::PutData("Auto Modes", chooser);
 		SmartDashboard::PutString("State", "Robot Init");
 	}
 
 	void AutonomousInit() {
-		currentCommand = head;
+		int chooserValue = *((int*) (chooser->GetSelected()));
+		SmartDashboard::PutNumber("chooserValue", chooserValue);
+
+		deleteList(head);
+		switch (chooserValue) {
+		case AUTODRIVE:
+			driveStraight();
+			//TODO Add Deafualt Case
+			break;
+		case GRABTURNLEFT:
+			rotateLeftDrive();
+			break;
+
+		case GRABTURNRIGHT:
+			rotateRightDrive();
+			break;
+		}
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
 				controllers[i]->AutonomousInit();
@@ -154,6 +228,8 @@ private:
 	void AutonomousPeriodic() {
 		SmartDashboard::PutBoolean("DoneAuto", currentCommand == NULL);
 		if (currentCommand != NULL) {
+			SmartDashboard::PutNumber("Command Index", currentCommand->index);
+			SmartDashboard::PutNumber("Command Operation", currentCommand->operation);
 			int result = controllers[currentCommand->index]->AutonomousPeriodic(
 					currentCommand->operation);
 			if (result == 1) {
@@ -168,7 +244,7 @@ private:
 	}
 
 	void TeleopInit() {
-		SmartDashboard::PutNumber("Tommy Genius", (double)chooser->GetSelected());
+		//SmartDashboard::PutNumber("Tommy Genius", (double)chooser->GetSelected());
 		SmartDashboard::PutString("State", "Tele Init");
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			SmartDashboard::PutNumber("State 2", i);
