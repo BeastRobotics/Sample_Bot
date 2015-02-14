@@ -76,12 +76,12 @@ private:
 		if (head == NULL) {
 			head = toAdd;
 			return;
-		} else {
-			while (current->nextCommand != NULL) {
-				current = current->nextCommand;
-			}
-			current->nextCommand = toAdd;
 		}
+
+		while (current->nextCommand != NULL) {
+			current = current->nextCommand;
+		}
+		current->nextCommand = toAdd;
 	}
 
 	void RobotInit() {

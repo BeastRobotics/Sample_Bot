@@ -27,6 +27,7 @@
 #define LIFTER_MOTOR 5
 #define LOWER_LIMIT 5
 #define UPPER_LIMIT 4
+#define TIME_BETWEEN_CALLS 5
 
 class LifterControl: public IControl {
 
@@ -38,6 +39,8 @@ protected:
 	XboxController *xbox;
 	Timer *time;
 	double speedFactor;
+
+	int autoCount, lastCommand;
 
 public:
 
@@ -74,29 +77,35 @@ public:
 	}
 	void DisabledInit() {
 	}
-	void AutonomousInit(int autoProg) {
-		setAutoProgram(autoProg);
+
+	void AutonomousInit() {
+		autoCount=-1;
+		lastCommand=0;
 	}
 
-	int AutonomousPeriodic() {
-		/*switch (autoProgram) {
-		case 1:
-			//Drive to auto
-			break;
-		case 2:
-			//Take RC to auto
+	//input==1 means go up
+	//input==2 means go down
+	//input==0 means stop moving
+	int AutonomousPeriodic(int input) {
+		if (input!=lastCommand) {
+			lastCommand=input;
+			autoCount=abs(input/TIME_BETWEEN_CALLS);
+		}
 
-			break;
-		case 3:
-			//Take tote to auto
-			break;
-		case 4:
-			//Take RC and tote to Auto
-			break;
-		default:
-			//Drive to auto
-			break;
-		}*/
+		autoCount--;
+		if (autoCount<=0) {
+			AutonomousInit();
+			Stop();
+			return 1;
+		}
+
+		if (input > 0) {
+			MoveUp();
+		}
+		if (input < 0) {
+			MoveDown();
+		}
+
 		return 0;
 	}
 	void TeleopInit() {
@@ -133,19 +142,19 @@ public:
 		} else {
 			Stop();
 			/*
-			if (xbox->isLeftTriggerHeld()) {
-				if (xbox->isBHeld()) {
-					MoveToLevel1();
-				} else if (xbox->isYHeld()) {
-					MoveToLevel2();
-				} else if (xbox->isXHeld()) {
-					MoveToLevel3();
-				} else if (xbox->isAHeld()) {
-					MoveToHome();
-				} else {
-					Stop();
-				}
-			} */
+			 if (xbox->isLeftTriggerHeld()) {
+			 if (xbox->isBHeld()) {
+			 MoveToLevel1();
+			 } else if (xbox->isYHeld()) {
+			 MoveToLevel2();
+			 } else if (xbox->isXHeld()) {
+			 MoveToLevel3();
+			 } else if (xbox->isAHeld()) {
+			 MoveToHome();
+			 } else {
+			 Stop();
+			 }
+			 } */
 		} //End big if and lifter move if
 
 		lifterupdate();
@@ -154,21 +163,21 @@ public:
 	void lifterupdate() {
 		UpperLimitValue = GetUpperLimit();
 		LowerLimitValue = GetLowerLimit();
-		double finalSpeed=0.0;
+		double finalSpeed = 0.0;
 		bool movingUp = lifterSpeed < 0;
 		bool movingDown = lifterSpeed > 0;
 		bool canGoUp = (UpperLimitValue && movingUp);
 		bool canGoDown = (LowerLimitValue && movingDown);
 
 		if (canGoUp && lifterSpeed <= -0.1) {
-			finalSpeed=speedFactor * lifterSpeed;
+			finalSpeed = speedFactor * lifterSpeed;
 		} else if (canGoDown && lifterSpeed >= 0.1) {
-			finalSpeed=speedFactor * lifterSpeed;
+			finalSpeed = speedFactor * lifterSpeed;
 		} else {
-			finalSpeed=0.0;
+			finalSpeed = 0.0;
 		}
 
-		if (finalSpeed==0.0) {
+		if (finalSpeed == 0.0) {
 			this->brake();
 		} else {
 			this->release();
@@ -185,13 +194,13 @@ public:
 	}
 
 	/*void SetEncoderValue() {
-		if (!lowerLimit->Get()) {
-			lifterSpeed = MOTOR_SPEED_DOWN;
-		} else {
-			lifterSpeed = 0;
-			en1->Reset();
-		}
-	}*/
+	 if (!lowerLimit->Get()) {
+	 lifterSpeed = MOTOR_SPEED_DOWN;
+	 } else {
+	 lifterSpeed = 0;
+	 en1->Reset();
+	 }
+	 }*/
 
 	/*
 	 * Gets a velocity based on the function f(x) = x^3.
@@ -242,38 +251,38 @@ public:
 	}
 
 	/*
-	void MoveToHome() {
+	 void MoveToHome() {
 
-		if (lowerLimit->Get()) {
-			MoveToHomePrivate();
-		} else {
-			lifterSpeed = 0;
-		}
-	}
+	 if (lowerLimit->Get()) {
+	 MoveToHomePrivate();
+	 } else {
+	 lifterSpeed = 0;
+	 }
+	 }
 
-	void MoveToLevel1() {
-		if (upperLimit->Get()) {
-			MoveToLevel1Private();
-		} else {
-			lifterSpeed = 0;
-		}
-	}
+	 void MoveToLevel1() {
+	 if (upperLimit->Get()) {
+	 MoveToLevel1Private();
+	 } else {
+	 lifterSpeed = 0;
+	 }
+	 }
 
-	void MoveToLevel2() {
-		if (upperLimit->Get()) {
-			MoveToLevel2Private();
-		} else {
-			lifterSpeed = 0;
-		}
-	}
+	 void MoveToLevel2() {
+	 if (upperLimit->Get()) {
+	 MoveToLevel2Private();
+	 } else {
+	 lifterSpeed = 0;
+	 }
+	 }
 
-	void MoveToLevel3() {
-		if (upperLimit->Get()) {
-			MoveToLevel3Private();
-		} else {
-			lifterSpeed = 0;
-		}
-	} */
+	 void MoveToLevel3() {
+	 if (upperLimit->Get()) {
+	 MoveToLevel3Private();
+	 } else {
+	 lifterSpeed = 0;
+	 }
+	 } */
 	void SetHome(int homeValue) {
 		this->homeValue = homeValue;
 	}
@@ -290,7 +299,6 @@ public:
 		this->level3Value = level3Value;
 	}
 
-
 	bool GetUpperLimit() {
 		return lowerLimit->Get();  //Backwords
 	}
@@ -300,9 +308,9 @@ public:
 	}
 
 	/*
-	bool GetMagInput() {
-		return magInput->Get();
-	} */
+	 bool GetMagInput() {
+	 return magInput->Get();
+	 } */
 
 	virtual void brake() {
 		lifter->Set(0.0);
@@ -315,44 +323,44 @@ public:
 private:
 
 	/*
-	void MoveToHomePrivate() {
-		if (en1->Get() > HOME + TOLERANCE) {
-			lifterSpeed = MOTOR_SPEED_DOWN;
-		} else {
-			en1->Reset();
-			lifterSpeed = 0;
-		}
-	}
+	 void MoveToHomePrivate() {
+	 if (en1->Get() > HOME + TOLERANCE) {
+	 lifterSpeed = MOTOR_SPEED_DOWN;
+	 } else {
+	 en1->Reset();
+	 lifterSpeed = 0;
+	 }
+	 }
 
-	void MoveToLevel1Private() {
-		if (en1->Get() < LEVEL_1 - TOLERANCE) {
-			lifterSpeed = MOTOR_SPEED;
-		} else if (en1->Get() > LEVEL_1 + TOLERANCE) {
-			lifterSpeed = -MOTOR_SPEED;
-		} else {
-			lifterSpeed = 0;
-		}
-	}
+	 void MoveToLevel1Private() {
+	 if (en1->Get() < LEVEL_1 - TOLERANCE) {
+	 lifterSpeed = MOTOR_SPEED;
+	 } else if (en1->Get() > LEVEL_1 + TOLERANCE) {
+	 lifterSpeed = -MOTOR_SPEED;
+	 } else {
+	 lifterSpeed = 0;
+	 }
+	 }
 
-	void MoveToLevel2Private() {
-		if (en1->Get() < LEVEL_2 - TOLERANCE) {
-			lifterSpeed = MOTOR_SPEED;
-		} else if (en1->Get() > LEVEL_2 + TOLERANCE) {
-			lifterSpeed = -MOTOR_SPEED;
-		} else {
-			lifterSpeed = 0;
-		}
-	}
+	 void MoveToLevel2Private() {
+	 if (en1->Get() < LEVEL_2 - TOLERANCE) {
+	 lifterSpeed = MOTOR_SPEED;
+	 } else if (en1->Get() > LEVEL_2 + TOLERANCE) {
+	 lifterSpeed = -MOTOR_SPEED;
+	 } else {
+	 lifterSpeed = 0;
+	 }
+	 }
 
-	void MoveToLevel3Private() {
-		if (en1->Get() < LEVEL_3 - TOLERANCE) {
-			lifterSpeed = MOTOR_SPEED;
-		} else if (en1->Get() > LEVEL_3 + TOLERANCE) {
-			lifterSpeed = -MOTOR_SPEED;
-		} else {
-			lifterSpeed = 0;
-		}
-	} */
+	 void MoveToLevel3Private() {
+	 if (en1->Get() < LEVEL_3 - TOLERANCE) {
+	 lifterSpeed = MOTOR_SPEED;
+	 } else if (en1->Get() > LEVEL_3 + TOLERANCE) {
+	 lifterSpeed = -MOTOR_SPEED;
+	 } else {
+	 lifterSpeed = 0;
+	 }
+	 } */
 };
 
 #endif
