@@ -14,7 +14,7 @@
 
 #define NUM_CONTROLLERS 6
 
-struct Command {
+struct Command{
 	int index;
 	int operation;
 	Command* nextCommand;
