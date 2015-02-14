@@ -14,6 +14,10 @@
 #include "AutoDelay.h"
 
 #define NUM_CONTROLLERS 7
+#define GRABBER 4
+#define MECHANUM_DRIVE 3
+#define LIFTER 1
+#define DELAY 6
 
 struct Command_Node {
 	int index;
@@ -29,18 +33,41 @@ class Robot: public IterativeRobot {
 	Command_Node* currentCommand;
 public:
 	void grabberTest() {
-		addCommand(4, 0);
-		addCommand(6, 500);
-		addCommand(4, 1);
-		addCommand(6, 500);
-		addCommand(4, 0);
-		addCommand(6, 500);
-		addCommand(4, 1);
-		addCommand(6, 500);
-		addCommand(4, 0);
-		addCommand(6, 500);
-		addCommand(4, 1);
-		addCommand(6, 500);
+		addCommand(GRABBER, 0);
+		addCommand(DELAY, 500);
+		addCommand(GRABBER, 1);
+		addCommand(DELAY, 500);
+		addCommand(GRABBER, 0);
+		addCommand(DELAY, 500);
+		addCommand(GRABBER, 1);
+		addCommand(DELAY, 500);
+		addCommand(GRABBER, 0);
+		addCommand(DELAY, 500);
+		addCommand(GRABBER, 1);
+		addCommand(DELAY, 500);
+	}
+
+	void lifterTest() {
+		addCommand(LIFTER, -500);
+		addCommand(DELAY, 250);
+		addCommand(LIFTER, 300);
+		addCommand(DELAY, 250);
+		addCommand(LIFTER, -300);
+		addCommand(DELAY, 250);
+		addCommand(LIFTER, 300);
+		addCommand(DELAY, 250);
+		addCommand(LIFTER, -300);
+		addCommand(LIFTER, 300);
+	}
+
+	void pickupTest() {
+		addCommand(GRABBER, 0);
+		addCommand(DELAY, 250);
+		addCommand(LIFTER, -500);
+		addCommand(DELAY, 500);
+		addCommand(LIFTER, 500);
+		addCommand(DELAY, 250);
+		addCommand(GRABBER, 1);
 	}
 
 	Robot() :
@@ -50,7 +77,7 @@ public:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			controllers[i] = NULL;
 		}
-		grabberTest();
+		lifterTest();
 		controllers[0] = NewXboxController::getInstance();
 		//controllers[1] = new LifterControl();
 		controllers[1] = new LifterBrake();
@@ -108,7 +135,7 @@ private:
 	}
 
 	void AutonomousPeriodic() {
-		SmartDashboard::PutBoolean("DoneAuto", currentCommand==NULL);
+		SmartDashboard::PutBoolean("DoneAuto", currentCommand == NULL);
 		if (currentCommand != NULL) {
 			int result = controllers[currentCommand->index]->AutonomousPeriodic(
 					currentCommand->operation);
