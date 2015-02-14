@@ -27,9 +27,14 @@ public:
 			DriverStation::ReportError("IMAQdxConfigureGrab error: " + std::to_string((long)imaqError) + "\n");
 		}
 		IMAQdxStartAcquisition(session);
+		imaqError = IMAQdxConfigureGrab(session);
+		if(imaqError != IMAQdxErrorSuccess) {
+			DriverStation::ReportError("IMAQdxConfigureGrab error: " + std::to_string((long)imaqError) + "\n");
+		}
 
 	}
 	void TeleopPeriodic(){
+		IMAQdxStartAcquisition(session);
 		IMAQdxGrab(session, frame, true, NULL);
 		if(imaqError != IMAQdxErrorSuccess) {
 			DriverStation::ReportError("IMAQdxGrab error: " + std::to_string((long)imaqError) + "\n");
