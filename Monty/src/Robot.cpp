@@ -26,8 +26,14 @@ struct Command_Node {
 };
 
 class Robot: public IterativeRobot {
+
 	IControl *controllers[NUM_CONTROLLERS];
 	int autoReturns[NUM_CONTROLLERS];
+	int *autoGrab = 0;
+	int *autoLift = 1;
+	int *autoPick = 2;
+	int *autoRotate = 3;
+	int *autoForward = 4;
 
 	Command_Node* head;
 	Command_Node* currentCommand;
@@ -96,6 +102,8 @@ public:
 	}
 private:
 	LiveWindow *lw;
+	int automonusCommand;
+	SendableChooser *chooser;
 
 	void addCommand(int index, int operation) {
 
@@ -122,6 +130,14 @@ private:
 			if (controllers[i] != NULL)
 				controllers[i]->RobotInit();
 		}
+
+		chooser = new SendableChooser();
+		chooser->AddDefault("Graber", autoGrab);
+		chooser->AddObject("Lifer", autoLift);
+		chooser->AddObject("Pickup", autoPick);
+		chooser->AddObject("Rotate", autoRotate);
+		chooser->AddObject("Forward", autoForward);
+		SmartDashboard::PutData("Auto Modes",chooser);
 		SmartDashboard::PutString("State", "Robot Init");
 	}
 
@@ -151,6 +167,7 @@ private:
 	}
 
 	void TeleopInit() {
+		SmartDashboard::PutNumber("Tommy Genius", (double)chooser->GetSelected());
 		SmartDashboard::PutString("State", "Tele Init");
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			SmartDashboard::PutNumber("State 2", i);
