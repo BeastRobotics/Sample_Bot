@@ -11,7 +11,7 @@
 // Make look like arm class
 #include "WPILib.h"
 #include "XboxController.h"
-#include "Math.h"
+//#include "Math.h"
 #include "IControl.h"
 #include <cTime>
 
