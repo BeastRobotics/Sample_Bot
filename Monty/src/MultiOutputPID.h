@@ -11,7 +11,7 @@
 #include "WPILib.h"
 #include <PIDOutput.h>
 
-class MultiOutputPID:PIDOutput {
+class MultiOutputPID:public PIDOutput {
 
 	PIDOutput *motor1, *motor2, *motor3, *motor4;
 	bool isRotate;

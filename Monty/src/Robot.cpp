@@ -28,7 +28,7 @@ class Robot: public IterativeRobot {
 public:
 	Robot() :
 			lw(NULL) {
-
+		head = NULL;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			controllers[i] = NULL;
 		}

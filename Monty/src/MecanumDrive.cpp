@@ -35,6 +35,7 @@ class MecanumDrive: public IControl {
 
 public:
 	MecanumDrive() {
+		motorOutput = NULL;
 		motor1=new Talon(frontRightChannel);
 		motor2=new Talon(rearRightChannel);
 		motor3=new Talon(frontLeftChannel);
@@ -54,7 +55,7 @@ public:
 	}
 
 	void AutonomousInit() {
-		motorOutput=new MultiOutputPID();
+		motorOutput = new MultiOutputPID(motor1,motor2,motor4,motor3,false);
 	}
 
 	void AutonomousPeriodic() {
