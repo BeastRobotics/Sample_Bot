@@ -229,16 +229,16 @@ public:
 	//TODO
 	void MoveUp() {
 		lifterSpeed = getVelocity(MOTOR_SPEED, acceleration);
-		if (!GetUpperLimit()) {
+		/*if (!GetUpperLimit()) {
 			lifterSpeed = 0;
-		}
+		}*/
 	}
 
 	void MoveDown() {
 		lifterSpeed = getVelocity(MOTOR_SPEED_DOWN, acceleration);
-		if (!GetLowerLimit()) {
+		/*if (!GetLowerLimit()) {
 			lifterSpeed = 0;
-		}
+		}*/
 	}
 
 	/*
@@ -292,11 +292,11 @@ public:
 
 
 	bool GetUpperLimit() {
-		return lowerLimit->Get();  //Backwords
+		return upperLimit->Get();  //Backwords
 	}
 
 	bool GetLowerLimit() {
-		return upperLimit->Get();  //backwords
+		return lowerLimit->Get();  //backwords
 	}
 
 	/*

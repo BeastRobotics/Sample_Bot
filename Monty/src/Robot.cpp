@@ -12,7 +12,7 @@
 #include "LifterControlTester.cpp"
 #include "CameraControl.cpp"
 
-#define NUM_CONTROLLERS 6
+#define NUM_CONTROLLERS 5
 
 struct Command_Node {
 	int index;
@@ -43,7 +43,7 @@ public:
 		//controllers[3] = new ArcadeDrive();
 		controllers[3] = new MecanumDrive();
 		controllers[4] = new GrabberControl();
-		controllers[5] = new CameraControl();
+		//controllers[5] = new CameraControl();
 
 		//lifter = new LifterControlTester();
 		//controllers[5] = new MecanumDrive();
