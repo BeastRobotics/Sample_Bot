@@ -39,6 +39,14 @@ public:
 		addCommand(6, 500);
 		addCommand(4, 1);
 		addCommand(6, 500);
+		addCommand(4, 0);
+		addCommand(6, 500);
+		addCommand(4, 1);
+		addCommand(6, 500);
+		addCommand(4, 0);
+		addCommand(6, 500);
+		addCommand(4, 1);
+		addCommand(6, 500);
 		controllers[0] = NewXboxController::getInstance();
 		//controllers[1] = new LifterControl();
 		controllers[1] = new LifterBrake();
