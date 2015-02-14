@@ -15,6 +15,8 @@ class MultiOutputPID:public PIDOutput {
 
 	PIDOutput *motor1, *motor2, *motor3, *motor4;
 	bool isRotate;
+	bool overDriveOn;
+	float overDrive;
 
 public:
 	MultiOutputPID(PIDOutput *motor1, PIDOutput *motor2, PIDOutput *motor3, PIDOutput *motor4, bool isRotate);
@@ -23,6 +25,10 @@ public:
 	void PIDWrite(float output);
 
 	void SetRotate(bool rot);
+
+	void SetOverDrive(float overDrive);
+
+	void DisableOverDrive();
 
 };
 
