@@ -14,7 +14,7 @@
 #define EXTEND_TIME_IN_MS 500
 #define EXTEND_COUNT EXTEND_TIME_IN_MS/5
 
-class GrabberControl : public IControl {
+class GrabberControl: public IControl {
 	DoubleSolenoid *sol1;
 	XboxController *xbox;
 	int currentAutoCommand;
@@ -24,28 +24,30 @@ public:
 	GrabberControl() {
 		sol1 = new DoubleSolenoid(GRABBERCHANNELOPEN, GRABBERCHANNELCLOSE);
 		xbox = XboxController::getInstance();
+		currentAutoCommand = -1;
+		autoCount = 0;
 	}
 
 	void AutonomousInit() {
-		currentAutoCommand=-1;
-		autoCount=0;
+		currentAutoCommand = -1;
+		autoCount = 0;
 	}
 
 	int AutonomousPeriodic(int input) {
-		int option=input;
+		int option = input;
 
-		if (currentAutoCommand!=option) {
-			currentAutoCommand=option;
-			autoCount=EXTEND_COUNT;
+		if (currentAutoCommand != option) {
+			currentAutoCommand = option;
+			autoCount = EXTEND_COUNT;
 		}
 
 		autoCount--;
-		if (autoCount<=0) {
+		if (autoCount <= 0) {
 			AutonomousInit();
 			return 1;
 		}
 
-		switch(option) {
+		switch (option) {
 		case 0:
 			SetGrabberArm(true);
 			break;
@@ -58,7 +60,7 @@ public:
 	}
 
 private:
-	void TeleopPeriodic(){
+	void TeleopPeriodic() {
 		if (xbox->isRBumperHeld()) {
 			SetGrabberArm(true);
 		} else {
@@ -67,13 +69,11 @@ private:
 	}
 
 	void SetGrabberArm(bool isExtended) {
-			if (isExtended) {
-				sol1->Set(sol1->kForward);
-			} else {
-				sol1->Set(sol1->kReverse);
-			}
+		if (isExtended) {
+			sol1->Set(sol1->kForward);
+		} else {
+			sol1->Set(sol1->kReverse);
 		}
+	}
 };
-
-
 
