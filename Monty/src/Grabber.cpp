@@ -31,8 +31,8 @@ public:
 		autoCount=0;
 	}
 
-	int AutonomousPeriodic(void* input) {
-		int option=*((int*)input);//convert to int
+	int AutonomousPeriodic(int input) {
+		int option=input;
 
 		if (currentAutoCommand!=option) {
 			currentAutoCommand=option;
