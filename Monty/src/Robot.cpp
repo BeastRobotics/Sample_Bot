@@ -13,7 +13,9 @@
 #include "CameraControl.cpp"
 #include "AutoDelay.h"
 
+
 #define NUM_CONTROLLERS 7
+
 
 struct Command_Node {
 	int index;
