@@ -56,8 +56,8 @@ public:
 		addCommand(DELAY, 250);
 		addCommand(LIFTER, 300);
 		addCommand(DELAY, 250);
-		addCommand(LIFTER, -300);
-		addCommand(LIFTER, 300);
+		addCommand(LIFTER, -3000);
+		addCommand(LIFTER, 3000);
 	}
 
 	void pickupTest() {
