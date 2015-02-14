@@ -16,7 +16,7 @@
 
 class MecanumDrive: public IControl {
 	XboxController *xbox;
-	RobotDrive myRobot;
+	RobotDrive* myRobot;
 	Gyro *gyro;
 	MultiOutputPID *motorOutput;
 	Talon *motor1, *motor2, *motor3, *motor4;
@@ -41,11 +41,11 @@ public:
 		motor3=new Talon(frontLeftChannel);
 		motor4=new Talon(rearLeftChannel);
 
-		myRobot(motor3, motor4, motor1, motor2);
-		myRobot.SetExpiration(0.1);
+		myRobot = new RobotDrive(motor3, motor4, motor1, motor2);
+		myRobot->SetExpiration(0.1);
 		xbox=XboxController::getInstance();
-		myRobot.SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);	// invert the left side motors
-		myRobot.SetInvertedMotor(RobotDrive::kRearLeftMotor, true);	// you may need to change or remove this to match your robot
+		myRobot->SetInvertedMotor(RobotDrive::kFrontLeftMotor, true);	// invert the left side motors
+		myRobot->SetInvertedMotor(RobotDrive::kRearLeftMotor, true);	// you may need to change or remove this to match your robot
 		x=0.0;
 		y=0.0;
 		twist=0.0;
@@ -64,7 +64,7 @@ public:
 	}
 
 	void TeleopInit() {
-		myRobot.SetSafetyEnabled(false);
+		myRobot->SetSafetyEnabled(false);
 		SmartDashboard::PutBoolean("Use Gyro", false);
 
 		SmartDashboard::PutNumber("Speed Factor", speedFactor);
@@ -101,7 +101,7 @@ public:
 		y*=speedFactor;
 		twist*=speedFactor;
 
-		myRobot.MecanumDrive_Cartesian(x, y, twist, angle);
+		myRobot->MecanumDrive_Cartesian(x, y, twist, angle);
 	}
 
 	void setAutoProgram(int s) {
