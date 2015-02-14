@@ -14,7 +14,7 @@
 
 #define NUM_CONTROLLERS 6
 
-struct Command{
+struct Command {
 	int index;
 	int operation;
 	Command* nextCommand;
@@ -25,14 +25,17 @@ class Robot: public IterativeRobot {
 	int autoReturns[NUM_CONTROLLERS];
 
 	Command* head;
+	Command* currentCommand;
 public:
 	Robot() :
 			lw(NULL) {
 		head = NULL;
+		currentCommand = NULL;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			controllers[i] = NULL;
 		}
-
+		addCommand(4, 0);
+		addCommand(4, 1);
 		controllers[0] = NewXboxController::getInstance();
 		//controllers[1] = new LifterControl();
 		controllers[1] = new LifterBrake();
@@ -45,27 +48,26 @@ public:
 		//lifter = new LifterControlTester();
 		//controllers[5] = new MecanumDrive();
 		controllers[6] = new CameraControl();
-		for (int i=0; i<NUM_CONTROLLERS; i++) {
-			autoReturns[i]=0;
+		for (int i = 0; i < NUM_CONTROLLERS; i++) {
+			autoReturns[i] = 0;
 		}
 	}
 private:
 	LiveWindow *lw;
 
-	void addCommand(int index, int operation){
+	void addCommand(int index, int operation) {
 
 		Command* toAdd = new Command();
 		toAdd->index = index;
 		toAdd->nextCommand = NULL;
 		toAdd->operation = operation;
 		Command* current = head;
-		if(head == NULL){
+		if (head == NULL) {
 			head = toAdd;
 			return;
-		}
-		else{
-			while(current->nextCommand != NULL){
-				current =  current->nextCommand;
+		} else {
+			while (current->nextCommand != NULL) {
+				current = current->nextCommand;
 			}
 			current->nextCommand = toAdd;
 		}
@@ -82,6 +84,7 @@ private:
 	}
 
 	void AutonomousInit() {
+		currentCommand = head;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
 				controllers[i]->AutonomousInit();
@@ -90,10 +93,17 @@ private:
 	}
 
 	void AutonomousPeriodic() {
-		for (int i = 0; i < NUM_CONTROLLERS; i++) {
-			if (controllers[i] != NULL)
-				autoReturns[i]=controllers[i]->AutonomousPeriodic(autoReturns);
+		if (currentCommand != NULL) {
+			int result = controllers[currentCommand->index]->AutonomousPeriodic(
+					currentCommand->operation);
+			if (result == 1) {
+				currentCommand = currentCommand->nextCommand;
+			}
 		}
+//		for (int i = 0; i < NUM_CONTROLLERS; i++) {
+//			if (controllers[i] != NULL)
+//				autoReturns[i]=controllers[i]->AutonomousPeriodic(0);
+//		}
 
 	}
 
