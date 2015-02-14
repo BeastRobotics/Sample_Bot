@@ -11,8 +11,11 @@
 #include "LifterControl.cpp"
 #include "LifterControlTester.cpp"
 #include "CameraControl.cpp"
+#include "AutoDelay.h"
 
-#define NUM_CONTROLLERS 5
+
+#define NUM_CONTROLLERS 7
+
 
 struct Command_Node {
 	int index;
@@ -35,7 +38,17 @@ public:
 			controllers[i] = NULL;
 		}
 		addCommand(4, 0);
+		addCommand(6, 500);
 		addCommand(4, 1);
+		addCommand(6, 500);
+		addCommand(4, 0);
+		addCommand(6, 500);
+		addCommand(4, 1);
+		addCommand(6, 500);
+		addCommand(4, 0);
+		addCommand(6, 500);
+		addCommand(4, 1);
+		addCommand(6, 500);
 		controllers[0] = NewXboxController::getInstance();
 		//controllers[1] = new LifterControl();
 		controllers[1] = new LifterBrake();
@@ -43,11 +56,11 @@ public:
 		//controllers[3] = new ArcadeDrive();
 		controllers[3] = new MecanumDrive();
 		controllers[4] = new GrabberControl();
-		//controllers[5] = new CameraControl();
+		controllers[5] = new CameraControl();
 
 		//lifter = new LifterControlTester();
 		//controllers[5] = new MecanumDrive();
-		controllers[6] = new CameraControl();
+		controllers[6] = new AutoDelay();
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			autoReturns[i] = 0;
 		}
