@@ -73,7 +73,7 @@ public:
 		lastCommand = 0;
 		lastCommandTurn = 0;
 		lastCommandDrive = 0;
-		autoDriveCounter=0;
+		autoDriveCounter = 0;
 		autoRotateController->Disable();
 		gyro->Reset();
 		motorOutput->DisableOverDrive();
@@ -122,10 +122,10 @@ public:
 			gyro->Reset();
 			autoRotateController->SetSetpoint(0);
 			autoRotateController->Enable();
-			autoDriveCounter=input;
+			autoDriveCounter = input;
 		}
 		autoDriveCounter--;
-		if (autoDriveCounter<=0) {
+		if (autoDriveCounter <= 0) {
 			AutonomousInit();
 			return 1;
 		}
@@ -140,6 +140,7 @@ public:
 
 		gyro->Reset();
 	}
+
 	void TeleopPeriodic() {
 		speedFactor = SmartDashboard::GetNumber("Speed Factor");
 
@@ -176,5 +177,13 @@ public:
 		//autoProgram = s;
 	}
 
+	void AutonomousExecute() {
+		if (!(lastCommand||lastCommandTurn||lastCommandDrive)) {
+			motor1->PIDWrite(0);
+			motor2->PIDWrite(0);
+			motor3->PIDWrite(0);
+			motor4->PIDWrite(0);
+		}
+	}
 };
 

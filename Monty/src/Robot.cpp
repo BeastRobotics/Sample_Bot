@@ -28,6 +28,21 @@ class Robot: public IterativeRobot {
 	Command_Node* head;
 	Command_Node* currentCommand;
 public:
+	void grabberTest() {
+		addCommand(4, 0);
+		addCommand(6, 500);
+		addCommand(4, 1);
+		addCommand(6, 500);
+		addCommand(4, 0);
+		addCommand(6, 500);
+		addCommand(4, 1);
+		addCommand(6, 500);
+		addCommand(4, 0);
+		addCommand(6, 500);
+		addCommand(4, 1);
+		addCommand(6, 500);
+	}
+
 	Robot() :
 			lw(NULL) {
 		head = NULL;
@@ -35,18 +50,7 @@ public:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			controllers[i] = NULL;
 		}
-		addCommand(4, 0);
-		addCommand(6, 500);
-		addCommand(4, 1);
-		addCommand(6, 500);
-		addCommand(4, 0);
-		addCommand(6, 500);
-		addCommand(4, 1);
-		addCommand(6, 500);
-		addCommand(4, 0);
-		addCommand(6, 500);
-		addCommand(4, 1);
-		addCommand(6, 500);
+		grabberTest();
 		controllers[0] = NewXboxController::getInstance();
 		//controllers[1] = new LifterControl();
 		controllers[1] = new LifterBrake();
@@ -104,6 +108,7 @@ private:
 	}
 
 	void AutonomousPeriodic() {
+		SmartDashboard::PutBoolean("DoneAuto", currentCommand==NULL);
 		if (currentCommand != NULL) {
 			int result = controllers[currentCommand->index]->AutonomousPeriodic(
 					currentCommand->operation);

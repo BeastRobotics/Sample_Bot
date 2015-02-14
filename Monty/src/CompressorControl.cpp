@@ -18,5 +18,13 @@ public:
 		c->SetClosedLoopControl(true);
 	}
 
+	void AutonomousInit() {
+		c->SetClosedLoopControl(true);
+	}
+
+	void DissabledInit() {
+		c->SetClosedLoopControl(false);
+	}
+
 };
 
