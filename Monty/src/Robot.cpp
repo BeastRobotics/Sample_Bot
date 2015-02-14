@@ -14,18 +14,18 @@
 
 #define NUM_CONTROLLERS 6
 
-struct Command{
+struct Command_Node {
 	int index;
 	int operation;
-	Command* nextCommand;
+	Command_Node* nextCommand;
 };
 
 class Robot: public IterativeRobot {
 	IControl *controllers[NUM_CONTROLLERS];
 	int autoReturns[NUM_CONTROLLERS];
 
-	Command* head;
-	Command* currentCommand;
+	Command_Node* head;
+	Command_Node* currentCommand;
 public:
 	Robot() :
 			lw(NULL) {
@@ -57,11 +57,11 @@ private:
 
 	void addCommand(int index, int operation) {
 
-		Command* toAdd = new Command();
+		Command_Node* toAdd = new Command_Node();
 		toAdd->index = index;
 		toAdd->nextCommand = NULL;
 		toAdd->operation = operation;
-		Command* current = head;
+		Command_Node* current = head;
 		if (head == NULL) {
 			head = toAdd;
 			return;
