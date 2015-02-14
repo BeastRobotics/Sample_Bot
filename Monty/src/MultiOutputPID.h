@@ -22,6 +22,8 @@ public:
 
 	void PIDWrite(float output);
 
+	void SetRotate(bool rot);
+
 };
 
 #endif

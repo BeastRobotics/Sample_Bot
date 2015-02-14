@@ -33,3 +33,7 @@ void MultiOutputPID::PIDWrite(float output) {
 		motor4->PIDWrite(output);
 	}
 }
+
+void MultiOutputPID::SetRotate(bool rot) {
+		isRotate = rot;
+}

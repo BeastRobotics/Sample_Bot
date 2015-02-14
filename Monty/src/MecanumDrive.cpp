@@ -56,6 +56,7 @@ public:
 
 	void AutonomousInit() {
 		motorOutput = new MultiOutputPID(motor1,motor2,motor4,motor3,false);
+
 	}
 
 	void AutonomousPeriodic() {
