@@ -37,6 +37,8 @@ class MecanumDrive: public IControl {
 	int autoDriveCounter;
 	int autoTurnCounter;
 
+	bool doneSensingDrive;
+
 	float x;
 	float y;
 	float twist;
@@ -79,6 +81,7 @@ public:
 		lastCommandDrive = 0;
 		autoDriveCounter = 0;
 		autoTurnCounter = 0;
+		doneSensingDrive = false;
 		autoRotateController->Disable();
 		gyro->Reset();
 		motorOutput->DisableOverDrive();
@@ -96,6 +99,10 @@ public:
 			return turn(90);
 		case 2:
 			return turn(-90);
+		case 4:
+			return driveUntilLine(input);
+		case 3:
+			return disableStuff();
 		default:
 			if (abs(input) > 10) {
 				return drive(abs(input / DAVIDS_FUN_INPUT), input > 0);
@@ -104,7 +111,21 @@ public:
 		}
 		return 0;
 	}
-
+	int disableStuff(){
+		AutonomousInit();
+		return 1;
+	}
+	int driveUntilLine(int input){
+		doneSensingDrive = false;
+		if(!doneSensingDrive){
+			drive(5, true);
+			return 1;
+		}
+		else{
+			AutonomousInit();
+		}
+		return 0;
+	}
 	int turn(int input) {
 		motorOutput->DisableOverDrive();
 		if (lastCommandTurn != input) {
