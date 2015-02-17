@@ -23,6 +23,8 @@
 #define AUTODRIVE 0
 #define GRABTURNLEFT 1
 #define GRABTURNRIGHT 2
+#define WAIT 1000
+#define AUTO_D 3000
 
 struct Command_Node {
 	int index;
@@ -31,7 +33,6 @@ struct Command_Node {
 };
 
 class Robot: public IterativeRobot {
-
 
 	IControl *controllers[NUM_CONTROLLERS];
 	int autoReturns[NUM_CONTROLLERS];
@@ -43,11 +44,56 @@ class Robot: public IterativeRobot {
 	Command_Node* currentCommand;
 public:
 
-	void driveStraight(){
-		addCommand(MOVE,3000);
+	void nothing(){
+		addCommand(DELAY,WAIT);
 	}
-	void driveBack(){
-		addCommand(MOVE,-3000);
+	void driveStraight() {
+		addCommand(MOVE, AUTO_D);
+	}
+	void driveBack() {
+		addCommand(MOVE, -AUTO_D);
+	}
+	void getContainer() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, WAIT);
+		addCommand(LIFTER, 1000);
+		addCommand(MOVE, AUTO_D);
+		addCommand(GRABBER, G_OPEN);
+	}
+	void getContainerBack() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, WAIT);
+		addCommand(LIFTER, 1000);
+		addCommand(MOVE, -AUTO_D);
+		addCommand(GRABBER, G_OPEN);
+	}
+	void getTote() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, WAIT);
+		addCommand(LIFTER, 1000);
+		addCommand(MOVE, 1);
+		addCommand(DELAY, WAIT);
+		addCommand(MOVE, AUTO_D);
+	}
+	void getToteContainer() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, WAIT);
+		addCommand(LIFTER, 2000);
+		addCommand(DELAY, WAIT);
+		addCommand(MOVE, 500);
+		addCommand(GRABBER, G_OPEN);
+		addCommand(DELAY, WAIT);
+		addCommand(LIFTER, -2000);
+		addCommand(DELAY, WAIT);
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, WAIT);
+		addCommand(LIFTER, 1000);
+		addCommand(DELAY, WAIT);
+		addCommand(MOVE, 1);
+		addCommand(DELAY, WAIT);
+		addCommand(MOVE, AUTO_D);
+		addCommand(DELAY, WAIT);
+		addCommand(GRABBER, G_OPEN);
 	}
 
 	Robot() :
@@ -58,25 +104,6 @@ public:
 			controllers[i] = NULL;
 		}
 
-		int chooser = Preferences::GetInstance()->GetInt("AutoChooser",1);
-		switch(chooser){
-		case 1:
-			break;
-		case 2:
-			driveStraight();
-			break;
-		case 3:
-			driveBack();
-			break;
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			break;
-		}
 		controllers[0] = NewXboxController::getInstance();
 		controllers[1] = new LifterControl();
 		//controllers[1] = new LifterBrake();
@@ -96,8 +123,7 @@ public:
 
 private:
 	LiveWindow *lw;
-	int automonusCommand;
-
+	//int automonusCommand;
 
 	void addCommand(int index, int operation) {
 
@@ -134,6 +160,37 @@ private:
 	}
 
 	void AutonomousInit() {
+		int chooser = Preferences::GetInstance()->GetInt("AutoChooser", 1);
+		switch (chooser) {
+		case 1:
+			SmartDashboard::PutString("ChooserValue","You Failed At Life");
+			nothing();
+			break;
+		case 2:
+			SmartDashboard::PutString("ChooserValue","You can drive straight!");
+			driveStraight();
+			break;
+		case 3:
+			SmartDashboard::PutString("ChooserValue","Driving back");
+			driveBack();
+			break;
+		case 4:
+			SmartDashboard::PutString("ChooserValue","Get Container");
+			getContainer();
+			break;
+		case 5:
+			SmartDashboard::PutString("ChooserValue","Get Container Backwards");
+			getContainerBack();
+			break;
+		case 6:
+			SmartDashboard::PutString("ChooserValue","Get the Tote");
+			getTote();
+			break;
+		case 7:
+			SmartDashboard::PutString("ChooserValue","You got everything!!!!!!!!!!");
+			getToteContainer();
+			break;
+		}
 		currentCommand = head;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
@@ -146,7 +203,8 @@ private:
 		SmartDashboard::PutBoolean("DoneAuto", currentCommand == NULL);
 		if (currentCommand != NULL) {
 			SmartDashboard::PutNumber("Command Index", currentCommand->index);
-			SmartDashboard::PutNumber("Command Operation", currentCommand->operation);
+			SmartDashboard::PutNumber("Command Operation",
+					currentCommand->operation);
 			int result = controllers[currentCommand->index]->AutonomousPeriodic(
 					currentCommand->operation);
 			if (result == 1) {
@@ -190,6 +248,7 @@ private:
 		}
 	}
 
-};
+}
+;
 
 START_ROBOT_CLASS(Robot);
