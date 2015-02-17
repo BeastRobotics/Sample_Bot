@@ -29,8 +29,8 @@
 #define AUTO_GCB -2000
 #define AUTO_GT 2500
 #define AUTO_GTC AUTO_GT
-#define ROTATE_LEFT 0
-#define ROTATE_RIGHT 1
+#define LEFT 0
+#define RIGHT 1
 
 struct Command_Node {
 	int index;
@@ -61,19 +61,19 @@ public:
 	void driveStraight() {
 		addCommand(MOVE, AUTO_D);
 		if (turnRight) {
-			addCommand(MOVE, ROTATE_RIGHT);
+			addCommand(MOVE, RIGHT);
 		}
 		if (turnLeft) {
-			addCommand(MOVE, ROTATE_LEFT);
+			addCommand(MOVE, LEFT);
 		}
 	}
 	void driveBack() {
 		addCommand(MOVE, AUTO_BACK);
 		if (turnRight) {
-			addCommand(MOVE, ROTATE_RIGHT);
+			addCommand(MOVE, RIGHT);
 		}
 		if (turnLeft) {
-			addCommand(MOVE, ROTATE_LEFT);
+			addCommand(MOVE, LEFT);
 		}
 	}
 	void getContainer() {
@@ -82,10 +82,10 @@ public:
 		addCommand(LIFTER, 1000);
 		addCommand(MOVE, AUTO_D);
 		if (turnRight) {
-			addCommand(MOVE, ROTATE_RIGHT);
+			addCommand(MOVE, RIGHT);
 		}
 		if (turnLeft) {
-			addCommand(MOVE, ROTATE_LEFT);
+			addCommand(MOVE, LEFT);
 		}
 	}
 	void getContainerBack() {
@@ -98,14 +98,14 @@ public:
 		addCommand(GRABBER, G_CLOSE);
 		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
-		addCommand(MOVE, ROTATE_RIGHT);
+		addCommand(MOVE, RIGHT);
 		addCommand(DELAY, WAIT);
 		addCommand(MOVE, AUTO_GT);
 		if (turnRight) {
-			addCommand(MOVE, ROTATE_RIGHT);
+			addCommand(MOVE, RIGHT);
 		}
 		if (turnLeft) {
-			addCommand(MOVE, ROTATE_LEFT);
+			addCommand(MOVE, LEFT);
 		}
 	}
 	void getToteContainer() {
@@ -117,13 +117,13 @@ public:
 		addCommand(LIFTER, -1500); //Lower to tote level
 		addCommand(GRABBER, G_CLOSE); //Close on tote
 		addCommand(LIFTER, 1000); //lift tote
-		addCommand(MOVE, ROTATE_RIGHT); //turn to face auto zone
+		addCommand(MOVE, RIGHT); //turn to face auto zone
 		addCommand(MOVE, AUTO_GTC); //drive to auto zone
 		if (turnRight) {
-			addCommand(MOVE, ROTATE_RIGHT);
+			addCommand(MOVE,RIGHT);
 		}
 		if (turnLeft) {
-			addCommand(MOVE, ROTATE_LEFT);
+			addCommand(MOVE, LEFT);
 		}
 	}
 
