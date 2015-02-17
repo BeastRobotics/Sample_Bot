@@ -73,6 +73,7 @@ public:
 		lastCommandDrive = 0;
 		autoDriveCounter = 0;
 		autoTurnCounter = 0;
+		doneSensingDrive = false;
 	}
 
 	void AutonomousInit() {
