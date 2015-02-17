@@ -32,6 +32,7 @@ struct Command_Node {
 
 class Robot: public IterativeRobot {
 
+
 	IControl *controllers[NUM_CONTROLLERS];
 	int autoReturns[NUM_CONTROLLERS];
 	int autoDrive = AUTODRIVE;
@@ -41,102 +42,12 @@ class Robot: public IterativeRobot {
 	Command_Node* head;
 	Command_Node* currentCommand;
 public:
-	void grabberTest() {
-		addCommand(GRABBER, 0);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 1);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 0);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 1);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 0);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 1);
-		addCommand(DELAY, 500);
-	}
 
-	void lifterTest() {
-		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, 3000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -3000);
+	void driveStraight(){
+		addCommand(MOVE,3000);
 	}
-
-	void lifterRun() {
-		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, 500);
-		addCommand(LIFTER, 1500);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 1500);
-	}
-
-	void pickupTest() {
-		addCommand(GRABBER, G_OPEN);
-		addCommand(DELAY, 2500);
-		addCommand(LIFTER, 3000);
-		addCommand(DELAY, 2500);
-		addCommand(LIFTER, -3000);
-		addCommand(DELAY, 2500);
-		addCommand(GRABBER, G_CLOSE);
-	}
-
-	void rotateTest() {
-		addCommand(MOVE, 1);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 2);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 1);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 2);
-	}
-
-	void driveStraight() {
-		addCommand(MOVE, 3000);
-	}
-
-	void finalAuto() {
-		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, 2500);
-		addCommand(LIFTER, 2000);
-		addCommand(DELAY, 2500);
-		addCommand(MOVE, 1);
-		addCommand(DELAY, 500);
-		addCommand(MOVE, 2000);
-		addCommand(DELAY, 500);
-		addCommand(LIFTER, -1000);
-		addCommand(GRABBER, G_OPEN);
-	}
-	void rotateRightDrive() {
-		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 1);
-		addCommand(DELAY, 500);
-		addCommand(MOVE, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -1000);
-		addCommand(GRABBER, G_OPEN);
-	}
-	void rotateLeftDrive() {
-		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 2);
-		addCommand(DELAY, 500);
-		addCommand(MOVE, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -1000);
-		addCommand(GRABBER, G_OPEN);
+	void driveBack(){
+		addCommand(MOVE,-3000);
 	}
 
 	Robot() :
@@ -147,7 +58,25 @@ public:
 			controllers[i] = NULL;
 		}
 
-		lifterRun();
+		int chooser = Preferences::GetInstance()->GetInt("AutoChooser",1);
+		switch(chooser){
+		case 1:
+			break;
+		case 2:
+			driveStraight();
+			break;
+		case 3:
+			driveBack();
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		}
 		controllers[0] = NewXboxController::getInstance();
 		controllers[1] = new LifterControl();
 		//controllers[1] = new LifterBrake();
@@ -212,7 +141,6 @@ private:
 		}
 
 	}
-
 	void AutonomousPeriodic() {
 
 		SmartDashboard::PutBoolean("DoneAuto", currentCommand == NULL);

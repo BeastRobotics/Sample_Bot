@@ -120,7 +120,6 @@ public:
 		SmartDashboard::PutNumber("Lifter Speed Factor", 0.75);
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0); //This is the current output to the motor
 		SmartDashboard::PutNumber("Accel", 0.1); //Acceleration going up
-		SmartDashboard::PutBoolean("Mag Input", false);
 		//SetEncoderValue();
 		//Stop();
 		lifter->Set(0.0);
@@ -129,7 +128,6 @@ public:
 	void TeleopPeriodic() {
 		SmartDashboard::PutBoolean("Lower Limit", GetUpperLimit());
 		SmartDashboard::PutBoolean("Upper Limit", GetLowerLimit());
-		//SmartDashboard::PutBoolean("Mag Input", GetMagInput());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
 		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
 		SmartDashboard::PutNumber("Lifter Speed Factor", speedFactor);
@@ -139,9 +137,9 @@ public:
 
 		if (isLifterManual) {
 
-			if (xbox->isBHeld()) {
+			if (xbox->isXHeld()) {
 				MoveUp();
-			} else if (xbox->isXHeld()) {
+			} else if (xbox->isBHeld()) {
 				MoveDown();
 			} else {
 				Stop();

@@ -42,6 +42,9 @@ class MecanumDrive: public IControl {
 	float twist;
 	float angle;
 	float speedFactor;
+	float rotateSpeedFactor;
+	float strafeSpeedFactor;
+	bool creepMode;
 
 public:
 	MecanumDrive() {
@@ -65,12 +68,16 @@ public:
 		twist = 0.0;
 		angle = 0.0;
 		speedFactor = 1.0;
+		rotateSpeedFactor = 0.5;
+		strafeSpeedFactor = 0.5;
 
 		lastCommand = 0;
 		lastCommandTurn = 0;
 		lastCommandDrive = 0;
 		autoDriveCounter = 0;
 		autoTurnCounter = 0;
+
+		creepMode = false;
 	}
 
 	void AutonomousInit() {
@@ -120,13 +127,13 @@ public:
 		}
 		double gyroValue = gyro->GetAngle();
 		if (abs(gyroValue - input) < THRESHHOLD_RANGE) {
-			if (--autoTurnCounter < 0) {
+			if (--autoTurnCounter <= 0) {
 				AutonomousInit();
 				return 1;
 			}
-		} else { //this doesn't make sense because we will always reset the autoCounter and will never go through the if statement above
+		} /*else {
 			autoTurnCounter = FINAL_DEBOUNCE_TURN / DAVIDS_FUN_INPUT;
-		}
+		}*/
 		return 0;
 	}
 
@@ -147,10 +154,20 @@ public:
 		return 0;
 	}
 
+	void creepModeSet() {
+		if (xbox->isRightTriggerHeld()) {
+			creepMode = true;
+		}
+	}
+
 	void TeleopInit() {
 		myRobot->SetSafetyEnabled(false);
 		SmartDashboard::PutBoolean("Use Gyro", false);
-		SmartDashboard::PutNumber("Speed Factor", 0.5);
+		SmartDashboard::PutNumber("Gyro Direction", gyro->GetAngle());
+		SmartDashboard::PutNumber("Y Speed Factor", 1.0);
+		SmartDashboard::PutNumber("Rotate Speed Factor", 0.5);
+		SmartDashboard::PutNumber("Strafe Speed Factor", 0.5);
+
 		SmartDashboard::PutBoolean("Creep Mode", false);
 
 		gyro->Reset();
@@ -159,11 +176,18 @@ public:
 	}
 
 	void TeleopPeriodic() {
-		speedFactor = SmartDashboard::GetNumber("Speed Factor");
+		creepModeSet();
+		SmartDashboard::PutNumber("Gyro Direction", gyro->GetAngle());
+		speedFactor = SmartDashboard::GetNumber("Y Speed Factor");
+		rotateSpeedFactor = SmartDashboard::GetNumber("Rotate Speed Factor");
+		strafeSpeedFactor = SmartDashboard::GetNumber("Strafe Speed Factor");
 
-		if (SmartDashboard::GetBoolean("Creep Mode")) {
+		SmartDashboard::PutBoolean("Creep Mode", creepMode);
+
+		if (creepMode) {
 			speedFactor = 0.2;
 		}
+
 		x = xbox->getAxisLeftX();
 		y = xbox->getAxisLeftY();
 		twist = xbox->getAxisRightX();
@@ -186,9 +210,9 @@ public:
 			angle = 0.0;
 		}
 
-		x *= speedFactor;
+		x *= strafeSpeedFactor;
 		y *= speedFactor;
-		twist *= speedFactor;
+		twist *= rotateSpeedFactor;
 
 		myRobot->MecanumDrive_Cartesian(x, y, twist, angle);
 	}
