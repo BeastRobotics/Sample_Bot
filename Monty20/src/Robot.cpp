@@ -23,6 +23,14 @@
 #define AUTODRIVE 0
 #define GRABTURNLEFT 1
 #define GRABTURNRIGHT 2
+#define WAIT 1000
+#define AUTO_D 3000
+#define AUTO_BACK -2000
+#define AUTO_GCB -2000
+#define AUTO_GT 2500
+#define AUTO_GTC AUTO_GT
+#define ROTATE_LEFT 0
+#define ROTATE_RIGHT 1
 
 struct Command_Node {
 	int index;
@@ -38,97 +46,85 @@ class Robot: public IterativeRobot {
 	int grabTurnLeft = GRABTURNLEFT;
 	int grabTurnRight = GRABTURNRIGHT;
 
+	bool strafe = 0;
+	bool step = 0;
+	bool turnRight = 0;
+	bool turnLeft = 0;
+
 	Command_Node* head;
 	Command_Node* currentCommand;
 public:
-	void grabberTest() {
-		addCommand(GRABBER, 0);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 1);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 0);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 1);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 0);
-		addCommand(DELAY, 500);
-		addCommand(GRABBER, 1);
-		addCommand(DELAY, 500);
-	}
 
-	void lifterTest() {
-		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, 3000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -3000);
+	void nothing() {
+		addCommand(DELAY, WAIT);
 	}
-
-	void pickupTest() {
-		addCommand(GRABBER, G_OPEN);
-		addCommand(DELAY, 2500);
-		addCommand(LIFTER, 3000);
-		addCommand(DELAY, 2500);
-		addCommand(LIFTER, -3000);
-		addCommand(DELAY, 2500);
-		addCommand(GRABBER, G_CLOSE);
-	}
-
-	void rotateTest() {
-		addCommand(MOVE, 1);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 2);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 1);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 2);
-	}
-
 	void driveStraight() {
-		addCommand(MOVE, 2000);
+		addCommand(MOVE, AUTO_D);
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
-
-	void finalAuto() {
-		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, 2500);
-		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 2500);
-		addCommand(MOVE, 1);
-		addCommand(DELAY, 500);
-		addCommand(MOVE, 1000);
-		addCommand(DELAY, 2000);
-		addCommand(LIFTER, -1000);
-		addCommand(GRABBER, G_OPEN);
+	void driveBack() {
+		addCommand(MOVE, AUTO_BACK);
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
-	void rotateRightDrive() {
+	void getContainer() {
 		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, 1000);
+		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 1);
-		addCommand(DELAY, 500);
-		addCommand(MOVE, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -1000);
-		addCommand(GRABBER, G_OPEN);
+		addCommand(MOVE, AUTO_D);
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
-	void rotateLeftDrive() {
+	void getContainerBack() {
 		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, 1000);
+		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(MOVE, 2);
-		addCommand(DELAY, 500);
-		addCommand(MOVE, 1000);
-		addCommand(DELAY, 1000);
-		addCommand(LIFTER, -1000);
-		addCommand(GRABBER, G_OPEN);
+		addCommand(MOVE, AUTO_GCB);
+	}
+	void getTote() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, WAIT);
+		addCommand(LIFTER, 1000);
+		addCommand(MOVE, ROTATE_RIGHT);
+		addCommand(DELAY, WAIT);
+		addCommand(MOVE, AUTO_GT);
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
+	}
+	void getToteContainer() {
+		addCommand(GRABBER, G_CLOSE); //Grab container
+		addCommand(LIFTER, 2000); //Lift container
+		addCommand(MOVE, 500); //Drive over tote
+		addCommand(LIFTER, -500); //Lower container on tote
+		addCommand(GRABBER, G_OPEN); //Release container on tote
+		addCommand(LIFTER, -1500); //Lower to tote level
+		addCommand(GRABBER, G_CLOSE); //Close on tote
+		addCommand(LIFTER, 1000); //lift tote
+		addCommand(MOVE, ROTATE_RIGHT); //turn to face auto zone
+		addCommand(MOVE, AUTO_GTC); //drive to auto zone
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
 
 	Robot() :
@@ -138,6 +134,7 @@ public:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			controllers[i] = NULL;
 		}
+
 		controllers[0] = NewXboxController::getInstance();
 		controllers[1] = new LifterControl();
 		//controllers[1] = new LifterBrake();
@@ -157,8 +154,7 @@ public:
 
 private:
 	LiveWindow *lw;
-	int automonusCommand;
-	SendableChooser *chooser;
+	//int automonusCommand;
 
 	void addCommand(int index, int operation) {
 
@@ -191,45 +187,66 @@ private:
 			if (controllers[i] != NULL)
 				controllers[i]->RobotInit();
 		}
-
-		chooser = new SendableChooser();
-		chooser->AddDefault("Drive Forward", &autoDrive);
-		chooser->AddObject("Left And Forward", &grabTurnLeft);
-		chooser->AddObject("Right And Forward", &grabTurnRight);
-		SmartDashboard::PutData("Auto Modes", chooser);
 		SmartDashboard::PutString("State", "Robot Init");
+		SmartDashboard::PutBoolean("auto Strafe", strafe);
+		SmartDashboard::PutBoolean("auto Step", step);
+		SmartDashboard::PutBoolean("auto turn right", turnRight);
+		SmartDashboard::PutBoolean("auto turn left", turnLeft);
 	}
 
 	void AutonomousInit() {
-		int chooserValue = *((int*) (chooser->GetSelected()));
-		SmartDashboard::PutNumber("chooserValue", chooserValue);
-
-		deleteList(head);
-		switch (chooserValue) {
-		case AUTODRIVE:
+		int chooser = Preferences::GetInstance()->GetInt("AutoChooser", 1);
+		strafe = SmartDashboard::GetBoolean("auto Strafe");
+		step = SmartDashboard::GetBoolean("auto Step");
+		turnLeft = SmartDashboard::GetBoolean("auto turn left");
+		turnRight = SmartDashboard::GetBoolean("auto turn right");
+		switch (chooser) {
+		case 1:
+			SmartDashboard::PutString("ChooserValue", "You Failed At Life");
+			nothing();
+			break;
+		case 2:
+			SmartDashboard::PutString("ChooserValue",
+					"You can drive straight!");
 			driveStraight();
-			//TODO Add Deafualt Case
 			break;
-		case GRABTURNLEFT:
-			rotateLeftDrive();
+		case 3:
+			SmartDashboard::PutString("ChooserValue", "Driving back");
+			driveBack();
 			break;
-
-		case GRABTURNRIGHT:
-			rotateRightDrive();
+		case 4:
+			SmartDashboard::PutString("ChooserValue", "Get Container");
+			getContainer();
+			break;
+		case 5:
+			SmartDashboard::PutString("ChooserValue",
+					"Get Container Backwards");
+			getContainerBack();
+			break;
+		case 6:
+			SmartDashboard::PutString("ChooserValue", "Get the Tote");
+			getTote();
+			break;
+		case 7:
+			SmartDashboard::PutString("ChooserValue",
+					"You got everything!!!!!!!!!!");
+			getToteContainer();
 			break;
 		}
+		currentCommand = head;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
 				controllers[i]->AutonomousInit();
 		}
 
 	}
-
 	void AutonomousPeriodic() {
+
 		SmartDashboard::PutBoolean("DoneAuto", currentCommand == NULL);
 		if (currentCommand != NULL) {
 			SmartDashboard::PutNumber("Command Index", currentCommand->index);
-			SmartDashboard::PutNumber("Command Operation", currentCommand->operation);
+			SmartDashboard::PutNumber("Command Operation",
+					currentCommand->operation);
 			int result = controllers[currentCommand->index]->AutonomousPeriodic(
 					currentCommand->operation);
 			if (result == 1) {
@@ -273,6 +290,7 @@ private:
 		}
 	}
 
-};
+}
+;
 
 START_ROBOT_CLASS(Robot);

@@ -37,13 +37,14 @@ class MecanumDrive: public IControl {
 	int autoDriveCounter;
 	int autoTurnCounter;
 
-	bool doneSensingDrive;
-
 	float x;
 	float y;
 	float twist;
 	float angle;
 	float speedFactor;
+	float rotateSpeedFactor;
+	float strafeSpeedFactor;
+	bool creepMode;
 
 public:
 	MecanumDrive() {
@@ -67,13 +68,16 @@ public:
 		twist = 0.0;
 		angle = 0.0;
 		speedFactor = 1.0;
+		rotateSpeedFactor = 0.5;
+		strafeSpeedFactor = 0.5;
 
 		lastCommand = 0;
 		lastCommandTurn = 0;
 		lastCommandDrive = 0;
 		autoDriveCounter = 0;
 		autoTurnCounter = 0;
-		doneSensingDrive = false;
+
+		creepMode = false;
 	}
 
 	void AutonomousInit() {
@@ -82,7 +86,6 @@ public:
 		lastCommandDrive = 0;
 		autoDriveCounter = 0;
 		autoTurnCounter = 0;
-		doneSensingDrive = false;
 		autoRotateController->Disable();
 		gyro->Reset();
 		motorOutput->DisableOverDrive();
@@ -100,8 +103,6 @@ public:
 			return turn(90);
 		case 2:
 			return turn(-90);
-		case 4:
-			return driveUntilLine(input);
 		case 3:
 			return disableStuff();
 		default:
@@ -112,19 +113,8 @@ public:
 		}
 		return 0;
 	}
-	int disableStuff(){
+	int disableStuff() {
 		AutonomousInit();
-		return 1;
-	}
-	int driveUntilLine(int input){
-		doneSensingDrive = false;
-		if(!doneSensingDrive){
-			drive(5, true);
-			return 1;
-		}
-		else{
-			AutonomousInit();
-		}
 		return 0;
 	}
 	int turn(int input) {
@@ -137,21 +127,20 @@ public:
 		}
 		double gyroValue = gyro->GetAngle();
 		if (abs(gyroValue - input) < THRESHHOLD_RANGE) {
-			if (--autoTurnCounter < 0) {
+			if (--autoTurnCounter <= 0) {
 				AutonomousInit();
 				return 1;
 			}
-		}
-		else{
+		} /*else {
 			autoTurnCounter = FINAL_DEBOUNCE_TURN / DAVIDS_FUN_INPUT;
-		}
+		}*/
 		return 0;
 	}
 
 	int drive(int input, bool forward) { //input is how long we want to drive
 		if (lastCommandDrive != input) {
 			lastCommandDrive = input;
-			motorOutput->SetOverDrive(forward ? 0.25 : -0.25);
+			motorOutput->SetOverDrive(forward ? 0.5 : -0.5);
 			gyro->Reset();
 			autoRotateController->SetSetpoint(0);
 			autoRotateController->Enable();
@@ -165,10 +154,21 @@ public:
 		return 0;
 	}
 
+	void creepModeSet() {
+		if (xbox->isRightTriggerHeld()) {
+			creepMode = true;
+		}
+	}
+
 	void TeleopInit() {
 		myRobot->SetSafetyEnabled(false);
 		SmartDashboard::PutBoolean("Use Gyro", false);
-		SmartDashboard::PutNumber("Speed Factor", speedFactor);
+		SmartDashboard::PutNumber("Gyro Direction", gyro->GetAngle());
+		SmartDashboard::PutNumber("Y Speed Factor", 1.0);
+		SmartDashboard::PutNumber("Rotate Speed Factor", 0.5);
+		SmartDashboard::PutNumber("Strafe Speed Factor", 0.5);
+
+		SmartDashboard::PutBoolean("Creep Mode", false);
 
 		gyro->Reset();
 
@@ -176,7 +176,17 @@ public:
 	}
 
 	void TeleopPeriodic() {
-		speedFactor = SmartDashboard::GetNumber("Speed Factor");
+		creepModeSet();
+		SmartDashboard::PutNumber("Gyro Direction", gyro->GetAngle());
+		speedFactor = SmartDashboard::GetNumber("Y Speed Factor");
+		rotateSpeedFactor = SmartDashboard::GetNumber("Rotate Speed Factor");
+		strafeSpeedFactor = SmartDashboard::GetNumber("Strafe Speed Factor");
+
+		SmartDashboard::PutBoolean("Creep Mode", creepMode);
+
+		if (creepMode) {
+			speedFactor = 0.2;
+		}
 
 		x = xbox->getAxisLeftX();
 		y = xbox->getAxisLeftY();
@@ -200,9 +210,9 @@ public:
 			angle = 0.0;
 		}
 
-		x *= speedFactor;
+		x *= strafeSpeedFactor;
 		y *= speedFactor;
-		twist *= speedFactor;
+		twist *= rotateSpeedFactor;
 
 		myRobot->MecanumDrive_Cartesian(x, y, twist, angle);
 	}

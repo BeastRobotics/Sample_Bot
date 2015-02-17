@@ -23,9 +23,6 @@ LifterBrake::~LifterBrake() {
 }
 
 void LifterBrake::brake() {
-	p = pref->GetDouble("P_Value");
-	i = pref->GetDouble("I_Value");
-	d = pref->GetDouble("D_Value");
 	pidControl->brake(p, i, d);
 }
 
@@ -35,9 +32,6 @@ void LifterBrake::release() {
 
 void LifterBrake::TeleopPeriodic() {
 	LifterControl::TeleopPeriodic();
-	SmartDashboard::PutNumber("P Value", p);
-	SmartDashboard::PutNumber("I Value", i);
-	SmartDashboard::PutNumber("D Value", d);
 	SmartDashboard::PutNumber("Lifter Encoder", GetEncoder());
 }
 
