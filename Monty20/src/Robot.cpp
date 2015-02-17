@@ -25,6 +25,12 @@
 #define GRABTURNRIGHT 2
 #define WAIT 1000
 #define AUTO_D 3000
+#define AUTO_BACK -2000
+#define AUTO_GCB -2000
+#define AUTO_GT 2500
+#define AUTO_GTC AUTO_GT
+#define ROTATE_LEFT 0
+#define ROTATE_RIGHT 1
 
 struct Command_Node {
 	int index;
@@ -40,60 +46,85 @@ class Robot: public IterativeRobot {
 	int grabTurnLeft = GRABTURNLEFT;
 	int grabTurnRight = GRABTURNRIGHT;
 
+	bool strafe = 0;
+	bool step = 0;
+	bool turnRight = 0;
+	bool turnLeft = 0;
+
 	Command_Node* head;
 	Command_Node* currentCommand;
 public:
 
-	void nothing(){
-		addCommand(DELAY,WAIT);
+	void nothing() {
+		addCommand(DELAY, WAIT);
 	}
 	void driveStraight() {
 		addCommand(MOVE, AUTO_D);
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
 	void driveBack() {
-		addCommand(MOVE, -AUTO_D);
+		addCommand(MOVE, AUTO_BACK);
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
 	void getContainer() {
 		addCommand(GRABBER, G_CLOSE);
 		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
 		addCommand(MOVE, AUTO_D);
-		addCommand(GRABBER, G_OPEN);
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
 	void getContainerBack() {
 		addCommand(GRABBER, G_CLOSE);
 		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
-		addCommand(MOVE, -AUTO_D);
-		addCommand(GRABBER, G_OPEN);
+		addCommand(MOVE, AUTO_GCB);
 	}
 	void getTote() {
 		addCommand(GRABBER, G_CLOSE);
 		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
-		addCommand(MOVE, 1);
+		addCommand(MOVE, ROTATE_RIGHT);
 		addCommand(DELAY, WAIT);
-		addCommand(MOVE, AUTO_D);
+		addCommand(MOVE, AUTO_GT);
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
 	void getToteContainer() {
-		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, WAIT);
-		addCommand(LIFTER, 2000);
-		addCommand(DELAY, WAIT);
-		addCommand(MOVE, 500);
-		addCommand(GRABBER, G_OPEN);
-		addCommand(DELAY, WAIT);
-		addCommand(LIFTER, -2000);
-		addCommand(DELAY, WAIT);
-		addCommand(GRABBER, G_CLOSE);
-		addCommand(DELAY, WAIT);
-		addCommand(LIFTER, 1000);
-		addCommand(DELAY, WAIT);
-		addCommand(MOVE, 1);
-		addCommand(DELAY, WAIT);
-		addCommand(MOVE, AUTO_D);
-		addCommand(DELAY, WAIT);
-		addCommand(GRABBER, G_OPEN);
+		addCommand(GRABBER, G_CLOSE); //Grab container
+		addCommand(LIFTER, 2000); //Lift container
+		addCommand(MOVE, 500); //Drive over tote
+		addCommand(LIFTER, -500); //Lower container on tote
+		addCommand(GRABBER, G_OPEN); //Release container on tote
+		addCommand(LIFTER, -1500); //Lower to tote level
+		addCommand(GRABBER, G_CLOSE); //Close on tote
+		addCommand(LIFTER, 1000); //lift tote
+		addCommand(MOVE, ROTATE_RIGHT); //turn to face auto zone
+		addCommand(MOVE, AUTO_GTC); //drive to auto zone
+		if (turnRight) {
+			addCommand(MOVE, ROTATE_RIGHT);
+		}
+		if (turnLeft) {
+			addCommand(MOVE, ROTATE_LEFT);
+		}
 	}
 
 	Robot() :
@@ -157,37 +188,48 @@ private:
 				controllers[i]->RobotInit();
 		}
 		SmartDashboard::PutString("State", "Robot Init");
+		SmartDashboard::PutBoolean("auto Strafe", strafe);
+		SmartDashboard::PutBoolean("auto Step", step);
+		SmartDashboard::PutBoolean("auto turn right", turnRight);
+		SmartDashboard::PutBoolean("auto turn left", turnLeft);
 	}
 
 	void AutonomousInit() {
 		int chooser = Preferences::GetInstance()->GetInt("AutoChooser", 1);
+		strafe = SmartDashboard::GetBoolean("auto Strafe");
+		step = SmartDashboard::GetBoolean("auto Step");
+		turnLeft = SmartDashboard::GetBoolean("auto turn left");
+		turnRight = SmartDashboard::GetBoolean("auto turn right");
 		switch (chooser) {
 		case 1:
-			SmartDashboard::PutString("ChooserValue","You Failed At Life");
+			SmartDashboard::PutString("ChooserValue", "You Failed At Life");
 			nothing();
 			break;
 		case 2:
-			SmartDashboard::PutString("ChooserValue","You can drive straight!");
+			SmartDashboard::PutString("ChooserValue",
+					"You can drive straight!");
 			driveStraight();
 			break;
 		case 3:
-			SmartDashboard::PutString("ChooserValue","Driving back");
+			SmartDashboard::PutString("ChooserValue", "Driving back");
 			driveBack();
 			break;
 		case 4:
-			SmartDashboard::PutString("ChooserValue","Get Container");
+			SmartDashboard::PutString("ChooserValue", "Get Container");
 			getContainer();
 			break;
 		case 5:
-			SmartDashboard::PutString("ChooserValue","Get Container Backwards");
+			SmartDashboard::PutString("ChooserValue",
+					"Get Container Backwards");
 			getContainerBack();
 			break;
 		case 6:
-			SmartDashboard::PutString("ChooserValue","Get the Tote");
+			SmartDashboard::PutString("ChooserValue", "Get the Tote");
 			getTote();
 			break;
 		case 7:
-			SmartDashboard::PutString("ChooserValue","You got everything!!!!!!!!!!");
+			SmartDashboard::PutString("ChooserValue",
+					"You got everything!!!!!!!!!!");
 			getToteContainer();
 			break;
 		}
