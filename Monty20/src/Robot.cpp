@@ -70,6 +70,14 @@ public:
 		addCommand(LIFTER, -3000);
 	}
 
+	void lifterRun() {
+		addCommand(GRABBER, G_CLOSE);
+		addCommand(DELAY, 500);
+		addCommand(LIFTER, 1500);
+		addCommand(DELAY, 1000);
+		addCommand(MOVE, 1500);
+	}
+
 	void pickupTest() {
 		addCommand(GRABBER, G_OPEN);
 		addCommand(DELAY, 2500);
@@ -91,18 +99,18 @@ public:
 	}
 
 	void driveStraight() {
-		addCommand(MOVE, 2000);
+		addCommand(MOVE, 3000);
 	}
 
 	void finalAuto() {
 		addCommand(GRABBER, G_CLOSE);
 		addCommand(DELAY, 2500);
-		addCommand(LIFTER, 1000);
+		addCommand(LIFTER, 2000);
 		addCommand(DELAY, 2500);
 		addCommand(MOVE, 1);
 		addCommand(DELAY, 500);
-		addCommand(MOVE, 1000);
-		addCommand(DELAY, 2000);
+		addCommand(MOVE, 2000);
+		addCommand(DELAY, 500);
 		addCommand(LIFTER, -1000);
 		addCommand(GRABBER, G_OPEN);
 	}
@@ -138,6 +146,8 @@ public:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			controllers[i] = NULL;
 		}
+
+		lifterRun();
 		controllers[0] = NewXboxController::getInstance();
 		controllers[1] = new LifterControl();
 		//controllers[1] = new LifterBrake();
@@ -158,7 +168,7 @@ public:
 private:
 	LiveWindow *lw;
 	int automonusCommand;
-	SendableChooser *chooser;
+
 
 	void addCommand(int index, int operation) {
 
@@ -191,33 +201,11 @@ private:
 			if (controllers[i] != NULL)
 				controllers[i]->RobotInit();
 		}
-
-		chooser = new SendableChooser();
-		chooser->AddDefault("Drive Forward", &autoDrive);
-		chooser->AddObject("Left And Forward", &grabTurnLeft);
-		chooser->AddObject("Right And Forward", &grabTurnRight);
-		SmartDashboard::PutData("Auto Modes", chooser);
 		SmartDashboard::PutString("State", "Robot Init");
 	}
 
 	void AutonomousInit() {
-		int chooserValue = *((int*) (chooser->GetSelected()));
-		SmartDashboard::PutNumber("chooserValue", chooserValue);
-
-		deleteList(head);
-		switch (chooserValue) {
-		case AUTODRIVE:
-			driveStraight();
-			//TODO Add Deafualt Case
-			break;
-		case GRABTURNLEFT:
-			rotateLeftDrive();
-			break;
-
-		case GRABTURNRIGHT:
-			rotateRightDrive();
-			break;
-		}
+		currentCommand = head;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
 				controllers[i]->AutonomousInit();
@@ -226,6 +214,7 @@ private:
 	}
 
 	void AutonomousPeriodic() {
+
 		SmartDashboard::PutBoolean("DoneAuto", currentCommand == NULL);
 		if (currentCommand != NULL) {
 			SmartDashboard::PutNumber("Command Index", currentCommand->index);

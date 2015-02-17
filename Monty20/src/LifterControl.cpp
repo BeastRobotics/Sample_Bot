@@ -117,7 +117,7 @@ public:
 	void TeleopInit() {
 		SmartDashboard::PutNumber("Lifter Encoder", 0.0);
 		SmartDashboard::PutBoolean("Manual Lifter Mode", true);
-		SmartDashboard::PutNumber("Lifter Speed Factor", 1.0);
+		SmartDashboard::PutNumber("Lifter Speed Factor", 0.75);
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0); //This is the current output to the motor
 		SmartDashboard::PutNumber("Accel", 0.1); //Acceleration going up
 		SmartDashboard::PutBoolean("Mag Input", false);

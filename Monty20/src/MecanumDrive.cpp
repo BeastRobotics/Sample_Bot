@@ -96,6 +96,8 @@ public:
 			return turn(90);
 		case 2:
 			return turn(-90);
+		case 3:
+			return disableStuff();
 		default:
 			if (abs(input) > 10) {
 				return drive(abs(input / DAVIDS_FUN_INPUT), input > 0);
@@ -104,7 +106,10 @@ public:
 		}
 		return 0;
 	}
-
+	int disableStuff() {
+		AutonomousInit();
+		return 0;
+	}
 	int turn(int input) {
 		motorOutput->DisableOverDrive();
 		if (lastCommandTurn != input) {
@@ -119,8 +124,7 @@ public:
 				AutonomousInit();
 				return 1;
 			}
-		}
-		else{
+		} else { //this doesn't make sense because we will always reset the autoCounter and will never go through the if statement above
 			autoTurnCounter = FINAL_DEBOUNCE_TURN / DAVIDS_FUN_INPUT;
 		}
 		return 0;
@@ -129,7 +133,7 @@ public:
 	int drive(int input, bool forward) { //input is how long we want to drive
 		if (lastCommandDrive != input) {
 			lastCommandDrive = input;
-			motorOutput->SetOverDrive(forward ? 0.25 : -0.25);
+			motorOutput->SetOverDrive(forward ? 0.5 : -0.5);
 			gyro->Reset();
 			autoRotateController->SetSetpoint(0);
 			autoRotateController->Enable();
@@ -146,7 +150,8 @@ public:
 	void TeleopInit() {
 		myRobot->SetSafetyEnabled(false);
 		SmartDashboard::PutBoolean("Use Gyro", false);
-		SmartDashboard::PutNumber("Speed Factor", speedFactor);
+		SmartDashboard::PutNumber("Speed Factor", 0.5);
+		SmartDashboard::PutBoolean("Creep Mode", false);
 
 		gyro->Reset();
 
@@ -156,6 +161,9 @@ public:
 	void TeleopPeriodic() {
 		speedFactor = SmartDashboard::GetNumber("Speed Factor");
 
+		if (SmartDashboard::GetBoolean("Creep Mode")) {
+			speedFactor = 0.2;
+		}
 		x = xbox->getAxisLeftX();
 		y = xbox->getAxisLeftY();
 		twist = xbox->getAxisRightX();
