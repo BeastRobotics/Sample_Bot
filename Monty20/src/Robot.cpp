@@ -46,11 +46,6 @@ class Robot: public IterativeRobot {
 	int grabTurnLeft = GRABTURNLEFT;
 	int grabTurnRight = GRABTURNRIGHT;
 
-	bool strafe = 0;
-	bool step = 0;
-	bool turnRight = 0;
-	bool turnLeft = 0;
-
 	Command_Node* head;
 	Command_Node* currentCommand;
 public:
@@ -60,33 +55,15 @@ public:
 	}
 	void driveStraight() {
 		addCommand(MOVE, AUTO_D);
-		if (turnRight) {
-			addCommand(MOVE, RIGHT);
-		}
-		if (turnLeft) {
-			addCommand(MOVE, LEFT);
-		}
 	}
 	void driveBack() {
 		addCommand(MOVE, AUTO_BACK);
-		if (turnRight) {
-			addCommand(MOVE, RIGHT);
-		}
-		if (turnLeft) {
-			addCommand(MOVE, LEFT);
-		}
 	}
 	void getContainer() {
 		addCommand(GRABBER, G_CLOSE);
 		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
 		addCommand(MOVE, AUTO_D);
-		if (turnRight) {
-			addCommand(MOVE, RIGHT);
-		}
-		if (turnLeft) {
-			addCommand(MOVE, LEFT);
-		}
 	}
 	void getContainerBack() {
 		addCommand(GRABBER, G_CLOSE);
@@ -101,12 +78,6 @@ public:
 		addCommand(MOVE, RIGHT);
 		addCommand(DELAY, WAIT);
 		addCommand(MOVE, AUTO_GT);
-		if (turnRight) {
-			addCommand(MOVE, RIGHT);
-		}
-		if (turnLeft) {
-			addCommand(MOVE, LEFT);
-		}
 	}
 	void getToteContainer() {
 		addCommand(GRABBER, G_CLOSE); //Grab container
@@ -119,12 +90,6 @@ public:
 		addCommand(LIFTER, 1000); //lift tote
 		addCommand(MOVE, RIGHT); //turn to face auto zone
 		addCommand(MOVE, AUTO_GTC); //drive to auto zone
-		if (turnRight) {
-			addCommand(MOVE,RIGHT);
-		}
-		if (turnLeft) {
-			addCommand(MOVE, LEFT);
-		}
 	}
 
 	Robot() :
@@ -187,19 +152,10 @@ private:
 			if (controllers[i] != NULL)
 				controllers[i]->RobotInit();
 		}
-		SmartDashboard::PutString("State", "Robot Init");
-		SmartDashboard::PutBoolean("auto Strafe", strafe);
-		SmartDashboard::PutBoolean("auto Step", step);
-		SmartDashboard::PutBoolean("auto turn right", turnRight);
-		SmartDashboard::PutBoolean("auto turn left", turnLeft);
 	}
 
 	void AutonomousInit() {
 		int chooser = Preferences::GetInstance()->GetInt("AutoChooser", 1);
-		strafe = SmartDashboard::GetBoolean("auto Strafe");
-		step = SmartDashboard::GetBoolean("auto Step");
-		turnLeft = SmartDashboard::GetBoolean("auto turn left");
-		turnRight = SmartDashboard::GetBoolean("auto turn right");
 		switch (chooser) {
 		case 1:
 			SmartDashboard::PutString("ChooserValue", "You Failed At Life");
