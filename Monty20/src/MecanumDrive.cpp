@@ -37,6 +37,9 @@ protected:
 	int lastCommandDrive;
 	int autoDriveCounter;
 	int autoTurnCounter;
+	Encoder *frontRightEncoder, *frontLeftEncoder;
+	int lastEncoderFrontRight, lastEncoderFrontLeft;
+
 
 	float x;
 	float y;
@@ -53,6 +56,9 @@ public:
 		motor2 = new Talon(rearRightChannel);
 		motor3 = new Talon(frontLeftChannel);
 		motor4 = new Talon(rearLeftChannel);
+
+		frontRightEncoder=new Encoder(0, 1);
+		frontLeftEncoder=new Encoder(2, 3);
 
 		motorOutput = new MultiOutputPID(motor1, motor3, motor2, motor4, true);
 		gyro = new Gyro(gyroChannel);
@@ -93,6 +99,9 @@ public:
 	}
 
 	int AutonomousPeriodic(int input) {
+		SmartDashboard::PutNumber("FrontRightEncoder", frontRightEncoder->Get());
+		SmartDashboard::PutNumber("FrontLeftEncoder", frontLeftEncoder->Get());
+
 		if (lastCommand != input) {
 			lastCommand = input;
 		}
