@@ -19,6 +19,7 @@
 #define FINAL_DEBOUNCE_TURN 300
 
 class MecanumDrive: public IControl {
+protected:
 	XboxController *xbox;
 	RobotDrive* myRobot;
 	Gyro *gyro;
@@ -127,13 +128,14 @@ public:
 		}
 		double gyroValue = gyro->GetAngle();
 		if (abs(gyroValue - input) < THRESHHOLD_RANGE) {
-			if (--autoTurnCounter <= 0) {
+			autoTurnCounter--;
+			if (autoTurnCounter <= 0) {
 				AutonomousInit();
 				return 1;
 			}
-		} /*else {
+		} else {
 			autoTurnCounter = FINAL_DEBOUNCE_TURN / DAVIDS_FUN_INPUT;
-		}*/
+		}
 		return 0;
 	}
 
