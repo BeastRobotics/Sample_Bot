@@ -37,8 +37,8 @@ protected:
 	int lastCommandDrive;
 	int autoDriveCounter;
 	int autoTurnCounter;
-	Encoder *frontRightEncoder, *frontLeftEncoder;
-	int lastEncoderFrontRight, lastEncoderFrontLeft;
+	Encoder *frontRightEncoder;
+	Encoder *frontLeftEncoder;
 
 
 	float x;
