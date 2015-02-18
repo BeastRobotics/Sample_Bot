@@ -102,9 +102,9 @@ public:
 		SmartDashboard::PutNumber("FrontRightEncoder", frontRightEncoder->Get());
 		SmartDashboard::PutNumber("FrontLeftEncoder", frontLeftEncoder->Get());
 
-		if (lastCommand != input) {
-			lastCommand = input;
-		}
+		//if (lastCommand != input) {
+		//	lastCommand = input;
+		//}
 
 		switch (input) {
 		case 0:
@@ -115,6 +115,8 @@ public:
 			return turn(-90);
 		case 3:
 			return disableStuff();
+		case 4:
+			return driveForward();
 		default:
 			if (abs(input) > 10) {
 				return drive(abs(input / DAVIDS_FUN_INPUT), input > 0);
@@ -123,6 +125,23 @@ public:
 		}
 		return 0;
 	}
+
+	int driveForward(){
+		if (lastCommand == 0){
+			autoDriveCounter = 5000 / DAVIDS_FUN_INPUT;
+			lastCommand = -1;
+		}
+		autoDriveCounter--;
+		if (autoDriveCounter <= 0)
+		{
+			this->myRobot->ArcadeDrive(0.0, 0);
+			lastCommand = 0;
+			return 1;
+		}
+		this->myRobot->ArcadeDrive(0.2, 0);
+		return 0;
+	}
+
 	int disableStuff() {
 		AutonomousInit();
 		return 0;

@@ -91,6 +91,9 @@ public:
 		addCommand(MOVE, RIGHT); //turn to face auto zone
 		addCommand(MOVE, AUTO_GTC); //drive to auto zone
 	}
+	void driveStraightTest() {
+		addCommand(MOVE, 4);
+	}
 
 	Robot() :
 			lw(NULL) {
@@ -187,6 +190,11 @@ private:
 			SmartDashboard::PutString("ChooserValue",
 					"You got everything!!!!!!!!!!");
 			getToteContainer();
+			break;
+		case 8:
+			SmartDashboard::PutString("ChooserValue",
+					"Drive forward test");
+			driveStraightTest();
 			break;
 		}
 		currentCommand = head;
