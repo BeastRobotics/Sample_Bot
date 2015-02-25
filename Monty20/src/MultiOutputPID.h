@@ -19,7 +19,7 @@ class MultiOutputPID:public PIDOutput {
 	float overDrive;
 
 public:
-	MultiOutputPID(PIDOutput *motor1, PIDOutput *motor2, PIDOutput *motor3, PIDOutput *motor4, bool isRotate);
+	MultiOutputPID(PIDOutput *motor1=NULL, PIDOutput *motor2=NULL, PIDOutput *motor3=NULL, PIDOutput *motor4=NULL, bool isRotate=false);
 	virtual ~MultiOutputPID();
 
 	void PIDWrite(float output);

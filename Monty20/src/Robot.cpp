@@ -24,7 +24,7 @@
 #define GRABTURNLEFT 1
 #define GRABTURNRIGHT 2
 #define WAIT 1000
-#define AUTO_D 3000
+#define AUTO_D 1000
 #define AUTO_BACK -2000
 #define AUTO_GCB -2000
 #define AUTO_GT 2500
@@ -45,6 +45,7 @@ class Robot: public IterativeRobot {
 	int autoDrive = AUTODRIVE;
 	int grabTurnLeft = GRABTURNLEFT;
 	int grabTurnRight = GRABTURNRIGHT;
+	int commandNumber = 0;
 
 	Command_Node* head;
 	Command_Node* currentCommand;
@@ -125,7 +126,7 @@ private:
 	//int automonusCommand;
 
 	void addCommand(int index, int operation) {
-
+		SmartDashboard::PutNumber("Auto Thingy",1);
 		Command_Node* toAdd = new Command_Node();
 		toAdd->index = index;
 		toAdd->nextCommand = NULL;
@@ -156,9 +157,22 @@ private:
 				controllers[i]->RobotInit();
 		}
 	}
-
+	void Delete(Command_Node* node){
+		if(node!=NULL){
+			Delete( node->nextCommand);
+			delete node;
+		}
+		node = NULL;
+	}
 	void AutonomousInit() {
-		int chooser = Preferences::GetInstance()->GetInt("AutoChooser", 1);
+		commandNumber = 1;
+
+		if(head != NULL){
+			Delete(head);
+			head = NULL;
+		}
+		getContainer();
+		/*int chooser = SmartDashboard::GetNumber("Auto Thingy");
 		switch (chooser) {
 		case 1:
 			SmartDashboard::PutString("ChooserValue", "You Failed At Life");
@@ -196,7 +210,7 @@ private:
 					"Drive forward test");
 			driveStraightTest();
 			break;
-		}
+		}*/
 		currentCommand = head;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
@@ -208,6 +222,7 @@ private:
 
 		SmartDashboard::PutBoolean("DoneAuto", currentCommand == NULL);
 		if (currentCommand != NULL) {
+			SmartDashboard::PutNumber("Command Number", commandNumber++);
 			SmartDashboard::PutNumber("Command Index", currentCommand->index);
 			SmartDashboard::PutNumber("Command Operation",
 					currentCommand->operation);

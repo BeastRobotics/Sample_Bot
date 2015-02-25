@@ -35,10 +35,18 @@ void MultiOutputPID::PIDWrite(float output) {
 		leftOut = -overDrive + (rotateLeft ? offset : -offset);
 		rightOut = overDrive + (rotateLeft ? offset : -offset);
 	}
-	motor1->PIDWrite(leftOut);
-	motor2->PIDWrite(rightOut);
-	motor3->PIDWrite(leftOut);
-	motor4->PIDWrite(rightOut);
+	if(motor1!=NULL){
+		motor1->PIDWrite(leftOut);
+	}
+	if(motor2 != NULL){
+		motor2->PIDWrite(rightOut);
+	}
+	if (motor3 != NULL) {
+		motor3->PIDWrite(leftOut);
+	}
+	if (motor4 != NULL) {
+		motor4->PIDWrite(rightOut);
+	}
 }
 
 void MultiOutputPID::SetRotate(bool rot) {
