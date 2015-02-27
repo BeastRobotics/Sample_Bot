@@ -53,6 +53,7 @@ public:
 	int autoProgram = 0;
 	float UpperLimitValue;
 	float LowerLimitValue;
+	bool canUseLimit;
 
 	LifterControl() {
 		lifter = new Talon(LIFTER_MOTOR);
@@ -74,6 +75,7 @@ public:
 
 		autoCount = -1;
 		lastCommand = 0;
+		canUseLimit = false;
 	}
 
 	void RobotInit() {
@@ -100,7 +102,7 @@ public:
 		autoCount--;
 		if (autoCount <= 0) {
 			AutonomousInit();
-			lifterSpeed=0;
+			lifterSpeed = 0;
 			return 1;
 		}
 
@@ -114,12 +116,21 @@ public:
 		return 0;
 	}
 
+	void disableLimit() {
+		canUseLimit = false;
+	}
+
+	void enableLimit() {
+		canUseLimit = true;
+	}
+
 	void TeleopInit() {
 		SmartDashboard::PutNumber("Lifter Encoder", 0.0);
 		SmartDashboard::PutBoolean("Manual Lifter Mode", true);
 		SmartDashboard::PutNumber("Lifter Speed Factor", 0.75);
 		SmartDashboard::PutNumber("Lifter Motor Value", 0.0); //This is the current output to the motor
 		SmartDashboard::PutNumber("Accel", 0.1); //Acceleration going up
+		SmartDashboard::PutString("Limit", "Enabled");
 		//SetEncoderValue();
 		//Stop();
 		lifter->Set(0.0);
@@ -132,6 +143,19 @@ public:
 		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
 		SmartDashboard::PutNumber("Lifter Speed Factor", speedFactor);
 		SetAccel(SmartDashboard::GetNumber("Accel"));
+
+		if (canUseLimit) {
+			SmartDashboard::PutString("Limit", "Enabled");
+		} else {
+			SmartDashboard::PutString("Limit", "Disabled");
+
+		}
+
+		if (xbox->isLBumperHeld()) {
+			disableLimit();
+		} else {
+			enableLimit();
+		}
 
 		bool isLifterManual = SmartDashboard::GetBoolean("Manual Lifter Mode");
 
@@ -306,11 +330,19 @@ public:
 	}
 
 	bool GetUpperLimit() {
-		return upperLimit->Get();  //Backwords
+		if (canUseLimit) {
+			return upperLimit->Get();  //Backwords
+		} else {
+			return true;
+		}
 	}
 
 	bool GetLowerLimit() {
-		return lowerLimit->Get();  //backwords
+		if (canUseLimit) {
+			return lowerLimit->Get();  //backwords
+		} else {
+			return true;
+		}
 	}
 
 	/*
