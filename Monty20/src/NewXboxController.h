@@ -10,7 +10,7 @@
 
 class NewXboxController: public RestrictedXboxController, public XboxController, public IControl {
 public:
-	static NewXboxController* getInstance();
+	static NewXboxController* getInstance(int port=0);
 	~NewXboxController() {
 	}
 	Joystick* getLeftStick() {
