@@ -4,17 +4,21 @@
 =======
 #include <CameraServer.h>
 #include <Compressor.h>
+#include <CounterBase.h>
 #include <DoubleSolenoid.h>
 #include <DriverStation.h>
+#include <Encoder.h>
 #include <HAL/Task.hpp>
 #include <IterativeRobot.h>
 #include <Joystick.h>
 #include <LiveWindow/LiveWindow.h>
+#include <NewXboxController.h>
 #include <Preferences.h>
 #include <RobotBase.h>
 #include <RobotDrive.h>
 #include <stddef.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <Talon.h>
 #include <Task.h>
 #include <Timer.h>
 #include <XboxController.h>
@@ -93,9 +97,7 @@ private:
 	}
 
 	void TeleopInit() {
-<<<<<<< HEAD
 		controller=NewXboxController::getInstance();
-=======
 
 		SmartDashboard::PutString("State", "Teleop");
 		SmartDashboard::PutBoolean("Increment Counter", false);
@@ -107,7 +109,6 @@ private:
 		FUNCPTR myTask = (FUNCPTR)Robot::CountToHundred;
 		aTask = new Task("Counter", myTask);
 		aTask->Start((uint32_t)this);
->>>>>>> dc6000bd4e802384dc3ed3380389df9a24597f8d
 	}
 
 	void endTask()
@@ -139,14 +140,13 @@ private:
 		if (xbox->isBPressed()) {
 			lifter->MoveToLevel1();
 
-<<<<<<< HEAD
+
 		controller->update();
 
 		SmartDashboard::PutBoolean("New Xbox: X", controller->getXHeld());
 		SmartDashboard::PutBoolean("New Xbox: Y", controller->getYHeld());
 		SmartDashboard::PutBoolean("New Xbox: A", controller->getAHeld());
 		SmartDashboard::PutBoolean("New Xbox: B", controller->getBHeld());
-=======
 		}
 		myRobot.ArcadeDrive(xbox->getLeftStick()); //Drives the robot
 
@@ -166,7 +166,6 @@ private:
 		//SmartDashboard::PutNumber("Left Motor Count", en2->Get());
 
 		SmartDashboard::PutNumber("Stick it UP", xbox->getLeftStick()->GetX()); //X-Value of Joystick
->>>>>>> dc6000bd4e802384dc3ed3380389df9a24597f8d
 
 		SmartDashboard::PutBoolean("New Xbox: L3", controller->getL3Held());
 		SmartDashboard::PutBoolean("New Xbox: R3", controller->getR3Held());
