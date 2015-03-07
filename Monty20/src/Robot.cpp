@@ -12,6 +12,7 @@
 #include "LifterControlTester.cpp"
 #include "CameraControl.cpp"
 #include "AutoDelay.h"
+#include "DriveTest.cpp"
 
 #define NUM_CONTROLLERS 7
 #define GRABBER 4
@@ -105,13 +106,14 @@ public:
 		}
 
 		controllers[0] = NewXboxController::getInstance();
-		controllers[1] = new LifterControl();
+		//controllers[1] = new LifterControl();
 		//controllers[1] = new LifterBrake();
-		controllers[2] = new CompressorControl();
+		//controllers[2] = new CompressorControl();
 		//controllers[3] = new ArcadeDrive();
-		controllers[3] = new MecanumDrive();
-		controllers[4] = new GrabberControl();
-		controllers[5] = new CameraControl();
+		//controllers[3] = new MecanumDrive();
+		controllers[3] = new DriveTest();
+		//controllers[4] = new GrabberControl();
+		//controllers[5] = new CameraControl();
 
 		//lifter = new LifterControlTester();
 		//controllers[5] = new MecanumDrive();
