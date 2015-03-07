@@ -66,6 +66,7 @@ public:
 		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
 		addCommand(MOVE, AUTO_D);
+		addCommand(MOVE, 1);
 	}
 	void getContainerBack() {
 		addCommand(GRABBER, G_CLOSE);
@@ -106,14 +107,14 @@ public:
 		}
 
 		controllers[0] = NewXboxController::getInstance();
-		//controllers[1] = new LifterControl();
+		controllers[1] = new LifterControl();
 		//controllers[1] = new LifterBrake();
-		//controllers[2] = new CompressorControl();
+		controllers[2] = new CompressorControl();
 		//controllers[3] = new ArcadeDrive();
-		//controllers[3] = new MecanumDrive();
-		controllers[3] = new DriveTest();
-		//controllers[4] = new GrabberControl();
-		//controllers[5] = new CameraControl();
+		controllers[3] = new MecanumDrive();
+		//controllers[3] = new DriveTest();
+		controllers[4] = new GrabberControl();
+		controllers[5] = new CameraControl();
 
 		//lifter = new LifterControlTester();
 		//controllers[5] = new MecanumDrive();

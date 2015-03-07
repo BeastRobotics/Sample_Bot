@@ -92,8 +92,6 @@ public:
 		creepMode = false;
 	}
 
-
-
 	void creepModeSet() {
 		if (xbox->isRightTriggerHeld()) {
 			creepMode = true;
@@ -101,6 +99,7 @@ public:
 	}
 
 	void TeleopInit() {
+		gyro->Reset();
 		AutonomousInit();
 		myRobot->SetSafetyEnabled(false);
 		SmartDashboard::PutBoolean("Use Gyro", false);
@@ -109,19 +108,39 @@ public:
 		SmartDashboard::PutNumber("Rotate Speed Factor", 0.5);
 		SmartDashboard::PutNumber("Strafe Speed Factor", 0.5);
 
-
 	}
 
 	void TeleopPeriodic() {
 		y = 0;
 		x = twist = y;
-		if(xbox->isAHeld())y = -.25;
-		else if(xbox->isBHeld())y = .25;
+		x = .5;
+		float xSet = SmartDashboard::GetNumber("Strafe Speed Factor");
+		if (xbox->isAHeld())
+			ExDriveRight(x);
+		else if (xbox->isBHeld())
+			ExDrivLefte(x);
+		else
+			rDis();
 
-
-
-
-		myRobot->MecanumDrive_Cartesian(x, y, twist, angle);
+		//myRobot->MecanumDrive_Cartesian(x, y, twist, 0);
+	}
+	void ExDrivLefte(float x) {
+		motor1->Set(x);
+		motor2->Set(-x);
+		motor3->Set(x);
+		motor4->Set(-x);
+	}
+	void ExDriveRight(float x) {
+		motor1->Set(-x);
+		motor2->Set(x);
+		motor3->Set(-x);
+		motor4->Set(x);
+	}
+	void rDis() {
+		motor1->Set(0);
+		motor2->Set(0);
+		motor3->Set(0);
+		motor4->Set(0);
 	}
 
 };
