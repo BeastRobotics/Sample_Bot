@@ -31,6 +31,8 @@
 
 class LifterControl: public IControl {
 
+
+
 protected:
 	Talon *lifter;
 	DigitalInput *upperLimit;
@@ -55,14 +57,23 @@ public:
 	float LowerLimitValue;
 	bool canUseLimit;
 
+
+
+
 	LifterControl() {
 		lifter = new Talon(LIFTER_MOTOR);
 		level1Value = LEVEL_1;
 		level2Value = LEVEL_2;
 		level3Value = LEVEL_3;
 		homeValue = HOME;
-		upperLimit = new DigitalInput(UPPER_LIMIT);
-		lowerLimit = new DigitalInput(LOWER_LIMIT);
+		//int start = 0;
+
+
+
+		upperLimit = new DigitalInput(22);
+		lowerLimit = new DigitalInput(23);
+
+
 		//magInput = new DigitalInput(5);
 		lifterSpeed = 0;
 		speedFactor = 1.0;
@@ -76,6 +87,8 @@ public:
 		autoCount = -1;
 		lastCommand = 0;
 		canUseLimit = false;
+
+
 	}
 
 	void RobotInit() {
@@ -137,12 +150,14 @@ public:
 	}
 
 	void TeleopPeriodic() {
-		SmartDashboard::PutBoolean("Lower Limit", GetUpperLimit());
 		SmartDashboard::PutBoolean("Upper Limit", GetLowerLimit());
+		SmartDashboard::PutBoolean("Lower Limit", GetUpperLimit());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
 		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
 		SmartDashboard::PutNumber("Lifter Speed Factor", speedFactor);
 		SetAccel(SmartDashboard::GetNumber("Accel"));
+
+
 
 		if (canUseLimit) {
 			SmartDashboard::PutString("Limit", "Enabled");

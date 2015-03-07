@@ -13,6 +13,8 @@
 #include "CameraControl.cpp"
 #include "AutoDelay.h"
 #include "DriveTest.cpp"
+#include "imu.h"
+#include "AHRS.h"
 
 #define NUM_CONTROLLERS 7
 #define GRABBER 4
@@ -32,6 +34,7 @@
 #define AUTO_GTC AUTO_GT
 #define LEFT 0
 #define RIGHT 1
+#define ENABLE_AHRS
 
 struct Command_Node {
 	int index;
@@ -40,6 +43,19 @@ struct Command_Node {
 };
 
 class Robot: public IterativeRobot {
+
+	//Navx
+	NetworkTable *table;
+#if defined(ENABLE_AHRS)
+	AHRS *imu;
+#elif defined(ENABLE_IMU_ADVANCED)
+	IMUAdvanced *imu;
+#else // ENABLE_IMU
+	IMU *imu;
+#endif
+	SerialPort *serial_port;
+	bool first_iteration;
+	//NavX
 
 	IControl *controllers[NUM_CONTROLLERS];
 	int autoReturns[NUM_CONTROLLERS];
@@ -122,6 +138,23 @@ public:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			autoReturns[i] = 0;
 		}
+
+		//NavX
+		table = NetworkTable::GetTable("datatable");
+		serial_port = new SerialPort(57600, SerialPort::kMXP);
+		uint8_t update_rate_hz = 50;
+#if defined(ENABLE_AHRS)
+		imu = new AHRS(serial_port, update_rate_hz);
+#elif defined(ENABLE_IMU_ADVANCED)
+		imu = new IMUAdvanced(serial_port,update_rate_hz);
+#else // ENABLE_IMU
+		imu = new IMU(serial_port, update_rate_hz);
+#endif
+		if (imu) {
+			LiveWindow::GetInstance()->AddSensor("IMU", "Gyro", imu);
+		}
+		first_iteration = true;
+		//NavX
 	}
 
 private:
@@ -129,7 +162,7 @@ private:
 	//int automonusCommand;
 
 	void addCommand(int index, int operation) {
-		SmartDashboard::PutNumber("Auto Thingy",1);
+		SmartDashboard::PutNumber("Auto Thingy", 1);
 		Command_Node* toAdd = new Command_Node();
 		toAdd->index = index;
 		toAdd->nextCommand = NULL;
@@ -160,9 +193,9 @@ private:
 				controllers[i]->RobotInit();
 		}
 	}
-	void Delete(Command_Node* node){
-		if(node!=NULL){
-			Delete( node->nextCommand);
+	void Delete(Command_Node* node) {
+		if (node != NULL) {
+			Delete(node->nextCommand);
 			delete node;
 		}
 		node = NULL;
@@ -170,50 +203,50 @@ private:
 	void AutonomousInit() {
 		commandNumber = 1;
 
-		if(head != NULL){
+		if (head != NULL) {
 			Delete(head);
 			head = NULL;
 		}
 		getContainer();
 		/*int chooser = SmartDashboard::GetNumber("Auto Thingy");
-		switch (chooser) {
-		case 1:
-			SmartDashboard::PutString("ChooserValue", "You Failed At Life");
-			nothing();
-			break;
-		case 2:
-			SmartDashboard::PutString("ChooserValue",
-					"You can drive straight!");
-			driveStraight();
-			break;
-		case 3:
-			SmartDashboard::PutString("ChooserValue", "Driving back");
-			driveBack();
-			break;
-		case 4:
-			SmartDashboard::PutString("ChooserValue", "Get Container");
-			getContainer();
-			break;
-		case 5:
-			SmartDashboard::PutString("ChooserValue",
-					"Get Container Backwards");
-			getContainerBack();
-			break;
-		case 6:
-			SmartDashboard::PutString("ChooserValue", "Get the Tote");
-			getTote();
-			break;
-		case 7:
-			SmartDashboard::PutString("ChooserValue",
-					"You got everything!!!!!!!!!!");
-			getToteContainer();
-			break;
-		case 8:
-			SmartDashboard::PutString("ChooserValue",
-					"Drive forward test");
-			driveStraightTest();
-			break;
-		}*/
+		 switch (chooser) {
+		 case 1:
+		 SmartDashboard::PutString("ChooserValue", "You Failed At Life");
+		 nothing();
+		 break;
+		 case 2:
+		 SmartDashboard::PutString("ChooserValue",
+		 "You can drive straight!");
+		 driveStraight();
+		 break;
+		 case 3:
+		 SmartDashboard::PutString("ChooserValue", "Driving back");
+		 driveBack();
+		 break;
+		 case 4:
+		 SmartDashboard::PutString("ChooserValue", "Get Container");
+		 getContainer();
+		 break;
+		 case 5:
+		 SmartDashboard::PutString("ChooserValue",
+		 "Get Container Backwards");
+		 getContainerBack();
+		 break;
+		 case 6:
+		 SmartDashboard::PutString("ChooserValue", "Get the Tote");
+		 getTote();
+		 break;
+		 case 7:
+		 SmartDashboard::PutString("ChooserValue",
+		 "You got everything!!!!!!!!!!");
+		 getToteContainer();
+		 break;
+		 case 8:
+		 SmartDashboard::PutString("ChooserValue",
+		 "Drive forward test");
+		 driveStraightTest();
+		 break;
+		 }*/
 		currentCommand = head;
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
@@ -245,6 +278,7 @@ private:
 	void TeleopInit() {
 		//SmartDashboard::PutNumber("Tommy Genius", (double)chooser->GetSelected());
 		SmartDashboard::PutString("State", "Tele Init");
+		SmartDashboard::PutBoolean("IMU_Connected", imu->IsConnected());
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			SmartDashboard::PutNumber("State 2", i);
 			if (controllers[i] != NULL)
@@ -269,6 +303,42 @@ private:
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 			if (controllers[i] != NULL)
 				controllers[i]->TestPeriodic();
+		}
+	}
+	void OperatorControl(void) {
+		while (IsOperatorControl()) {
+			if (first_iteration) {
+				bool is_calibrating = imu->IsCalibrating();
+				if (!is_calibrating) {
+					Wait(0.3);
+					imu->ZeroYaw();
+					first_iteration = false;
+				}
+			}
+			SmartDashboard::PutBoolean("IMU_Connected", imu->IsConnected());
+			SmartDashboard::PutNumber("IMU_Yaw", imu->GetYaw());
+			SmartDashboard::PutNumber("IMU_Pitch", imu->GetPitch());
+			SmartDashboard::PutNumber("IMU_Roll", imu->GetRoll());
+			SmartDashboard::PutNumber("IMU_CompassHeading",
+					imu->GetCompassHeading());
+			SmartDashboard::PutNumber("IMU_Update_Count",
+					imu->GetUpdateCount());
+			SmartDashboard::PutNumber("IMU_Byte_Count", imu->GetByteCount());
+
+#if defined (ENABLE_IMU_ADVANCED) || defined(ENABLE_AHRS)
+			SmartDashboard::PutNumber("IMU_Accel_X", imu->GetWorldLinearAccelX());
+			SmartDashboard::PutNumber("IMU_Accel_Y", imu->GetWorldLinearAccelY());
+			SmartDashboard::PutBoolean("IMU_IsMoving", imu->IsMoving());
+			SmartDashboard::PutNumber("IMU_Temp_C", imu->GetTempC());
+			SmartDashboard::PutBoolean("IMU_IsCalibrating", imu->IsCalibrating());
+#if defined (ENABLE_AHRS)
+			SmartDashboard::PutNumber("Velocity_X", imu->GetVelocityX() );
+			SmartDashboard::PutNumber("Velocity_Y", imu->GetVelocityY() );
+			SmartDashboard::PutNumber("Displacement_X", imu->GetDisplacementX() );
+			SmartDashboard::PutNumber("Displacement_Y", imu->GetDisplacementY() );
+#endif
+#endif
+			Wait(0.2);				// wait for a while
 		}
 	}
 
