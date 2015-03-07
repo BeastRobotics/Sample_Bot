@@ -30,6 +30,7 @@
 #define DEBOUNCE_COUNT_LIMIT 15
 
 static NewXboxController *newXbox= NULL;
+static NewXboxController *newXbox2= NULL;
 
 NewXboxController::NewXboxController(int port) :
 		XboxController(port), lstick(port), rstick(port) {
@@ -82,10 +83,15 @@ NewXboxController::NewXboxController(int port) :
 	rightTriggerDebounceCounter=0;
 }
 
-NewXboxController *NewXboxController::getInstance() {
-	if (newXbox==NULL) newXbox=new NewXboxController(0); //this is the first time getInstance is called
-
-	return newXbox;
+NewXboxController *NewXboxController::getInstance(int port) {
+	if (port==0) {
+		if (newXbox==NULL) newXbox=new NewXboxController(0); //this is the first time getInstance is called
+		return newXbox;
+	}
+	else {
+		if (newXbox2==NULL)newXbox2=new NewXboxController(port); //this is the first time getInstance is called for this port
+		return newXbox2;
+	}
 }
 
 void NewXboxController::update() {
