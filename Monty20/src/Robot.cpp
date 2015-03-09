@@ -122,7 +122,7 @@ public:
 			controllers[i] = NULL;
 		}
 
-		controllers[0] = NewXboxController::getInstance();
+		controllers[0] = NewXboxController::getInstance(1);
 		controllers[1] = new LifterControl();
 		//controllers[1] = new LifterBrake();
 		controllers[2] = new CompressorControl();
@@ -131,6 +131,8 @@ public:
 		//controllers[3] = new DriveTest();
 		controllers[4] = new GrabberControl();
 		controllers[5] = new CameraControl();
+		controllers[6] = NewXboxController::getInstance(0);
+
 
 		//lifter = new LifterControlTester();
 		//controllers[5] = new MecanumDrive();
