@@ -9,7 +9,7 @@
 #include <IControl.h>
 #include <RobotDrive.h>
 #include <SmartDashboard/SmartDashboard.h>
-#include <XboxController.h>
+#include <NewXboxController.h>
 #include <cmath>
 #include "WPILib.h"
 
@@ -20,7 +20,7 @@
 
 class MecanumDrive: public IControl {
 protected:
-	XboxController *xbox;
+	NewXboxController *xbox;
 	RobotDrive* myRobot;
 	Gyro *gyro;
 	MultiOutputPID *motorOutput;
@@ -76,7 +76,7 @@ public:
 
 		myRobot = new RobotDrive(motor3, motor4, motor1, motor2);
 		myRobot->SetExpiration(0.1);
-		xbox = XboxController::getInstance();
+		xbox = NewXboxController::getInstance(1);
 		myRobot->SetInvertedMotor(RobotDrive::kFrontLeftMotor, true); // invert the left side motors
 		myRobot->SetInvertedMotor(RobotDrive::kRearLeftMotor, true); // you may need to change or remove this to match your robot
 		x = 0.0;
