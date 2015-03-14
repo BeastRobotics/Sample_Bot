@@ -311,10 +311,10 @@ private:
 		SmartDashboard::PutString("State", "Tele Periodic");
 		
 		//TODO Encoders
-		SmartDashboard::PutNumber("FrontRight",FrontRight->get());
-		SmartDashboard::PutNumber("FrontLeft",FrontLeft->get());
-		SmartDashboard::PutNumber("RearRight",RearRight->get());
-		SmartDashboard::PutNumber("RearLeft",RearLeft->get());
+		SmartDashboard::PutNumber("FrontRight",FrontRight->GetRate());
+		SmartDashboard::PutNumber("FrontLeft",FrontLeft->GetRate());
+		SmartDashboard::PutNumber("RearRight",RearRight->GetRate());
+		SmartDashboard::PutNumber("RearLeft",RearLeft->GetRate());
 		
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 
