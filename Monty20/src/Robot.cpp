@@ -39,10 +39,10 @@
 #define FrontLeftEncoderEnd 3
 #define FrontRightEncoderStart 0
 #define FrontRightEncoderEnd 1
-#define RearLeftEncoderStart 6
-#define RearLeftEncoderEnd 7
+#define RearLeftEncoderStart 11
+#define RearLeftEncoderEnd 10
 #define RearRightEncoderStart 4
-#define RearRightEncoderEnd 7
+#define RearRightEncoderEnd 5
 
 struct Command_Node {
 	int index;
@@ -310,6 +310,12 @@ private:
 	}
 
 	void TeleopPeriodic() {
+
+		DigitalInput *b = new DigitalInput(7);
+		DigitalInput *h = new DigitalInput(6);
+
+		SmartDashboard::PutBoolean("Input Check 6", h->Get());
+		SmartDashboard::PutBoolean("Input Check 7", b->Get());
 		SmartDashboard::PutString("State", "Tele Periodic");
 		
 		//TODO Encoders

@@ -41,7 +41,7 @@ protected:
 	XboxController *xbox;
 	Timer *time;
 	double speedFactor;
-
+	Encoder *lifterEncoder;
 	int autoCount, lastCommand;
 
 public:
@@ -81,6 +81,8 @@ public:
 		autoCount = -1;
 		lastCommand = 0;
 		canUseLimit = false;
+
+		lifterEncoder = new Encoder(8, 9);
 	}
 
 	void RobotInit() {
@@ -145,6 +147,7 @@ public:
 		SmartDashboard::PutBoolean("Upper Limit", GetLowerLimit());
 		SmartDashboard::PutBoolean("Lower Limit", GetUpperLimit());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
+		SmartDashboard::PutNumber("Lifter Encoder", lifterEncoder->GetRate());
 
 
 		SetAccel(SmartDashboard::GetNumber("Accel"));

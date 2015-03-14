@@ -12,11 +12,13 @@
 #include <NewXboxController.h>
 #include <cmath>
 #include "WPILib.h"
+#include "BeastSpeedControl.h"
 
 #include "MultiOutputPID.h"
 #define THRESHHOLD_RANGE 2 //measured in degrees
 #define DAVIDS_FUN_INPUT 20
 #define FINAL_DEBOUNCE_TURN 300
+#define STRAFEOVERRIDE_FACTOR .1
 
 class MecanumDrive: public IControl {
 protected:
@@ -26,7 +28,9 @@ protected:
 	MultiOutputPID *motorOutput;
 	MultiOutputPID *leftOutput;
 	MultiOutputPID *rightOutput;
-	Talon *motor1, *motor2, *motor3, *motor4;
+	Talon *talonFR, *talonRR, *talonFL, *talonRL;
+	//FrontLeft3 RearLeft4 FrontRight1 RearRight2
+	BeastSpeedControl *frontRight, *rearRight, *frontLeft, *rearLeft;
 	PIDController *autoRotateController;
 	PIDController *leftController;
 	PIDController *rightController;
@@ -55,17 +59,22 @@ protected:
 
 public:
 	MecanumDrive() {
-		motor1 = new Talon(frontRightChannel);
-		motor2 = new Talon(rearRightChannel);
-		motor3 = new Talon(frontLeftChannel);
-		motor4 = new Talon(rearLeftChannel);
+		talonFR = new Talon(frontRightChannel);
+		talonRR = new Talon(rearRightChannel);
+		talonFL = new Talon(frontLeftChannel);
+		talonRL = new Talon(rearLeftChannel);
+
+		frontRight = new BeastSpeedControl(talonFR);
+		rearRight = new BeastSpeedControl(talonRR);
+		frontLeft = new BeastSpeedControl(talonFL);
+		rearLeft = new BeastSpeedControl(talonRL);
 
 		frontRightEncoder = new Encoder(0, 1, false);
 		frontLeftEncoder = new Encoder(2, 3, false);
 
-		motorOutput = new MultiOutputPID(motor1, motor3, motor2, motor4, true);
-		leftOutput = new MultiOutputPID(motor1, NULL, motor2, NULL, true);
-		rightOutput = new MultiOutputPID(NULL, motor3, NULL, motor4, true);
+		motorOutput = new MultiOutputPID(frontRight, frontLeft, rearRight, rearLeft, true);
+		leftOutput = new MultiOutputPID(frontRight, NULL, rearRight, NULL, true);
+		rightOutput = new MultiOutputPID(NULL, frontLeft, NULL, rearLeft, true);
 		gyro = new Gyro(gyroChannel);
 
 		autoRotateController = new PIDController(0.005, 0.0, 0.0, gyro,
@@ -74,8 +83,8 @@ public:
 				leftOutput);
 		rightController = new PIDController(0.0001, 0.0, 0.0,
 				frontRightEncoder, rightOutput);
-
-		myRobot = new RobotDrive(motor3, motor4, motor1, motor2);
+		//FrontLeft3 RearLeft4 FrontRight1 RearRight2
+		myRobot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 		myRobot->SetExpiration(0.1);
 		xbox = NewXboxController::getInstance(1);
 		myRobot->SetInvertedMotor(RobotDrive::kFrontLeftMotor, true); // invert the left side motors
@@ -288,7 +297,12 @@ public:
 		y *= speedFactor;
 		twist *= rotateSpeedFactor;
 
-		myRobot->MecanumDrive_Cartesian(x, y, twist, angle);
+		float override = x*STRAFEOVERRIDE_FACTOR;
+
+		frontLeft->SetOverride(override);
+		frontRight->SetOverride(override);
+
+		myRobot->MecanumDrive_Cartesian(x, y, twist, 0);
 
 		//myRobot->MecanumDrive_Cartesian(x, 0.0, 0.0, angle);
 
@@ -300,10 +314,10 @@ public:
 
 	void AutonomousExecute() {
 		if ((lastCommand<=0 && lastCommandTurn==0 && lastCommandDrive<=0)) {
-			motor1->PIDWrite(0.0);
-			motor2->PIDWrite(0.0);
-			motor3->PIDWrite(0.0);
-			motor4->PIDWrite(0.0);
+			frontRight->PIDWrite(0.0);
+			rearRight->PIDWrite(0.0);
+			frontLeft->PIDWrite(0.0);
+			rearLeft->PIDWrite(0.0);
 		}
 	}
 };

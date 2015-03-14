@@ -116,20 +116,30 @@ public:
 		SmartDashboard::PutNumber("Rotate Speed Factor", 0.5);
 		SmartDashboard::PutNumber("Strafe Speed Factor", 0.5);
 		SmartDashboard::PutNumber("Test Value", 0);
+		SmartDashboard::PutNumber("Drive Value", 0.0);
+		SmartDashboard::PutNumber("Clipped X", 0);
+		SmartDashboard::PutNumber("Clipped Y", 0);
+
+		stick->SetMaxValue(0.5);
 	}
 
 	void TeleopPeriodic() {
 		y = 0;
+
 		x = twist = y;
 		x = 0;
 		//float ySet = SmartDashboard::GetNumber("Test Value");
 		SmartDashboard::PutNumber("Xbox Y", xbox->getAxisLeftY());
 		SmartDashboard::PutNumber("Xbox X", xbox->getAxisLeftX());
 
-		if (xbox->isAHeld()) {
+		if (xbox->isBHeld()) {
+			y = SmartDashboard::GetNumber("Drive Value");
+		} else if (xbox->isAHeld()) {
 			stick->Update(xbox->getAxisLeftX(), xbox->getAxisLeftY());
 			x = stick->X();
 			y = stick->Y();
+			SmartDashboard::PutNumber("Clipped X", x);
+			SmartDashboard::PutNumber("Clipped Y", y);
 			twist = xbox->getAxisRightX();
 		} else {
 			x = xbox->getAxisLeftX();
