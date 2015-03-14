@@ -67,6 +67,7 @@ public:
 		leftOutput = new MultiOutputPID(motor1, NULL, motor2, NULL, true);
 		rightOutput = new MultiOutputPID(NULL, motor3, NULL, motor4, true);
 		gyro = new Gyro(gyroChannel);
+
 		autoRotateController = new PIDController(0.005, 0.0, 0.0, gyro,
 				motorOutput);
 		leftController = new PIDController(0.0001, 0.0, 0.0, frontLeftEncoder,
@@ -246,18 +247,16 @@ public:
 	}
 
 	void TeleopPeriodic() {
-		creepModeSet();
+
 		float gyroAngle = gyro->GetAngle();
 		SmartDashboard::PutNumber("Gyro Direction", gyroAngle);
 		speedFactor = SmartDashboard::GetNumber("Y Speed Factor");
 		rotateSpeedFactor = SmartDashboard::GetNumber("Rotate Speed Factor");
 		strafeSpeedFactor = SmartDashboard::GetNumber("Strafe Speed Factor");
 
-		SmartDashboard::PutBoolean("Creep Mode", creepMode);
 
-		if (creepMode) {
-			speedFactor = 0.2;
-		}
+		bool creep = xbox->isAHeld();
+		SmartDashboard::PutBoolean("Creep Mode", creep);
 
 		x = xbox->getAxisLeftX();
 		y = xbox->getAxisLeftY();
@@ -281,11 +280,18 @@ public:
 			angle = 0.0;
 		}
 
+		if(creep){
+			//b
+		}
+
 		x *= strafeSpeedFactor;
 		y *= speedFactor;
 		twist *= rotateSpeedFactor;
 
 		myRobot->MecanumDrive_Cartesian(x, y, twist, angle);
+
+		//myRobot->MecanumDrive_Cartesian(x, 0.0, 0.0, angle);
+
 	}
 
 	void setAutoProgram(int s) {

@@ -40,27 +40,35 @@ public:
 	float X() {
 		return xValue;
 	}
+
 	float Y() {
 		return yValue;
 	}
+
 	float GetDeadband() {
 		return deadband;
 	}
+
 	void SetDeadband(float value) {
 		deadband = value;
 	}
+
 	float GetMaxValue() {
 		return maxLength;
 	}
+
 	void SetMaxValue(float value) {
 		maxLength = value;
 	}
+
 	float GetMinValue() {
 		return minLength;
 	}
+
 	void SetMinValue(float value) {
 		minLength = value;
 	}
+
 	void Update(float x, float y) {
 		double vectorLength = sqrt(x * x + y * y);
 		if (vectorLength <= deadband) {
@@ -71,6 +79,7 @@ public:
 			yValue = ClipAxis(y);
 		}
 	}
+
 private:
 	float ClipAxis(float value){
 		if (fabs(value)<=deadband){

@@ -57,9 +57,6 @@ public:
 	float LowerLimitValue;
 	bool canUseLimit;
 
-
-
-
 	LifterControl() {
 		lifter = new Talon(LIFTER_MOTOR);
 		level1Value = LEVEL_1;
@@ -68,11 +65,8 @@ public:
 		homeValue = HOME;
 		//int start = 0;
 
-
-
 		upperLimit = new DigitalInput(22);
 		lowerLimit = new DigitalInput(23);
-
 
 		//magInput = new DigitalInput(5);
 		lifterSpeed = 0;
@@ -87,8 +81,6 @@ public:
 		autoCount = -1;
 		lastCommand = 0;
 		canUseLimit = false;
-
-
 	}
 
 	void RobotInit() {
@@ -153,11 +145,16 @@ public:
 		SmartDashboard::PutBoolean("Upper Limit", GetLowerLimit());
 		SmartDashboard::PutBoolean("Lower Limit", GetUpperLimit());
 		SmartDashboard::PutNumber("Lifter Motor Value", lifterSpeed);
-		SetSpeepFactor(SmartDashboard::GetNumber("Lifter Speed Factor"));
-		SmartDashboard::PutNumber("Lifter Speed Factor", speedFactor);
+
+
 		SetAccel(SmartDashboard::GetNumber("Accel"));
 
 
+		if (xbox->isAHeld()) {
+			speedFactor = 0.5;
+		} else {
+			SetSpeepFactor(0.75);
+		}
 
 		if (canUseLimit) {
 			SmartDashboard::PutString("Limit", "Enabled");

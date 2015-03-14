@@ -4,9 +4,10 @@
 #include <IControl.h>
 #include <RobotDrive.h>
 #include <SmartDashboard/SmartDashboard.h>
-#include <XboxController.h>
+#include <NewXboxController.h>
 #include <cmath>
 #include "WPILib.h"
+#include <JoystickClipper.cpp>
 
 #include "MultiOutputPID.h"
 #define THRESHHOLD_RANGE 2 //measured in degrees
@@ -16,7 +17,7 @@
 class DriveTest: public IControl {
 
 protected:
-	XboxController *xbox;
+	NewXboxController *xbox;
 	RobotDrive* myRobot;
 	Gyro *gyro;
 	MultiOutputPID *motorOutput;
@@ -26,6 +27,7 @@ protected:
 	PIDController *autoRotateController;
 	PIDController *leftController;
 	PIDController *rightController;
+	JoystickClipper *stick;
 
 	const static int frontLeftChannel = 2;
 	const static int rearLeftChannel = 4;
@@ -62,7 +64,9 @@ public:
 		motorOutput = new MultiOutputPID(motor1, motor3, motor2, motor4, true);
 		leftOutput = new MultiOutputPID(motor1, NULL, motor2, NULL, true);
 		rightOutput = new MultiOutputPID(NULL, motor3, NULL, motor4, true);
+
 		gyro = new Gyro(gyroChannel);
+
 		autoRotateController = new PIDController(0.005, 0.0, 0.0, gyro,
 				motorOutput);
 		leftController = new PIDController(0.0001, 0.0, 0.0, frontLeftEncoder,
@@ -72,9 +76,13 @@ public:
 
 		myRobot = new RobotDrive(motor3, motor4, motor1, motor2);
 		myRobot->SetExpiration(0.1);
-		xbox = XboxController::getInstance();
+
+		xbox = NewXboxController::getInstance(1);
+		stick = new JoystickClipper();
+
 		myRobot->SetInvertedMotor(RobotDrive::kFrontLeftMotor, true); // invert the left side motors
 		myRobot->SetInvertedMotor(RobotDrive::kRearLeftMotor, true); // you may need to change or remove this to match your robot
+
 		x = 0.0;
 		y = 0.0;
 		twist = 0.0;
@@ -107,40 +115,29 @@ public:
 		SmartDashboard::PutNumber("Y Speed Factor", 1.0);
 		SmartDashboard::PutNumber("Rotate Speed Factor", 0.5);
 		SmartDashboard::PutNumber("Strafe Speed Factor", 0.5);
-
+		SmartDashboard::PutNumber("Test Value", 0);
 	}
 
 	void TeleopPeriodic() {
 		y = 0;
 		x = twist = y;
-		x = .5;
-		float xSet = SmartDashboard::GetNumber("Strafe Speed Factor");
-		if (xbox->isAHeld())
-			ExDriveRight(x);
-		else if (xbox->isBHeld())
-			ExDrivLefte(x);
-		else
-			rDis();
+		x = 0;
+		//float ySet = SmartDashboard::GetNumber("Test Value");
+		SmartDashboard::PutNumber("Xbox Y", xbox->getAxisLeftY());
+		SmartDashboard::PutNumber("Xbox X", xbox->getAxisLeftX());
 
-		//myRobot->MecanumDrive_Cartesian(x, y, twist, 0);
-	}
-	void ExDrivLefte(float x) {
-		motor1->Set(x);
-		motor2->Set(-x);
-		motor3->Set(x);
-		motor4->Set(-x);
-	}
-	void ExDriveRight(float x) {
-		motor1->Set(-x);
-		motor2->Set(x);
-		motor3->Set(-x);
-		motor4->Set(x);
-	}
-	void rDis() {
-		motor1->Set(0);
-		motor2->Set(0);
-		motor3->Set(0);
-		motor4->Set(0);
+		if (xbox->isAHeld()) {
+			stick->Update(xbox->getAxisLeftX(), xbox->getAxisLeftY());
+			x = stick->X();
+			y = stick->Y();
+			twist = xbox->getAxisRightX();
+		} else {
+			x = xbox->getAxisLeftX();
+			y = xbox->getAxisLeftY();
+			twist = xbox->getAxisRightX();
+		}
+
+		myRobot->MecanumDrive_Cartesian(x, y, twist, 0);
 	}
 
 };
