@@ -9,6 +9,8 @@
 #include "WPILib.h"
 #include <JoystickClipper.cpp>
 
+#include "BeastSpeedControl.h"
+
 #include "MultiOutputPID.h"
 #define THRESHHOLD_RANGE 2 //measured in degrees
 #define DAVIDS_FUN_INPUT 20
@@ -23,7 +25,9 @@ protected:
 	MultiOutputPID *motorOutput;
 	MultiOutputPID *leftOutput;
 	MultiOutputPID *rightOutput;
-	Talon *motor1, *motor2, *motor3, *motor4;
+	//FrontLeft3 RearLeft4 FrontRight1 RearRight2
+	Talon *talonFR, *talonRR, *talonFL, *talonRL;
+	BeastSpeedControl *frontRight, *rearRight, *frontLeft, *rearLeft;
 	PIDController *autoRotateController;
 	PIDController *leftController;
 	PIDController *rightController;
@@ -53,18 +57,22 @@ protected:
 
 public:
 	DriveTest() {
-		motor1 = new Talon(frontRightChannel);
-		motor2 = new Talon(rearRightChannel);
-		motor3 = new Talon(frontLeftChannel);
-		motor4 = new Talon(rearLeftChannel);
+		talonFR = new Talon(frontRightChannel);
+		talonRR = new Talon(rearRightChannel);
+		talonFL = new Talon(frontLeftChannel);
+		talonRL = new Talon(rearLeftChannel);
+
+		frontRight = new BeastSpeedControl(talonFR);
+		rearRight = new BeastSpeedControl(talonRR);
+		frontLeft = new BeastSpeedControl(talonFL);
+		rearLeft = new BeastSpeedControl(talonRL);
 
 		frontRightEncoder = new Encoder(0, 1, false);
 		frontLeftEncoder = new Encoder(2, 3, false);
 
-		motorOutput = new MultiOutputPID(motor1, motor3, motor2, motor4, true);
-		leftOutput = new MultiOutputPID(motor1, NULL, motor2, NULL, true);
-		rightOutput = new MultiOutputPID(NULL, motor3, NULL, motor4, true);
-
+		motorOutput = new MultiOutputPID(frontRight, frontLeft, rearRight, rearLeft, true);
+		leftOutput = new MultiOutputPID(frontRight, NULL, rearRight, NULL, true);
+		rightOutput = new MultiOutputPID(NULL, frontLeft, NULL, rearLeft, true);
 		gyro = new Gyro(gyroChannel);
 
 		autoRotateController = new PIDController(0.005, 0.0, 0.0, gyro,
@@ -74,7 +82,7 @@ public:
 		rightController = new PIDController(0.0001, 0.0, 0.0, frontRightEncoder,
 				rightOutput);
 
-		myRobot = new RobotDrive(motor3, motor4, motor1, motor2);
+		myRobot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 		myRobot->SetExpiration(0.1);
 
 		xbox = NewXboxController::getInstance(1);
@@ -147,7 +155,35 @@ public:
 			twist = xbox->getAxisRightX();
 		}
 
-		myRobot->MecanumDrive_Cartesian(x, y, twist, 0);
+		myRobot->MecanumDrive_Cartesian(x, y, twist);
+/*		x = .5;
+		float xSet = SmartDashboard::GetNumber("Strafe Speed Factor");
+		if (xbox->isAHeld())
+			ExDriveRight(x);
+		else if (xbox->isBHeld())
+			ExDrivLefte(x);
+		else
+			rDis();
+*/
+		//myRobot->MecanumDrive_Cartesian(x, y, twist, 0);
+	}
+	void ExDrivLefte(float x) {
+		frontRight->Set(x);
+		rearRight->Set(-x);
+		frontLeft->Set(x);
+		rearLeft->Set(-x);
+	}
+	void ExDriveRight(float x) {
+		frontRight->Set(-x);
+		rearRight->Set(x);
+		frontLeft->Set(-x);
+		rearLeft->Set(x);
+	}
+	void rDis() {
+		frontRight->Set(0);
+		rearRight->Set(0);
+		frontLeft->Set(0);
+		rearLeft->Set(0);
 	}
 
 };
