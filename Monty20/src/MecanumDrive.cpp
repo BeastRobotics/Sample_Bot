@@ -12,6 +12,7 @@
 #include <NewXboxController.h>
 #include <cmath>
 #include "WPILib.h"
+#include "BeastSpeedControl.h"
 
 #include "MultiOutputPID.h"
 #define THRESHHOLD_RANGE 2 //measured in degrees
@@ -26,7 +27,8 @@ protected:
 	MultiOutputPID *motorOutput;
 	MultiOutputPID *leftOutput;
 	MultiOutputPID *rightOutput;
-	Talon *motor1, *motor2, *motor3, *motor4;
+	Talon *talon1, *talon2, *talon3, *talon4;
+	BeastSpeedControl *motor1, *motor2, *motor3, *motor4;
 	PIDController *autoRotateController;
 	PIDController *leftController;
 	PIDController *rightController;
@@ -55,10 +57,15 @@ protected:
 
 public:
 	MecanumDrive() {
-		motor1 = new Talon(frontRightChannel);
-		motor2 = new Talon(rearRightChannel);
-		motor3 = new Talon(frontLeftChannel);
-		motor4 = new Talon(rearLeftChannel);
+		talon1 = new Talon(frontRightChannel);
+		talon2 = new Talon(rearRightChannel);
+		talon3 = new Talon(frontLeftChannel);
+		talon4 = new Talon(rearLeftChannel);
+
+		motor1 = new BeastSpeedControl(talon1);
+		motor2 = new BeastSpeedControl(talon2);
+		motor3 = new BeastSpeedControl(talon3);
+		motor4 = new BeastSpeedControl(talon4);
 
 		frontRightEncoder = new Encoder(0, 1, false);
 		frontLeftEncoder = new Encoder(2, 3, false);

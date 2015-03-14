@@ -24,6 +24,15 @@ void BeastSpeedControl::Set(float speed, uint8_t syncGroup) {
 	}
 	this->controller->Set(newSpeed, syncGroup);
 }
+float BeastSpeedControl::Get(){
+	return controller->Get();
+}
+void BeastSpeedControl::Disable(){
+	controller->Disable();
+}
+void BeastSpeedControl::PIDWrite(float output){
+	controller->PIDWrite(output);
+}
 void BeastSpeedControl::SetOverride(float override) {
 	this->override = override;
 }

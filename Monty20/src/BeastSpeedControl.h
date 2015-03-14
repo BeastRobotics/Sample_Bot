@@ -12,9 +12,12 @@
 class BeastSpeedControl:public SpeedController {
 public:
 	BeastSpeedControl(SpeedController* speedControl);
-	virtual ~BeastSpeedControl();
-	void Set(float speed, uint8_t=0);
+	~BeastSpeedControl();
+	void Set(float speed, uint8_t syncGroup=0);
+	float Get();
+	void Disable();
 	void SetOverride(float override);
+	void PIDWrite(float output);
 private:
 	SpeedController* controller;
 	float override;
