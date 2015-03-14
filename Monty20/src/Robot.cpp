@@ -35,6 +35,14 @@
 #define LEFT 0
 #define RIGHT 1
 #define ENABLE_AHRS
+#define FrontLeftEncoderStart 0
+#define FrontLeftEncoderEnd 1
+#define FrontRightEncoderStart 2
+#define FrontRightEncoderEnd 3
+#define RearLeftEncoderStart 4
+#define RearLeftEncoderEnd 5
+#define RearRightEncoderStart 6
+#define RearRightEncoderEnd 7
 
 struct Command_Node {
 	int index;
@@ -43,6 +51,12 @@ struct Command_Node {
 };
 
 class Robot: public IterativeRobot {
+
+
+    Encoder *FrontRight = new Encoder(FrontRightEncoderStart, FrontRightEncoderEnd);
+    Encoder *FrontLeft = new Encoder(FrontLeftEncoderStart, FrontLeftEncoderEnd);
+    Encoder *RearRight = new Encoder(RearRightEncoderStart, RearRightEncoderEnd);
+    Encoder *RearLeft = new Encoder(RearLeftEncoderStart, RearLeftEncoderEnd);
 
 	//Navx
 	NetworkTable *table;
@@ -287,10 +301,21 @@ private:
 				controllers[i]->TeleopInit();
 		}
 		//lifter->init();
+		FrontRight->Reset();
+		FrontLeft->Reset();
+		RearRight->Reset();
+		RearLeft->Reset();
 	}
 
 	void TeleopPeriodic() {
 		SmartDashboard::PutString("State", "Tele Periodic");
+		
+		//TODO Encoders
+		SmartDashboard::PutNumber("FrontRight",FrontRight->get());
+		SmartDashboard::PutNumber("FrontLeft",FrontLeft->get());
+		SmartDashboard::PutNumber("RearRight",RearRight->get());
+		SmartDashboard::PutNumber("RearLeft",RearLeft->get());
+		
 		for (int i = 0; i < NUM_CONTROLLERS; i++) {
 
 			if (controllers[i] != NULL)
