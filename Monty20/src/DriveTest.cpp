@@ -15,6 +15,7 @@
 #define THRESHHOLD_RANGE 2 //measured in degrees
 #define DAVIDS_FUN_INPUT 20
 #define FINAL_DEBOUNCE_TURN 300
+#define STRAFEOVERRIDE_FACTOR 0
 
 class DriveTest: public IControl {
 
@@ -70,8 +71,10 @@ public:
 		frontRightEncoder = new Encoder(0, 1, false);
 		frontLeftEncoder = new Encoder(2, 3, false);
 
-		motorOutput = new MultiOutputPID(frontRight, frontLeft, rearRight, rearLeft, true);
-		leftOutput = new MultiOutputPID(frontRight, NULL, rearRight, NULL, true);
+		motorOutput = new MultiOutputPID(frontRight, frontLeft, rearRight,
+				rearLeft, true);
+		leftOutput = new MultiOutputPID(frontRight, NULL, rearRight, NULL,
+				true);
 		rightOutput = new MultiOutputPID(NULL, frontLeft, NULL, rearLeft, true);
 		gyro = new Gyro(gyroChannel);
 
@@ -127,6 +130,7 @@ public:
 		SmartDashboard::PutNumber("Drive Value", 0.0);
 		SmartDashboard::PutNumber("Clipped X", 0);
 		SmartDashboard::PutNumber("Clipped Y", 0);
+		SmartDashboard::PutNumber("Override", 0);
 
 		stick->SetMaxValue(0.5);
 	}
@@ -143,28 +147,32 @@ public:
 		if (xbox->isBHeld()) {
 			y = SmartDashboard::GetNumber("Drive Value");
 		} else if (xbox->isAHeld()) {
-			stick->Update(xbox->getAxisLeftX(), xbox->getAxisLeftY());
-			x = stick->X();
-			y = stick->Y();
-			SmartDashboard::PutNumber("Clipped X", x);
-			SmartDashboard::PutNumber("Clipped Y", y);
-			twist = xbox->getAxisRightX();
+			stick->SetMaxValue(0.4);
 		} else {
-			x = xbox->getAxisLeftX();
-			y = xbox->getAxisLeftY();
-			twist = xbox->getAxisRightX();
+			stick->SetMaxValue(1);
 		}
 
+		stick->Update(xbox->getAxisLeftX(), xbox->getAxisLeftY());
+		x = stick->X();
+		y = stick->Y();
+		twist = xbox->getAxisRightX();
+		SmartDashboard::PutNumber("Clipped X", x);
+		SmartDashboard::PutNumber("Clipped Y", y);
+
+		float override = x * SmartDashboard::GetNumber("Override");
+		frontLeft->SetOverride(-override);
+		frontRight->SetOverride(-override);
+
 		myRobot->MecanumDrive_Cartesian(x, y, twist);
-/*		x = .5;
-		float xSet = SmartDashboard::GetNumber("Strafe Speed Factor");
-		if (xbox->isAHeld())
-			ExDriveRight(x);
-		else if (xbox->isBHeld())
-			ExDrivLefte(x);
-		else
-			rDis();
-*/
+		/*		x = .5;
+		 float xSet = SmartDashboard::GetNumber("Strafe Speed Factor");
+		 if (xbox->isAHeld())
+		 ExDriveRight(x);
+		 else if (xbox->isBHeld())
+		 ExDrivLefte(x);
+		 else
+		 rDis();
+		 */
 		//myRobot->MecanumDrive_Cartesian(x, y, twist, 0);
 	}
 	void ExDrivLefte(float x) {

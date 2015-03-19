@@ -13,6 +13,7 @@
 #include <cmath>
 #include "WPILib.h"
 #include "BeastSpeedControl.h"
+#include <JoystickClipper.cpp>
 
 #include "MultiOutputPID.h"
 #define THRESHHOLD_RANGE 2 //measured in degrees
@@ -47,6 +48,7 @@ protected:
 	int autoTurnCounter;
 	Encoder *frontRightEncoder;
 	Encoder *frontLeftEncoder;
+	JoystickClipper *stick;
 
 	float x;
 	float y;
@@ -72,8 +74,12 @@ public:
 		frontRightEncoder = new Encoder(0, 1, false);
 		frontLeftEncoder = new Encoder(2, 3, false);
 
-		motorOutput = new MultiOutputPID(frontRight, frontLeft, rearRight, rearLeft, true);
-		leftOutput = new MultiOutputPID(frontRight, NULL, rearRight, NULL, true);
+		stick = new JoystickClipper();
+
+		motorOutput = new MultiOutputPID(frontRight, frontLeft, rearRight,
+				rearLeft, true);
+		leftOutput = new MultiOutputPID(frontRight, NULL, rearRight, NULL,
+				true);
 		rightOutput = new MultiOutputPID(NULL, frontLeft, NULL, rearLeft, true);
 		gyro = new Gyro(gyroChannel);
 
@@ -81,8 +87,8 @@ public:
 				motorOutput);
 		leftController = new PIDController(0.0001, 0.0, 0.0, frontLeftEncoder,
 				leftOutput);
-		rightController = new PIDController(0.0001, 0.0, 0.0,
-				frontRightEncoder, rightOutput);
+		rightController = new PIDController(0.0001, 0.0, 0.0, frontRightEncoder,
+				rightOutput);
 		//FrontLeft3 RearLeft4 FrontRight1 RearRight2
 		myRobot = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
 		myRobot->SetExpiration(0.1);
@@ -151,19 +157,19 @@ public:
 	}
 
 	/*int driveForward() {
-		if (lastCommand == 0) {
-			autoDriveCounter = 5000 / DAVIDS_FUN_INPUT;
-			lastCommand = -1;
-		}
-		autoDriveCounter--;
-		if (autoDriveCounter <= 0) {
-			this->myRobot->ArcadeDrive(0.0, 0);
-			lastCommand = 0;
-			return 1;
-		}
-		this->myRobot->ArcadeDrive(0.5, 0);
-		return 0;
-	}*/
+	 if (lastCommand == 0) {
+	 autoDriveCounter = 5000 / DAVIDS_FUN_INPUT;
+	 lastCommand = -1;
+	 }
+	 autoDriveCounter--;
+	 if (autoDriveCounter <= 0) {
+	 this->myRobot->ArcadeDrive(0.0, 0);
+	 lastCommand = 0;
+	 return 1;
+	 }
+	 this->myRobot->ArcadeDrive(0.5, 0);
+	 return 0;
+	 }*/
 
 	int disableStuff() {
 		AutonomousInit();
@@ -181,7 +187,7 @@ public:
 		}
 		double leftValue = frontLeftEncoder->Get();
 		double rightValue = frontRightEncoder->Get();
-		if (abs((leftValue-rightValue)/2) < THRESHHOLD_RANGE) {
+		if (abs((leftValue - rightValue) / 2) < THRESHHOLD_RANGE) {
 			autoTurnCounter--;
 			if (autoTurnCounter <= 0) {
 				AutonomousInit();
@@ -192,7 +198,6 @@ public:
 		}
 		return 0;
 	}
-
 
 	int turn(int input) {
 		motorOutput->DisableOverDrive();
@@ -253,54 +258,47 @@ public:
 
 		gyro->Reset();
 
+		SmartDashboard::PutNumber("Override", 0);
+
 	}
 
 	void TeleopPeriodic() {
-
 		float gyroAngle = gyro->GetAngle();
 		SmartDashboard::PutNumber("Gyro Direction", gyroAngle);
-		speedFactor = SmartDashboard::GetNumber("Y Speed Factor");
-		rotateSpeedFactor = SmartDashboard::GetNumber("Rotate Speed Factor");
-		strafeSpeedFactor = SmartDashboard::GetNumber("Strafe Speed Factor");
 
+		/*if (fabs(x) < 0.1) {
+		 x = 0.0;
+		 }
 
-		bool creep = xbox->isAHeld();
-		SmartDashboard::PutBoolean("Creep Mode", creep);
+		 if (fabs(y) < 0.1) {
+		 y = 0.0;
+		 }
 
-		x = xbox->getAxisLeftX();
-		y = xbox->getAxisLeftY();
+		 if (fabs(twist) < 0.1) {
+		 twist = 0.0;
+		 }
+
+		 if (SmartDashboard::GetBoolean("Use Gyro")) {
+		 angle = gyro->GetAngle();
+		 } else {
+		 angle = 0.0;
+		 }*/
+
+		if (!xbox->isRBumperHeld()) {
+			stick->SetMaxValue(0.4);
+		} else {
+			stick->SetMaxValue(1);
+		}
+
+		stick->Update(xbox->getAxisLeftX(), xbox->getAxisLeftY());
+		x = stick->X();
+		y = stick->Y();
 		twist = xbox->getAxisRightX();
 
-		if (fabs(x) < 0.1) {
-			x = 0.0;
-		}
+		float override = x * SmartDashboard::GetNumber("Override");
 
-		if (fabs(y) < 0.1) {
-			y = 0.0;
-		}
-
-		if (fabs(twist) < 0.1) {
-			twist = 0.0;
-		}
-
-		if (SmartDashboard::GetBoolean("Use Gyro")) {
-			angle = gyro->GetAngle();
-		} else {
-			angle = 0.0;
-		}
-
-		if(creep){
-			//b
-		}
-
-		x *= strafeSpeedFactor;
-		y *= speedFactor;
-		twist *= rotateSpeedFactor;
-
-		float override = x*STRAFEOVERRIDE_FACTOR;
-
-		frontLeft->SetOverride(override);
-		frontRight->SetOverride(override);
+		frontLeft->SetOverride(-override);
+		frontRight->SetOverride(-override);
 
 		myRobot->MecanumDrive_Cartesian(x, y, twist, 0);
 
@@ -313,7 +311,7 @@ public:
 	}
 
 	void AutonomousExecute() {
-		if ((lastCommand<=0 && lastCommandTurn==0 && lastCommandDrive<=0)) {
+		if ((lastCommand <= 0 && lastCommandTurn == 0 && lastCommandDrive <= 0)) {
 			frontRight->PIDWrite(0.0);
 			rearRight->PIDWrite(0.0);
 			frontLeft->PIDWrite(0.0);
