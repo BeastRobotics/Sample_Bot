@@ -27,10 +27,10 @@
 #define GRABTURNLEFT 1
 #define GRABTURNRIGHT 2
 #define WAIT 1000
-#define AUTO_D 2050
+#define AUTO_D 2000
 #define AUTO_BACK -2000
 #define AUTO_GCB -2000
-#define AUTO_GT 2500
+#define AUTO_GT 3000
 #define AUTO_GTC AUTO_GT
 #define LEFT 0
 #define RIGHT 1
@@ -96,6 +96,7 @@ public:
 		addCommand(DELAY, WAIT);
 		addCommand(LIFTER, 1000);
 		addCommand(MOVE, AUTO_D);
+		addCommand(DELAY, WAIT);
 		addCommand(MOVE, 1);
 	}
 	void getContainerBack() {
@@ -123,6 +124,7 @@ public:
 		addCommand(LIFTER, 1000); //lift tote
 		addCommand(MOVE, RIGHT); //turn to face auto zone
 		addCommand(MOVE, AUTO_GTC); //drive to auto zone
+		addCommand(MOVE, LEFT);//turn while in the auto zone
 	}
 	void driveStraightTest() {
 		addCommand(MOVE, 4);
@@ -310,13 +312,6 @@ private:
 	}
 
 	void TeleopPeriodic() {
-
-		DigitalInput *b = new DigitalInput(7);
-		DigitalInput *h = new DigitalInput(6);
-
-		SmartDashboard::PutBoolean("Input Check 6", h->Get());
-		SmartDashboard::PutBoolean("Input Check 7", b->Get());
-		SmartDashboard::PutString("State", "Tele Periodic");
 		
 		//TODO Encoders
 		SmartDashboard::PutNumber("FrontRight",FrontRight->GetRate());
@@ -349,27 +344,12 @@ private:
 					first_iteration = false;
 				}
 			}
-			SmartDashboard::PutBoolean("IMU_Connected", imu->IsConnected());
-			SmartDashboard::PutNumber("IMU_Yaw", imu->GetYaw());
-			SmartDashboard::PutNumber("IMU_Pitch", imu->GetPitch());
-			SmartDashboard::PutNumber("IMU_Roll", imu->GetRoll());
-			SmartDashboard::PutNumber("IMU_CompassHeading",
-					imu->GetCompassHeading());
-			SmartDashboard::PutNumber("IMU_Update_Count",
-					imu->GetUpdateCount());
-			SmartDashboard::PutNumber("IMU_Byte_Count", imu->GetByteCount());
+
 
 #if defined (ENABLE_IMU_ADVANCED) || defined(ENABLE_AHRS)
-			SmartDashboard::PutNumber("IMU_Accel_X", imu->GetWorldLinearAccelX());
-			SmartDashboard::PutNumber("IMU_Accel_Y", imu->GetWorldLinearAccelY());
-			SmartDashboard::PutBoolean("IMU_IsMoving", imu->IsMoving());
-			SmartDashboard::PutNumber("IMU_Temp_C", imu->GetTempC());
-			SmartDashboard::PutBoolean("IMU_IsCalibrating", imu->IsCalibrating());
+
 #if defined (ENABLE_AHRS)
-			SmartDashboard::PutNumber("Velocity_X", imu->GetVelocityX() );
-			SmartDashboard::PutNumber("Velocity_Y", imu->GetVelocityY() );
-			SmartDashboard::PutNumber("Displacement_X", imu->GetDisplacementX() );
-			SmartDashboard::PutNumber("Displacement_Y", imu->GetDisplacementY() );
+
 #endif
 #endif
 			Wait(0.2);				// wait for a while

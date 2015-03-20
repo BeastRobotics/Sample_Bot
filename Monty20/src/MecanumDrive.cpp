@@ -14,6 +14,7 @@
 #include "WPILib.h"
 #include "BeastSpeedControl.h"
 #include <JoystickClipper.cpp>
+#include "AHRS.h"
 
 #include "MultiOutputPID.h"
 #define THRESHHOLD_RANGE 2 //measured in degrees
@@ -48,7 +49,10 @@ protected:
 	int autoTurnCounter;
 	Encoder *frontRightEncoder;
 	Encoder *frontLeftEncoder;
-	JoystickClipper *stick;
+	JoystickClipper *stickX;
+	JoystickClipper *stickY;
+	JoystickClipper *stickTwist;
+
 
 	float x;
 	float y;
@@ -58,6 +62,9 @@ protected:
 	float rotateSpeedFactor;
 	float strafeSpeedFactor;
 	bool creepMode;
+	AHRS *imu;
+	NetworkTable *table;
+	SerialPort *serial_port;
 
 public:
 	MecanumDrive() {
@@ -74,7 +81,9 @@ public:
 		frontRightEncoder = new Encoder(0, 1, false);
 		frontLeftEncoder = new Encoder(2, 3, false);
 
-		stick = new JoystickClipper();
+		stickX = new JoystickClipper();
+		stickY = new JoystickClipper();
+		stickTwist = new JoystickClipper();
 
 		motorOutput = new MultiOutputPID(frontRight, frontLeft, rearRight,
 				rearLeft, true);
@@ -109,6 +118,10 @@ public:
 		autoDriveCounter = 0;
 		autoTurnCounter = 0;
 
+		table = NetworkTable::GetTable("datatable");
+				serial_port = new SerialPort(57600, SerialPort::kMXP);
+				uint8_t update_rate_hz = 50;
+				imu = new AHRS(serial_port, update_rate_hz);
 		creepMode = false;
 	}
 
@@ -140,9 +153,9 @@ public:
 		case 0:
 			break;
 		case 1:
-			return turn(90);
+			return turn(110);
 		case 2:
-			return turn(-90);
+			return turn(-110);
 		case 3:
 			return disableStuff();
 		case 4:
@@ -248,25 +261,21 @@ public:
 		myRobot->SetSafetyEnabled(false);
 		SmartDashboard::PutBoolean("Use Gyro", false);
 		SmartDashboard::PutNumber("Gyro Direction", gyro->GetAngle());
-		SmartDashboard::PutNumber("Y Speed Factor", 1.0);
-		SmartDashboard::PutNumber("Rotate Speed Factor", 0.5);
-		SmartDashboard::PutNumber("Strafe Speed Factor", 0.5);
-
 		SmartDashboard::PutBoolean("Creep Mode", false);
 
 		autoRotateController->Disable();
 
 		gyro->Reset();
 
-		SmartDashboard::PutNumber("Override", 0);
+		SmartDashboard::PutNumber("Override", 0.1);
 
 	}
 
 	void TeleopPeriodic() {
 		float gyroAngle = gyro->GetAngle();
 		SmartDashboard::PutNumber("Gyro Direction", gyroAngle);
-
-		/*if (fabs(x) < 0.1) {
+/**
+		if (fabs(x) < 0.1) {
 		 x = 0.0;
 		 }
 
@@ -277,23 +286,31 @@ public:
 		 if (fabs(twist) < 0.1) {
 		 twist = 0.0;
 		 }
+*/
 
 		 if (SmartDashboard::GetBoolean("Use Gyro")) {
-		 angle = gyro->GetAngle();
+		 angle = imu->GetYaw();
 		 } else {
 		 angle = 0.0;
-		 }*/
+		 }
 
 		if (!xbox->isRBumperHeld()) {
-			stick->SetMaxValue(0.4);
+			stickX->SetMaxValue(0.4);
+			stickY->SetMaxValue(0.25);
+			stickTwist->SetMaxValue(0.25);
+
 		} else {
-			stick->SetMaxValue(1);
+			stickX->SetMaxValue(1);
+			stickY->SetMaxValue(1);
+			stickTwist->SetMaxValue(1);
 		}
 
-		stick->Update(xbox->getAxisLeftX(), xbox->getAxisLeftY());
-		x = stick->X();
-		y = stick->Y();
-		twist = xbox->getAxisRightX();
+		stickX->Update(xbox->getAxisLeftX(),xbox->getAxisLeftX());
+		stickY->Update(xbox->getAxisLeftY(),xbox->getAxisLeftY());
+		stickTwist->Update(xbox->getAxisRightX(),xbox->getAxisRightX());
+		x = stickX->X();
+		y = stickY->Y();
+		twist = stickTwist->X();
 
 		float override = x * SmartDashboard::GetNumber("Override");
 

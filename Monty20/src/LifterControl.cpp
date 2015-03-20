@@ -206,8 +206,8 @@ public:
 		//lifter->Set(0.0);
 	}
 	void lifterupdate() {
-		UpperLimitValue = GetUpperLimit();
-		LowerLimitValue = GetLowerLimit();
+		UpperLimitValue = !GetUpperLimit();
+		LowerLimitValue = !GetLowerLimit();
 		double finalSpeed = 0.0;
 		bool movingUp = lifterSpeed < 0;
 		bool movingDown = lifterSpeed > 0;
@@ -348,7 +348,7 @@ public:
 		if (canUseLimit) {
 			return upperLimit->Get();  //Backwords
 		} else {
-			return true;
+			return false;
 		}
 	}
 
@@ -356,7 +356,7 @@ public:
 		if (canUseLimit) {
 			return lowerLimit->Get();  //backwords
 		} else {
-			return true;
+			return false;
 		}
 	}
 
