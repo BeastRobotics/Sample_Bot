@@ -29,3 +29,7 @@
 /.metadata/
 *.settings/
 *.project
+*.cproject
+*.cproject
+test/cRIODebug/makefile
+*.mk
