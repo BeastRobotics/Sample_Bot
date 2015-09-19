@@ -328,7 +328,8 @@ public:
 	}
 
 	void AutonomousExecute() {
-		if ((lastCommand <= 0 && lastCommandTurn == 0 && lastCommandDrive <= 0)) {
+		bool PID = !(autoRotateController->IsEnabled());
+		if (PID||((lastCommand <= 0 && lastCommandTurn == 0 && lastCommandDrive <= 0))) {
 			frontRight->PIDWrite(0.0);
 			rearRight->PIDWrite(0.0);
 			frontLeft->PIDWrite(0.0);

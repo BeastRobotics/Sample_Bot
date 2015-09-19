@@ -27,7 +27,7 @@
 #define GRABTURNLEFT 1
 #define GRABTURNRIGHT 2
 #define WAIT 1000
-#define AUTO_D 2000
+#define AUTO_D 1700
 #define AUTO_BACK -2000
 #define AUTO_GCB -2000
 #define AUTO_GT 3000

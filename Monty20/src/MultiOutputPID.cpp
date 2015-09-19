@@ -31,7 +31,7 @@ void MultiOutputPID::PIDWrite(float output) {
 		rightOut = output;
 	} else {
 		float offset = output / 2.0;
-		bool rotateLeft = output < 0;
+		bool rotateLeft = output > 0;
 		leftOut = -overDrive + (rotateLeft ? offset : -offset);
 		rightOut = overDrive + (rotateLeft ? offset : -offset);
 	}
